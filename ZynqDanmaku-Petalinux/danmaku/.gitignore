@@ -1,0 +1,13 @@
+*/config.old
+build/
+images/
+pre-built/
+.petalinux/*
+!.petalinux/metadata
+*/.metadata/
+*.o
+*.d
+*.old
+*.elf
+*.jou
+*.log
