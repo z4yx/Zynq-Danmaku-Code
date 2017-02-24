@@ -1,5 +1,29 @@
 /dts-v1/;
 /include/ "system-conf.dtsi"
 / {
+        chosen {
+                bootargs = "console=ttyPS0,115200 earlyprintk debug";
+        };
+	usb_phy0: phy0 {
+		//compatible = "usb-nop-xceiv";
+		//reset-gpios = <&gpio0 49 1>; //GPIO_ACTIVE_LOW
+	        compatible = "ulpi-phy";
+	        #phy-cells = <0>;
+	        reg = <0xe0002000 0x1000>;
+	        view-port = <0x170>;
+		drv-vbus;
+	};
+
+};
+&flash0 {
+	compatible = "s25fl256s1";
+};
+
+&usb0 {
+	status = "okay";
+        //phy_type = "ulpi";
+	//dr_mode = "otg";
+        dr_mode = "host";
+	usb-phy = <&usb_phy0>;
 };
 

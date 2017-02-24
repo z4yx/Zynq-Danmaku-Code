@@ -9,6 +9,9 @@ def find_cfgs(d):
             sources_list.append(s)
 
     return sources_list
+
+
+
 SRC_URI_append ="\
     file://plnx_kernel.cfg\
 "

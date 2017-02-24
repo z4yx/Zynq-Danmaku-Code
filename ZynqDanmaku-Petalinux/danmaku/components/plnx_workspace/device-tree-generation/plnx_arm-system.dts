@@ -7,7 +7,7 @@
 	model = "danmaku";
 
 	chosen {
-		bootargs = "console=ttyPS0,115200 earlyprintk";
+		bootargs = "console=ttyPS0,115200 earlyprintk debug";
 		stdout-path = "serial0:115200ns";
 	};
 
@@ -232,7 +232,7 @@
 			num-cs = <0x1>;
 
 			flash@0 {
-				compatible = "micron,m25p80";
+				compatible = "s25fl256s1";
 				reg = <0x0>;
 				#address-cells = <0x1>;
 				#size-cells = <0x1>;
@@ -446,6 +446,7 @@
 			phy_type = "ulpi";
 			dr_mode = "host";
 			usb-reset = <0x5 0x7 0x0>;
+			usb-phy = <0x6>;
 		};
 
 		usb@e0003000 {
@@ -466,5 +467,15 @@
 			reg = <0xf8005000 0x1000>;
 			timeout-sec = <0xa>;
 		};
+	};
+
+	phy0 {
+		compatible = "ulpi-phy";
+		#phy-cells = <0x0>;
+		reg = <0xe0002000 0x1000>;
+		view-port = <0x170>;
+		drv-vbus;
+		linux,phandle = <0x6>;
+		phandle = <0x6>;
 	};
 };
