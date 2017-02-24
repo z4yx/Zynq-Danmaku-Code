@@ -2,7 +2,7 @@
 /include/ "system-conf.dtsi"
 / {
         chosen {
-                bootargs = "console=ttyPS0,115200 earlyprintk debug";
+                //bootargs = "console=ttyPS0,115200 earlyprintk debug";
         };
 	usb_phy0: phy0 {
 		//compatible = "usb-nop-xceiv";

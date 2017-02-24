@@ -15,7 +15,7 @@
 		spi0 = &qspi;
 	};
 	chosen {
-		bootargs = "console=ttyPS0,115200 earlyprintk";
+		bootargs = "console=ttyPS1,115200 earlyprintk";
 		stdout-path = "serial0:115200ns";
 	};
 	memory {

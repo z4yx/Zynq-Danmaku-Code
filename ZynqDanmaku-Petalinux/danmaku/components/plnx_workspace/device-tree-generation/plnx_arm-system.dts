@@ -7,7 +7,7 @@
 	model = "danmaku";
 
 	chosen {
-		bootargs = "console=ttyPS0,115200 earlyprintk debug";
+		bootargs = "console=ttyPS1,115200 earlyprintk";
 		stdout-path = "serial0:115200ns";
 	};
 
@@ -114,8 +114,6 @@
 			emio-gpio-width = <0x40>;
 			gpio-mask-high = <0x0>;
 			gpio-mask-low = <0x5600>;
-			linux,phandle = <0x5>;
-			phandle = <0x5>;
 		};
 
 		i2c@e0004000 {
@@ -176,11 +174,13 @@
 
 		serial@e0000000 {
 			compatible = "xlnx,xuartps", "cdns,uart-r1p8";
-			status = "disabled";
+			status = "okay";
 			clocks = <0x1 0x17 0x1 0x28>;
 			clock-names = "uart_clk", "pclk";
 			reg = <0xe0000000 0x1000>;
 			interrupts = <0x0 0x1b 0x4>;
+			device_type = "serial";
+			port-number = <0x1>;
 		};
 
 		serial@e0001000 {
@@ -445,8 +445,7 @@
 			reg = <0xe0002000 0x1000>;
 			phy_type = "ulpi";
 			dr_mode = "host";
-			usb-reset = <0x5 0x7 0x0>;
-			usb-phy = <0x6>;
+			usb-phy = <0x5>;
 		};
 
 		usb@e0003000 {
@@ -475,7 +474,7 @@
 		reg = <0xe0002000 0x1000>;
 		view-port = <0x170>;
 		drv-vbus;
-		linux,phandle = <0x6>;
-		phandle = <0x6>;
+		linux,phandle = <0x5>;
+		phandle = <0x5>;
 	};
 };
