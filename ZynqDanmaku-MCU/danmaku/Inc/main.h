@@ -51,6 +51,14 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define ZYNQ_DONE_Pin GPIO_PIN_0
+#define ZYNQ_DONE_GPIO_Port GPIOA
+#define ZYNQ_INT_Pin GPIO_PIN_1
+#define ZYNQ_INT_GPIO_Port GPIOA
+#define ZYNQ_RST_Pin GPIO_PIN_0
+#define ZYNQ_RST_GPIO_Port GPIOB
+#define VIN_RST_Pin GPIO_PIN_1
+#define VIN_RST_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
