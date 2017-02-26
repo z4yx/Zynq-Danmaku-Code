@@ -6,6 +6,7 @@
 /include/ "skeleton.dtsi"
 /include/ "zynq-7000.dtsi"
 /include/ "pcw.dtsi"
+/include/ "pl.dtsi"
 
 / {
 	model = "danmaku";
@@ -15,7 +16,7 @@
 		spi0 = &qspi;
 	};
 	chosen {
-		bootargs = "console=ttyPS1,115200 earlyprintk";
+		bootargs = "console=ttyPS1,115200 earlyprintk root=/dev/mmcblk1p1 rw rootwait";
 		stdout-path = "serial0:115200ns";
 	};
 	memory {

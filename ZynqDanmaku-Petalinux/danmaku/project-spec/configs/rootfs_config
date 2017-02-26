@@ -933,8 +933,8 @@ CONFIG_run-postinsts=y
 # libffi 
 #
 # CONFIG_libffi is not set
-# CONFIG_libffi-dev is not set
 # CONFIG_libffi-dbg is not set
+# CONFIG_libffi-dev is not set
 
 #
 # libfontenc 
