@@ -20,6 +20,85 @@
 
 /******************************************************************/
 
+/* Definitions for driver AXICDMA */
+#define XPAR_XAXICDMA_NUM_INSTANCES 1
+
+/* Definitions for peripheral AXI_CDMA_0 */
+#define XPAR_AXI_CDMA_0_DEVICE_ID 0
+#define XPAR_AXI_CDMA_0_BASEADDR 0x40200000
+#define XPAR_AXI_CDMA_0_HIGHADDR 0x4020FFFF
+#define XPAR_AXI_CDMA_0_INCLUDE_DRE 1
+#define XPAR_AXI_CDMA_0_USE_DATAMOVER_LITE 0
+#define XPAR_AXI_CDMA_0_M_AXI_DATA_WIDTH 64
+#define XPAR_AXI_CDMA_0_INCLUDE_SG 1
+#define XPAR_AXI_CDMA_0_M_AXI_MAX_BURST_LEN 16
+#define XPAR_AXI_CDMA_0_ADDR_WIDTH 32
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral AXI_CDMA_0 */
+#define XPAR_AXICDMA_0_DEVICE_ID XPAR_AXI_CDMA_0_DEVICE_ID
+#define XPAR_AXICDMA_0_BASEADDR 0x40200000
+#define XPAR_AXICDMA_0_HIGHADDR 0x4020FFFF
+#define XPAR_AXICDMA_0_INCLUDE_DRE 1
+#define XPAR_AXICDMA_0_USE_DATAMOVER_LITE 0
+#define XPAR_AXICDMA_0_M_AXI_DATA_WIDTH 64
+#define XPAR_AXICDMA_0_INCLUDE_SG 1
+#define XPAR_AXICDMA_0_M_AXI_MAX_BURST_LEN 16
+#define XPAR_AXICDMA_0_ADDR_WIDTH 32
+
+
+/******************************************************************/
+
+/* Definitions for driver AXIDMA */
+#define XPAR_XAXIDMA_NUM_INSTANCES 1
+
+/* Definitions for peripheral AXI_DMA_0 */
+#define XPAR_AXI_DMA_0_DEVICE_ID 0
+#define XPAR_AXI_DMA_0_BASEADDR 0x40400000
+#define XPAR_AXI_DMA_0_HIGHADDR 0x4040FFFF
+#define XPAR_AXI_DMA_0_SG_INCLUDE_STSCNTRL_STRM 0
+#define XPAR_AXI_DMA_0_INCLUDE_MM2S_DRE 1
+#define XPAR_AXI_DMA_0_INCLUDE_S2MM_DRE 0
+#define XPAR_AXI_DMA_0_INCLUDE_MM2S 1
+#define XPAR_AXI_DMA_0_INCLUDE_S2MM 0
+#define XPAR_AXI_DMA_0_M_AXI_MM2S_DATA_WIDTH 64
+#define XPAR_AXI_DMA_0_M_AXI_S2MM_DATA_WIDTH 32
+#define XPAR_AXI_DMA_0_INCLUDE_SG 1
+#define XPAR_AXI_DMA_0_ENABLE_MULTI_CHANNEL 0
+#define XPAR_AXI_DMA_0_NUM_MM2S_CHANNELS 1
+#define XPAR_AXI_DMA_0_NUM_S2MM_CHANNELS 1
+#define XPAR_AXI_DMA_0_MM2S_BURST_SIZE 8
+#define XPAR_AXI_DMA_0_S2MM_BURST_SIZE 16
+#define XPAR_AXI_DMA_0_MICRO_DMA 0
+#define XPAR_AXI_DMA_0_ADDR_WIDTH 32
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral AXI_DMA_0 */
+#define XPAR_AXIDMA_0_DEVICE_ID XPAR_AXI_DMA_0_DEVICE_ID
+#define XPAR_AXIDMA_0_BASEADDR 0x40400000
+#define XPAR_AXIDMA_0_SG_INCLUDE_STSCNTRL_STRM 0
+#define XPAR_AXIDMA_0_INCLUDE_MM2S 1
+#define XPAR_AXIDMA_0_INCLUDE_MM2S_DRE 1
+#define XPAR_AXIDMA_0_M_AXI_MM2S_DATA_WIDTH 64
+#define XPAR_AXIDMA_0_INCLUDE_S2MM 0
+#define XPAR_AXIDMA_0_INCLUDE_S2MM_DRE 0
+#define XPAR_AXIDMA_0_M_AXI_S2MM_DATA_WIDTH 32
+#define XPAR_AXIDMA_0_INCLUDE_SG 1
+#define XPAR_AXIDMA_0_ENABLE_MULTI_CHANNEL 0
+#define XPAR_AXIDMA_0_NUM_MM2S_CHANNELS 1
+#define XPAR_AXIDMA_0_NUM_S2MM_CHANNELS 1
+#define XPAR_AXIDMA_0_MM2S_BURST_SIZE 8
+#define XPAR_AXIDMA_0_S2MM_BURST_SIZE 16
+#define XPAR_AXIDMA_0_MICRO_DMA 0
+#define XPAR_AXIDMA_0_c_addr_width 32
+
+
+/******************************************************************/
+
 
 /* Definitions for peripheral PS7_DDR_0 */
 #define XPAR_PS7_DDR_0_S_AXI_BASEADDR 0x00100000
@@ -288,6 +367,16 @@
 #define XPAR_XQSPIPS_0_QSPI_CLK_FREQ_HZ 200000000
 #define XPAR_XQSPIPS_0_QSPI_MODE 0
 
+
+/******************************************************************/
+
+/* Definitions for Fabric interrupts connected to ps7_scugic_0 */
+#define XPAR_FABRIC_AXI_DMA_0_MM2S_INTROUT_INTR 61
+#define XPAR_FABRIC_AXI_CDMA_0_CDMA_INTROUT_INTR 62
+
+/******************************************************************/
+
+/* Canonical definitions for Fabric interrupts connected to ps7_scugic_0 */
 
 /******************************************************************/
 

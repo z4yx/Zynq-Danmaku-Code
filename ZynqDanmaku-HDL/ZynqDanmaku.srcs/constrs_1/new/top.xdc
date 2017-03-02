@@ -9,6 +9,18 @@ set_property IOSTANDARD LVCMOS33 [get_ports mcu_tx]
 set_property PULLUP true [get_ports mcu_tx]
 set_property -dict {PACKAGE_PIN G14 IOSTANDARD LVCMOS33} [get_ports mcu_rx]
 
+set_property -dict {PACKAGE_PIN L19 IOSTANDARD LVCMOS33} [get_ports switch_in[0]]
+set_property -dict {PACKAGE_PIN L20 IOSTANDARD LVCMOS33} [get_ports switch_in[1]]
+set_property -dict {PACKAGE_PIN G20 IOSTANDARD LVCMOS33} [get_ports switch_in[2]]
+set_property -dict {PACKAGE_PIN C20 IOSTANDARD LVCMOS33} [get_ports switch_in[3]]
+set_property -dict {PACKAGE_PIN B20 IOSTANDARD LVCMOS33} [get_ports switch_in[4]]
+
+set_property -dict {PACKAGE_PIN J20 IOSTANDARD LVCMOS33} [get_ports led_out_n[0]]
+set_property -dict {PACKAGE_PIN H20 IOSTANDARD LVCMOS33} [get_ports led_out_n[1]]
+set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports led_out_n[2]]
+set_property -dict {PACKAGE_PIN L16 IOSTANDARD LVCMOS33} [get_ports led_out_n[3]]
+set_property -dict {PACKAGE_PIN F19 IOSTANDARD LVCMOS33} [get_ports led_out_n[4]]
+
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets IN_CLK_IBUF]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets CLKA_OBUF]
 

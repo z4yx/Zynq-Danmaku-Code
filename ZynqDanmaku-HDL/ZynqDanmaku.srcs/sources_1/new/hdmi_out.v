@@ -43,13 +43,19 @@ module hdmi_out(
 reg [23+3:0] buf_orig, buf_overlay;
 reg inner_vs,inner_hs,inner_de;
 reg [23:0]inner_rgb;
+reg [1:0] en_overlay_sync, en_blank_sync;
+
+always @(posedge clk) begin : proc_sw
+    en_overlay_sync <= {en_overlay_sync[0], en_overlay};
+    en_blank_sync   <= {en_blank_sync[0], en_blank};
+end
 
 always@(posedge clk)
 begin
     buf_orig <= {orig_vs,orig_hs,orig_de,orig_rgb};
     buf_overlay <= {overlay_vs,overlay_hs,overlay_de,overlay_rgb};
-    {inner_vs,inner_hs,inner_de,inner_rgb} <= en_overlay ? buf_overlay : buf_orig;
-    {out_vs,out_hs,out_de,out_rgb} <= {inner_vs,inner_hs,inner_de,en_blank ? 24'b0 : inner_rgb};
+    {inner_vs,inner_hs,inner_de,inner_rgb} <= en_overlay_sync[1] ? buf_overlay : buf_orig;
+    {out_vs,out_hs,out_de,out_rgb} <= {inner_vs,inner_hs,inner_de,en_blank_sync[1] ? 24'b0 : inner_rgb};
 end
 
 

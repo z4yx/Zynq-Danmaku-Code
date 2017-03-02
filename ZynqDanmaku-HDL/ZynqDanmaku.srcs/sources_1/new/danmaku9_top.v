@@ -46,6 +46,9 @@ module danmaku9_top(
     inout wire mcu_boot,
     input wire mcu_tx,    
     output wire mcu_rx,
+
+    input wire [4:0]switch_in,
+    output wire [4:0]led_out_n,
   
     input wire IN_VS,
     input wire IN_HS,
@@ -92,7 +95,6 @@ wire [15:0] pxl_height;
 wire hps_fpga_reset_n = 1'b1;
 
    
-
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
     .DDR_ba(DDR_ba),
@@ -124,6 +126,7 @@ top_blk_wrapper top_blk_i
     .UART_0_txd(mcu_rx),
     .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}));
 
+//`default_nettype none
 
 wire scdt_to_overlay;
 wire odck_to_overlay;
@@ -159,10 +162,15 @@ wire[31:0] pixel_fifo_data_ext;
 wire[31:0] pixel_fifo_data_int;
 wire pixel_fifo_empty_ext;
 wire pixel_fifo_empty_int;
-reg sw_debug, sw_en_overlay, sw_blank, sw_test_pattern, sw_pattern_pause;
+wire sw_debug=1, sw_test_pattern=1, sw_pattern_pause=0;
+wire sw_blank[0:1];
+wire sw_en_overlay[0:1];
+wire sw_conj;
+wire led_flash_clk;
 
 wire de_to_output,hs_to_output,vs_to_output;
 wire [7:0] pixel_r_to_output,pixel_g_to_output,pixel_b_to_output;
+wire [7:0] pixel_fwd_r_to_output,pixel_fwd_g_to_output,pixel_fwd_b_to_output;
 wire pixel_clk_to_output;
 
 wire de_to_hdmi[0:1],hs_to_hdmi[0:1],vs_to_hdmi[0:1];
@@ -174,21 +182,30 @@ assign DEA = de_to_hdmi[0];
 assign O1_D = rgb_to_hdmi[0];
 assign CLKA = pixel_clk_to_output;
 
+assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk};
+// assign led_out_n = switch_in;
+
 assign pixel_fifo_data = sw_test_pattern ? pixel_fifo_data_int : pixel_fifo_data_ext;
 assign pixel_fifo_empty = sw_test_pattern ? pixel_fifo_empty_int : pixel_fifo_empty_ext;
-always @(posedge odck_to_overlay) begin : proc_sw
-  {sw_pattern_pause, sw_test_pattern,sw_debug,sw_en_overlay,sw_blank} <= 5'b01110; 
-end
+
+led_clkdiv led_flash(.clk(odck_to_overlay), .divided(led_flash_clk));
+
+bistable_switch #(.WIDTH(5)) btn(
+  .clk      (ps_fabric_50M_clk),
+  .rst_n    (hps_fpga_reset_n),
+  .switch_in(switch_in),
+  .state_out({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj})
+);
 
 genvar out_idx;
 generate
 for(out_idx=0;out_idx<2;out_idx=out_idx+1)begin : gen_hdmi
     hdmi_out hdmi_o(
         .clk(pixel_clk_to_output),
-        .orig_vs(vsync_to_overlay),
-        .orig_hs(hsync_to_overlay),
-        .orig_de(de_to_overlay),
-        .orig_rgb({pixel_r_to_overlay,pixel_g_to_overlay,pixel_b_to_overlay}),
+        .orig_vs(vs_to_output),
+        .orig_hs(hs_to_output),
+        .orig_de(de_to_output),
+        .orig_rgb({pixel_fwd_r_to_output,pixel_fwd_g_to_output,pixel_fwd_b_to_output}),
         
         .overlay_vs(vs_to_output),
         .overlay_hs(hs_to_output),
@@ -200,8 +217,8 @@ for(out_idx=0;out_idx<2;out_idx=out_idx+1)begin : gen_hdmi
         .out_de(de_to_hdmi[out_idx]),
         .out_rgb(rgb_to_hdmi[out_idx]),
     
-        .en_overlay(sw_en_overlay),
-        .en_blank(sw_blank)
+        .en_overlay(sw_en_overlay[out_idx]),
+        .en_blank(sw_blank[out_idx])
         );
 end
 endgenerate
@@ -227,7 +244,10 @@ danmaku_overlay overlay_logic_1(
    .pixel_r_o(pixel_r_to_output),
    .pixel_g_o(pixel_g_to_output),
    .pixel_b_o(pixel_b_to_output),
-   
+   .pixel_fwd_r_o(pixel_fwd_r_to_output),
+   .pixel_fwd_g_o(pixel_fwd_g_to_output),
+   .pixel_fwd_b_o(pixel_fwd_b_to_output),
+
    .fifoRdclk(pixel_fifo_clk),
    .fifoRdreq(pixel_fifo_req),
    .screenX(pxl_width[15:0]),
