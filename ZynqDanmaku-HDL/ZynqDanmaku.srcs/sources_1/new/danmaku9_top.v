@@ -176,13 +176,7 @@ wire pixel_clk_to_output;
 wire de_to_hdmi[0:1],hs_to_hdmi[0:1],vs_to_hdmi[0:1];
 wire [23:0] rgb_to_hdmi[0:1];
 
-assign O1_VS = vs_to_hdmi[0];
-assign HSA = hs_to_hdmi[0];
-assign DEA = de_to_hdmi[0];
-assign O1_D = rgb_to_hdmi[0];
-assign CLKA = pixel_clk_to_output;
-
-assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk};
+assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk|sw_conj};
 // assign led_out_n = switch_in;
 
 assign pixel_fifo_data = sw_test_pattern ? pixel_fifo_data_int : pixel_fifo_data_ext;
@@ -195,6 +189,31 @@ bistable_switch #(.WIDTH(5)) btn(
   .rst_n    (hps_fpga_reset_n),
   .switch_in(switch_in),
   .state_out({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj})
+);
+
+oddr_adapter adapter(
+  .pix_clk    (pixel_clk_to_output),
+  .de_to_hdmi0 (de_to_hdmi[0]),
+  .hs_to_hdmi0 (hs_to_hdmi[0]),
+  .vs_to_hdmi0 (vs_to_hdmi[0]),
+  .rgb_to_hdmi0(rgb_to_hdmi[0]),
+
+  .de_to_hdmi1 (de_to_hdmi[1]),
+  .hs_to_hdmi1 (hs_to_hdmi[1]),
+  .vs_to_hdmi1 (vs_to_hdmi[1]),
+  .rgb_to_hdmi1(rgb_to_hdmi[1]),
+
+  .O2_VS      (O2_VS),
+  .HSB        (HSB),
+  .CLKB       (CLKB),
+  .DEB        (DEB),
+  .O2_D       (O2_D),
+  
+  .O1_VS      (O1_VS),
+  .HSA        (HSA),
+  .CLKA       (CLKA),
+  .DEA        (DEA),
+  .O1_D       (O1_D)
 );
 
 genvar out_idx;

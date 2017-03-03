@@ -71,9 +71,9 @@ assign fifoRdclk = odck_in;
 assign syncWait = syncWaitH || syncWaitV;
 assign {pixel_fwd_r_o, pixel_fwd_g_o, pixel_fwd_b_o} =
     {
-      (fifoRdEmpty && !noDebug)? ~pixel_r_orig : pixel_r_orig,
+      pixel_r_orig,
       pixel_g_orig,
-      (syncWait && !noDebug) ? ~pixel_b_orig :  pixel_b_orig
+      pixel_b_orig
     };
 assign {pixel_r_o, pixel_g_o, pixel_b_o} =
   (fifoData_in[7]==1'b0 || syncWait || !overlay_en)?
