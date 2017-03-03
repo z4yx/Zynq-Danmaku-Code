@@ -26,6 +26,7 @@
 "Src/main.o"
 "Src/stm32f0xx_hal_msp.o"
 "Src/stm32f0xx_it.o"
+"Src/system_manage.o"
 "Src/system_stm32f0xx.o"
 "Src/usb_device.o"
 "Src/usbd_cdc_if.o"

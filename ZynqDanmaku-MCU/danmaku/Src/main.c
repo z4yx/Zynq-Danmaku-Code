@@ -46,6 +46,8 @@
 #include "usb_device.h"
 
 /* USER CODE BEGIN Includes */
+#include "common.h"
+#include "system_manage.h"
 #include "hdmi_dec_enc.h"
 /* USER CODE END Includes */
 
@@ -81,8 +83,7 @@ int _write (int fd, char *ptr, int len)
   /* Write "len" of char from "ptr" to file id "fd"
    * Return number of char written.
    * Need implementing with UART here. */
-  HAL_StatusTypeDef status =
-     HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, 1000);
+  HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, 1000);
   return len;
 }
 /* USER CODE END PFP */
@@ -115,7 +116,7 @@ int main(void)
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN 2 */
-  printf("Danmaku9 SMC starting...\r\n");
+  INFO_MSG("Danmaku9 SMC starting...");
   HDMI_Init();
   /* USER CODE END 2 */
 
@@ -126,6 +127,8 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+    HDMI_Task();
+    SystemManage_Task();
 
   }
   /* USER CODE END 3 */
