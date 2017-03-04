@@ -49,8 +49,8 @@ ODDR #(
 .Q(HSA), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(0), // 1-bit data input (positive edge)
-.D2(hs_to_hdmi0), // 1-bit data input (negative edge)
+.D1(hs_to_hdmi0), // 1-bit data input (positive edge)
+.D2(0), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -62,8 +62,8 @@ ODDR #(
 .Q(O1_VS), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(0), // 1-bit data input (positive edge)
-.D2(vs_to_hdmi0), // 1-bit data input (negative edge)
+.D1(vs_to_hdmi0), // 1-bit data input (positive edge)
+.D2(0), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -75,8 +75,8 @@ ODDR #(
 .Q(DEA), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(0), // 1-bit data input (positive edge)
-.D2(de_to_hdmi0), // 1-bit data input (negative edge)
+.D1(de_to_hdmi0), // 1-bit data input (positive edge)
+.D2(0), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -90,8 +90,8 @@ ODDR #(
 .Q(HSB), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(hs_to_hdmi1), // 1-bit data input (positive edge)
-.D2(0), // 1-bit data input (negative edge)
+.D1(0), // 1-bit data input (positive edge)
+.D2(hs_to_hdmi1), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -103,8 +103,8 @@ ODDR #(
 .Q(O2_VS), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(vs_to_hdmi1), // 1-bit data input (positive edge)
-.D2(0), // 1-bit data input (negative edge)
+.D1(0), // 1-bit data input (positive edge)
+.D2(vs_to_hdmi1), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -116,8 +116,8 @@ ODDR #(
 .Q(DEB), // 1-bit DDR output
 .C(pix_clk), // 1-bit clock input
 .CE(1), // 1-bit clock enable input
-.D1(de_to_hdmi1), // 1-bit data input (positive edge)
-.D2(0), // 1-bit data input (negative edge)
+.D1(0), // 1-bit data input (positive edge)
+.D2(de_to_hdmi1), // 1-bit data input (negative edge)
 .R(0), // 1-bit reset
 .S(0) // 1-bit set
 );
@@ -134,8 +134,8 @@ begin : gen_da
     .Q(O1_D[i]), // 1-bit DDR output
     .C(pix_clk), // 1-bit clock input
     .CE(1), // 1-bit clock enable input
-    .D1(rgb_shared[i]), // 1-bit data input (positive edge)
-    .D2(rgb_to_hdmi0[i]), // 1-bit data input (negative edge)
+    .D1(rgb_to_hdmi0[i]), // 1-bit data input (positive edge)
+    .D2(rgb_shared[i]), // 1-bit data input (negative edge)
     .R(0), // 1-bit reset
     .S(0) // 1-bit set
     );
@@ -150,8 +150,8 @@ begin : gen_db
     .Q(O2_D[j]), // 1-bit DDR output
     .C(pix_clk), // 1-bit clock input
     .CE(1), // 1-bit clock enable input
-    .D1(rgb_to_hdmi1[j]), // 1-bit data input (positive edge)
-    .D2(1'b0), // 1-bit data input (negative edge)
+    .D1(1'b0), // 1-bit data input (positive edge)
+    .D2(rgb_to_hdmi1[j]), // 1-bit data input (negative edge)
     .R(0), // 1-bit reset
     .S(0) // 1-bit set
     );

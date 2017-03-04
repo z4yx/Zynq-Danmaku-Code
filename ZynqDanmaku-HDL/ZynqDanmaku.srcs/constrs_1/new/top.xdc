@@ -115,7 +115,6 @@ create_generated_clock -name in_clk_pll -source [get_pins in_pll/clk_in1] -multi
 #create_generated_clock -name hdmi_clk_a -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out2]
 #create_generated_clock -name hdmi_clk_b -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out3]
 
-
 set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports {IN_D[*]}]
 set_input_delay -clock [get_clocks IN_CLK] -max -add_delay 3.600 [get_ports {IN_D[*]}]
 set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports IN_DE]
@@ -132,23 +131,28 @@ set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports HSA
 set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports HSA]
 set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports O1_VS]
 set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports O1_VS]
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O1_D[*]}] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEA] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSA] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O1_VS] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O1_D[*]}] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEA] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSA] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O1_VS] 2
 
-set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports {O2_D[*]}]
-set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports {O2_D[*]}]
-set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports DEB]
-set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports DEB]
-set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports HSB]
-set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports HSB]
-set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports O2_VS]
-set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports O2_VS]
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O2_D[*]}] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEB] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSB] 2
-set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O2_VS] 2
+set_output_delay -clock clk_out2_clk_video -clock_fall -min -add_delay -1.300 [get_ports {O2_D[*]}]
+set_output_delay -clock clk_out2_clk_video -clock_fall -max -add_delay 1.800 [get_ports {O2_D[*]}]
+set_output_delay -clock clk_out2_clk_video -clock_fall -min -add_delay -1.300 [get_ports DEB]
+set_output_delay -clock clk_out2_clk_video -clock_fall -max -add_delay 1.800 [get_ports DEB]
+set_output_delay -clock clk_out2_clk_video -clock_fall -min -add_delay -1.300 [get_ports HSB]
+set_output_delay -clock clk_out2_clk_video -clock_fall -max -add_delay 1.800 [get_ports HSB]
+set_output_delay -clock clk_out2_clk_video -clock_fall -min -add_delay -1.300 [get_ports O2_VS]
+set_output_delay -clock clk_out2_clk_video -clock_fall -max -add_delay 1.800 [get_ports O2_VS]
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O2_D[*]}] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEB] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSB] 2
+#set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O2_VS] 2
 
+#======== Opposite-Edge Capture Edge-Aligned Output ========
+#set_false_path -setup -rise_from [get_clocks in_clk_pll] -rise_to clk_out2_clk_video
+#set_false_path -setup -fall_from [get_clocks in_clk_pll] -fall_to clk_out2_clk_video
+#set_false_path -hold -rise_from [get_clocks in_clk_pll] -fall_to clk_out2_clk_video
+#set_false_path -hold -fall_from [get_clocks in_clk_pll] -rise_to clk_out2_clk_video
 
 set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]/D}]

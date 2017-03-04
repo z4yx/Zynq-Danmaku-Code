@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
--- Date        : Sat Mar  4 12:08:42 2017
+-- Date        : Sat Mar  4 17:02:56 2017
 -- Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_video/clk_video_stub.vhdl
