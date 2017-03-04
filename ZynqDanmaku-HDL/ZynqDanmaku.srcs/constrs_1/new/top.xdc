@@ -21,7 +21,9 @@ set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports {led_out_n[2
 set_property -dict {PACKAGE_PIN L16 IOSTANDARD LVCMOS33} [get_ports {led_out_n[3]}]
 set_property -dict {PACKAGE_PIN F19 IOSTANDARD LVCMOS33} [get_ports {led_out_n[4]}]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets IN_CLK_IBUF]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets IN_CLK_IBUF]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets IN_CLK_IBUF_BUFG]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets in_pll/inst/clk_in1_clk_wiz_0]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets adapter/pll/inst/clk_out2]
 
 set_property -dict {PACKAGE_PIN L14 IOSTANDARD LVCMOS33} [get_ports IN_VS]
@@ -108,6 +110,12 @@ set_property -dict {PACKAGE_PIN T20 IOSTANDARD LVCMOS33} [get_ports {O2_I2S[0]}]
 set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports {O2_I2S[1]}]
 
 create_clock -period 6.667 -name IN_CLK -waveform {0.000 3.334} [get_ports IN_CLK]
+
+create_generated_clock -name in_clk_pll -source [get_pins in_pll/clk_in1] -multiply_by 1 [get_pins in_pll/clk_out1]
+#create_generated_clock -name hdmi_clk_a -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out2]
+#create_generated_clock -name hdmi_clk_b -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out3]
+
+
 set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports {IN_D[*]}]
 set_input_delay -clock [get_clocks IN_CLK] -max -add_delay 3.600 [get_ports {IN_D[*]}]
 set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports IN_DE]
@@ -116,14 +124,31 @@ set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports IN_H
 set_input_delay -clock [get_clocks IN_CLK] -max -add_delay 3.600 [get_ports IN_HS]
 set_input_delay -clock [get_clocks IN_CLK] -min -add_delay 1.100 [get_ports IN_VS]
 set_input_delay -clock [get_clocks IN_CLK] -max -add_delay 3.600 [get_ports IN_VS]
-#set_output_delay -clock [get_clocks IN_CLK] -max -add_delay 1.800 [get_ports {O1_D[*]}]
-#set_output_delay -clock [get_clocks IN_CLK] -min -add_delay -1.300 [get_ports DEA]
-#set_output_delay -clock [get_clocks IN_CLK] -max -add_delay 1.800 [get_ports DEA]
-#set_output_delay -clock [get_clocks IN_CLK] -min -add_delay -1.300 [get_ports HSA]
-#set_output_delay -clock [get_clocks IN_CLK] -max -add_delay 1.800 [get_ports HSA]
-#set_output_delay -clock [get_clocks IN_CLK] -min -add_delay -1.300 [get_ports O1_VS]
-#set_output_delay -clock [get_clocks IN_CLK] -max -add_delay 1.800 [get_ports O1_VS]
+set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports {O1_D[*]}]
+set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports {O1_D[*]}]
+set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports DEA]
+set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports DEA]
+set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports HSA]
+set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports HSA]
+set_output_delay -clock clk_out2_clk_video -min -add_delay -1.300 [get_ports O1_VS]
+set_output_delay -clock clk_out2_clk_video -max -add_delay 1.800 [get_ports O1_VS]
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O1_D[*]}] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEA] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSA] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O1_VS] 2
 
-create_generated_clock -name hdmi_clk_a -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out2]
+set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports {O2_D[*]}]
+set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports {O2_D[*]}]
+set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports DEB]
+set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports DEB]
+set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports HSB]
+set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports HSB]
+set_output_delay -clock clk_out3_clk_video -min -add_delay -1.300 [get_ports O2_VS]
+set_output_delay -clock clk_out3_clk_video -max -add_delay 1.800 [get_ports O2_VS]
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports {O2_D[*]}] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports DEB] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports HSB] 2
+set_multicycle_path -setup -from [get_clocks in_clk_pll] -to [get_ports O2_VS] 2
 
-create_generated_clock -name hdmi_clk_b -source [get_pins adapter/pll/clk_in1] -multiply_by 1 [get_pins adapter/pll/clk_out3]
+
+set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]/D}]

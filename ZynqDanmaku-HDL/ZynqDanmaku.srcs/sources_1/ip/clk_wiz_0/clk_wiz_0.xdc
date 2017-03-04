@@ -1,5 +1,5 @@
 
-# file: clk_video.xdc
+# file: clk_wiz_0.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
 # 

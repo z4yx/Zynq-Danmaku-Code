@@ -28,18 +28,24 @@ output reg[7:0] pixel_b_o
 
 reg[1:0] de_det, de_cnt;
 reg[19:0] counter;
+reg vsync_reg;
+reg hsync_reg;
+reg de_reg;
+reg[7:0] pixel_r_reg;
+reg[7:0] pixel_g_reg;
+reg[7:0] pixel_b_reg;
 wire de_transition;
 assign odck_o = odck_in;
 
 always @(posedge odck_in) begin
     de_det <= {de_det[0], de_in};
 	
-	vsync_o <= vsync_in;
-	hsync_o <= hsync_in;
-	de_o <= de_in;
-	pixel_b_o <= pixel_b_in;
-	pixel_r_o <= pixel_r_in;
-	pixel_g_o <= pixel_g_in;
+	{vsync_o, vsync_reg} <= {vsync_reg ,vsync_in};
+	{hsync_o, hsync_reg} <= {hsync_reg,hsync_in};
+	{de_o, de_reg}       <= {de_reg,de_in};
+	{pixel_b_o, pixel_b_reg} <= {pixel_b_reg,pixel_b_in};
+	{pixel_r_o, pixel_r_reg} <= {pixel_r_reg,pixel_r_in};
+	{pixel_g_o, pixel_g_reg} <= {pixel_g_reg,pixel_g_in};
 end
 
 assign de_transition = de_det[1] != de_det[0];

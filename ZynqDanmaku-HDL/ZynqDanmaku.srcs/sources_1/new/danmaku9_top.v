@@ -128,6 +128,18 @@ top_blk_wrapper top_blk_i
 
 //`default_nettype none
 
+wire in_clk_pll,in_clk_reset_n,in_clk_locked;
+clk_wiz_0 in_pll(
+  .clk_in1(IN_CLK),
+  .clk_out1(in_clk_pll),
+  .locked(in_clk_locked)
+);
+clock_reset_gen in_rst(
+  .clk    (in_clk_pll),
+  .locked (in_clk_locked),
+  .reset_n(in_clk_reset_n)
+);
+
 wire scdt_to_overlay;
 wire odck_to_overlay;
 wire vsync_to_overlay;
@@ -137,8 +149,8 @@ wire[7:0] pixel_r_to_overlay;
 wire[7:0] pixel_g_to_overlay;
 wire[7:0] pixel_b_to_overlay;
 tfp401a dvi_in_1(
-    .rst(hps_fpga_reset_n),
-    .odck_in(IN_CLK),
+    .rst(in_clk_reset_n),
+    .odck_in(in_clk_pll),
     .vsync_in(IN_VS),
     .hsync_in(IN_HS),
     .de_in(IN_DE),
@@ -243,7 +255,7 @@ end
 endgenerate
 
 danmaku_overlay overlay_logic_1(
-   .rst(hps_fpga_reset_n),
+   .rst(in_clk_reset_n),
    .scdt_in(scdt_to_overlay),
    .odck_in(odck_to_overlay),
    .vsync_in(vsync_to_overlay),
@@ -285,7 +297,7 @@ danmaku_overlay overlay_logic_1(
 
 
 pixel_data_adapter dma2overlay(
-  .rst_n     (hps_fpga_reset_n),
+  .rst_n     (in_clk_reset_n),
   .clk_src   (ps_overlay_clk),
   .data_src  (M_AXIS_tdata),
   .valid_src (M_AXIS_tvalid),
@@ -297,7 +309,7 @@ pixel_data_adapter dma2overlay(
 );
 
 test_img_feeder feeder1(
-  .rst(hps_fpga_reset_n),
+  .rst(in_clk_reset_n),
   .clk_feeder(ps_overlay_clk),
   .fifoData_out(pixel_fifo_data_int),
   .fifoRdclk(pixel_fifo_clk),
