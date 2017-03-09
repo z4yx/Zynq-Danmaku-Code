@@ -124,6 +124,8 @@ top_blk_wrapper top_blk_i
     .ps_fabric_50M_clk(ps_fabric_50M_clk),
     .UART_0_rxd(mcu_tx),
     .UART_0_txd(mcu_rx),
+    .resolution_h(pxl_height),
+    .resolution_w(pxl_width),
     .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}));
 
 //`default_nettype none
@@ -186,7 +188,7 @@ wire [7:0] pixel_fwd_r_to_output,pixel_fwd_g_to_output,pixel_fwd_b_to_output;
 wire pixel_clk_to_output;
 
 wire de_to_hdmi[0:1],hs_to_hdmi[0:1],vs_to_hdmi[0:1];
-wire [23:0] rgb_to_hdmi[0:1];
+wire [15:0] ycrcb_to_hdmi[0:1];
 
 assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk|sw_conj};
 // assign led_out_n = switch_in;
@@ -203,36 +205,24 @@ bistable_switch #(.WIDTH(5)) btn(
   .state_out({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj})
 );
 
-oddr_adapter adapter(
-  .pix_clk    (pixel_clk_to_output),
-  .de_to_hdmi0 (de_to_hdmi[0]),
-  .hs_to_hdmi0 (hs_to_hdmi[0]),
-  .vs_to_hdmi0 (vs_to_hdmi[0]),
-  .rgb_to_hdmi0(rgb_to_hdmi[0]),
+assign CLKA = pixel_clk_to_output;
+assign HSA = hs_to_hdmi[0];
+assign O1_VS = vs_to_hdmi[0];
+assign DEA = de_to_hdmi[0];
+assign O1_D[23:8] = {ycrcb_to_hdmi[0]};
 
-  .de_to_hdmi1 (de_to_hdmi[1]),
-  .hs_to_hdmi1 (hs_to_hdmi[1]),
-  .vs_to_hdmi1 (vs_to_hdmi[1]),
-  .rgb_to_hdmi1(rgb_to_hdmi[1]),
-
-  .O2_VS      (O2_VS),
-  .HSB        (HSB),
-  .CLKB       (CLKB),
-  .DEB        (DEB),
-  .O2_D       (O2_D),
-  
-  .O1_VS      (O1_VS),
-  .HSA        (HSA),
-  .CLKA       (CLKA),
-  .DEA        (DEA),
-  .O1_D       (O1_D)
-);
+assign CLKB = pixel_clk_to_output;
+assign HSB = hs_to_hdmi[1];
+assign O2_VS = vs_to_hdmi[1];
+assign DEB = de_to_hdmi[1];
+assign {O1_D[7:0],O2_D} = {ycrcb_to_hdmi[1]};
 
 genvar out_idx;
 generate
 for(out_idx=0;out_idx<2;out_idx=out_idx+1)begin : gen_hdmi
     hdmi_out hdmi_o(
         .clk(pixel_clk_to_output),
+        .rst_n(in_clk_reset_n),
         .orig_vs(vs_to_output),
         .orig_hs(hs_to_output),
         .orig_de(de_to_output),
@@ -246,7 +236,7 @@ for(out_idx=0;out_idx<2;out_idx=out_idx+1)begin : gen_hdmi
         .out_vs(vs_to_hdmi[out_idx]),
         .out_hs(hs_to_hdmi[out_idx]),
         .out_de(de_to_hdmi[out_idx]),
-        .out_rgb(rgb_to_hdmi[out_idx]),
+        .out_ycrcb(ycrcb_to_hdmi[out_idx]),
     
         .en_overlay(sw_en_overlay[out_idx]),
         .en_blank(sw_blank[out_idx])

@@ -25,6 +25,7 @@ module oddr_adapter (
 );
 
 wire [23:0] rgb_shared;
+wire clka_pll,clkb_pll;
 
 assign rgb_shared = {
     rgb_to_hdmi1[7:0],
@@ -35,12 +36,31 @@ assign rgb_shared = {
 clk_video pll(
     .clk_in1(pix_clk),
     .clk_out1(),
-    .clk_out2(CLKA),
-    .clk_out3(CLKB),
+    .clk_out2(clka_pll),
+//    .clk_out3(clkb_pll),                                                                                                                           
+
+    .psclk(pix_clk),
+    .psen(0),
+    .psincdec(0),
+    .psdone(),
+   
     .locked()
 );
 
 // =====To HDMI A=====
+ODDR #(
+.DDR_CLK_EDGE("SAME_EDGE"), // "OPPOSITE_EDGE" or "SAME_EDGE"
+.INIT(1'b0), // Initial value of Q: 1'b0 or 1'b1
+.SRTYPE("ASYNC") // Set/Reset type: "SYNC" or "ASYNC"
+) ODDR_clka (
+.Q(CLKA), // 1-bit DDR output
+.C(clka_pll), // 1-bit clock input
+.CE(1), // 1-bit clock enable input
+.D1(1), // 1-bit data input (positive edge)
+.D2(0), // 1-bit data input (negative edge)
+.R(0), // 1-bit reset
+.S(0) // 1-bit set
+);
 ODDR #(
 .DDR_CLK_EDGE("SAME_EDGE"), // "OPPOSITE_EDGE" or "SAME_EDGE"
 .INIT(1'b0), // Initial value of Q: 1'b0 or 1'b1
@@ -82,6 +102,19 @@ ODDR #(
 );
 
 // =====To HDMI B=====
+ODDR #(
+.DDR_CLK_EDGE("SAME_EDGE"), // "OPPOSITE_EDGE" or "SAME_EDGE"
+.INIT(1'b0), // Initial value of Q: 1'b0 or 1'b1
+.SRTYPE("ASYNC") // Set/Reset type: "SYNC" or "ASYNC"
+) ODDR_clkb (
+.Q(CLKB), // 1-bit DDR output
+.C(clka_pll), // 1-bit clock input
+.CE(1), // 1-bit clock enable input
+.D1(0), // 1-bit data input (positive edge)
+.D2(1), // 1-bit data input (negative edge)
+.R(0), // 1-bit reset
+.S(0) // 1-bit set
+);
 ODDR #(
 .DDR_CLK_EDGE("SAME_EDGE"), // "OPPOSITE_EDGE" or "SAME_EDGE"
 .INIT(1'b0), // Initial value of Q: 1'b0 or 1'b1
