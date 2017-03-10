@@ -28,7 +28,7 @@ initial begin
         @(negedge clk);
     de_i = 1;
     repeat(6) begin
-        rgb_i = $random();
+        rgb_i = 0;//$random();
         @(negedge clk);
     end
     de_i = 0;

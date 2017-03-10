@@ -41,14 +41,16 @@ wire[7:0] ydata,udata,vdata;
 reg[7:0] ydata_last,udata_last,vdata_last;
 reg[15:0] ycrcb_next;
 
-RGB_YCbCr RGB2YCbCr(
+RGB_YCbCr 
+    #(.DSIZE(8))
+RGB2YCbCr(
     .clock(clk),
 	.invsync(vs_i),
 	.inhsync(hs_i),
 	.inde(de_i),
-    .inR({8'b0,rgb_i[23:16]}),
-    .inG({8'b0,rgb_i[15:8]}),
-    .inB({8'b0,rgb_i[7:0]}),
+    .inR({rgb_i[23:16]}),
+    .inG({rgb_i[15:8]}),
+    .inB({rgb_i[7:0]}),
     .outvsync(vs_from_conv),
     .outhsync(hs_from_conv),
     .outde(de_from_conv),

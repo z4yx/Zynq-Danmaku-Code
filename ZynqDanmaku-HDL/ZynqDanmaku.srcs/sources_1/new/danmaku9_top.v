@@ -130,10 +130,11 @@ top_blk_wrapper top_blk_i
 
 //`default_nettype none
 
-wire in_clk_pll,in_clk_reset_n,in_clk_locked;
+wire in_clk_pll,in_clk_reset_n,in_clk_locked,clk_out_hdmi;
 clk_wiz_0 in_pll(
   .clk_in1(IN_CLK),
   .clk_out1(in_clk_pll),
+  .clk_out2(clk_out_hdmi),
   .locked(in_clk_locked)
 );
 clock_reset_gen in_rst(
@@ -205,13 +206,13 @@ bistable_switch #(.WIDTH(5)) btn(
   .state_out({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj})
 );
 
-assign CLKA = pixel_clk_to_output;
+assign CLKA = clk_out_hdmi;
 assign HSA = hs_to_hdmi[0];
 assign O1_VS = vs_to_hdmi[0];
 assign DEA = de_to_hdmi[0];
 assign O1_D[23:8] = {ycrcb_to_hdmi[0]};
 
-assign CLKB = pixel_clk_to_output;
+assign CLKB = clk_out_hdmi;
 assign HSB = hs_to_hdmi[1];
 assign O2_VS = vs_to_hdmi[1];
 assign DEB = de_to_hdmi[1];
