@@ -2,9 +2,9 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="top_blk" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1488359923"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1488359923"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1488359923"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1489137082"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1489137082"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1489137082"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_dma_0"/>
@@ -127,6 +127,14 @@
       </File>
       <File Name="ip/top_blk_ps7_0_0/top_blk_ps7_0_0.xci" Type="IP">
         <Instance HierarchyPath="ps7_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/top_blk_system_ctl_reg_0_0/top_blk_system_ctl_reg_0_0.xci" Type="IP">
+        <Instance HierarchyPath="system_ctl_reg_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

@@ -56,9 +56,8 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___150.000______0.000______50.0______116.907____107.936
-// clk_out2___150.000____162.000______50.0______116.907____107.936
-// clk_out3___150.000____-18.000______50.0______116.907____107.936
+// clk_out1___150.000______0.000______50.0______108.562_____91.726
+// clk_out2___150.000____180.000______50.0______108.562_____91.726
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -73,7 +72,11 @@ module clk_video_clk_wiz
   // Clock out ports
   output        clk_out1,
   output        clk_out2,
-  output        clk_out3,
+  // Dynamic phase shift ports
+  input         psclk,
+  input         psen,
+  input         psincdec,
+  output        psdone,
   // Status and control signals
   output        locked,
   input         clk_in1
@@ -104,13 +107,13 @@ wire clk_in2_clk_video;
 
   wire [15:0] do_unused;
   wire        drdy_unused;
-  wire        psdone_unused;
   wire        locked_int;
   wire        clkfbout_clk_video;
   wire        clkfbout_buf_clk_video;
   wire        clkfboutb_unused;
-    wire clkout0b_unused;
+   wire clkout1_unused;
    wire clkout1b_unused;
+   wire clkout2_unused;
    wire clkout2b_unused;
    wire clkout3_unused;
    wire clkout3b_unused;
@@ -126,21 +129,13 @@ wire clk_in2_clk_video;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (5.000),
+    .CLKFBOUT_MULT_F      (7.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (5.000),
+    .CLKOUT0_DIVIDE_F     (7.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (5),
-    .CLKOUT1_PHASE        (162.000),
-    .CLKOUT1_DUTY_CYCLE   (0.500),
-    .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKOUT2_DIVIDE       (5),
-    .CLKOUT2_PHASE        (-18.000),
-    .CLKOUT2_DUTY_CYCLE   (0.500),
-    .CLKOUT2_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (6.667))
   mmcm_adv_inst
     // Output clocks
@@ -148,10 +143,10 @@ wire clk_in2_clk_video;
     .CLKFBOUT            (clkfbout_clk_video),
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_out1_clk_video),
-    .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clk_out2_clk_video),
+    .CLKOUT0B            (clk_out2_clk_video),
+    .CLKOUT1             (clkout1_unused),
     .CLKOUT1B            (clkout1b_unused),
-    .CLKOUT2             (clk_out3_clk_video),
+    .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
     .CLKOUT3             (clkout3_unused),
     .CLKOUT3B            (clkout3b_unused),
@@ -173,10 +168,10 @@ wire clk_in2_clk_video;
     .DRDY                (drdy_unused),
     .DWE                 (1'b0),
     // Ports for dynamic phase shift
-    .PSCLK               (1'b0),
-    .PSEN                (1'b0),
-    .PSINCDEC            (1'b0),
-    .PSDONE              (psdone_unused),
+    .PSCLK               (psclk),
+    .PSEN                (psen),
+    .PSINCDEC            (psincdec),
+    .PSDONE              (psdone),
     // Other control and status signals
     .LOCKED              (locked_int),
     .CLKINSTOPPED        (clkinstopped_unused),
@@ -204,10 +199,6 @@ wire clk_in2_clk_video;
   BUFG clkout2_buf
    (.O   (clk_out2),
     .I   (clk_out2_clk_video));
-
-  BUFG clkout3_buf
-   (.O   (clk_out3),
-    .I   (clk_out3_clk_video));
 
 
 

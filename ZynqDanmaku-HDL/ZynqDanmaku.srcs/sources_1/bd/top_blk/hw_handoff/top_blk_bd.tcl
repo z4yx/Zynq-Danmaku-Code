@@ -165,6 +165,8 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
 CONFIG.ASSOCIATED_BUSIF {M_AXIS} \
  ] $ps_overlay_clock
+  set resolution_h [ create_bd_port -dir I -from 15 -to 0 resolution_h ]
+  set resolution_w [ create_bd_port -dir I -from 15 -to 0 resolution_w ]
 
   # Create instance: axi_cdma_0, and set properties
   set axi_cdma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:4.1 axi_cdma_0 ]
@@ -1532,11 +1534,14 @@ CONFIG.PCW_WDT_WDT_IO.VALUE_SRC {DEFAULT} \
   # Create instance: ps7_0_axi_periph, and set properties
   set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
   set_property -dict [ list \
-CONFIG.NUM_MI {3} \
+CONFIG.NUM_MI {4} \
  ] $ps7_0_axi_periph
 
   # Create instance: rst_ps7_0_50M, and set properties
   set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
+
+  # Create instance: system_ctl_reg_0, and set properties
+  set system_ctl_reg_0 [ create_bd_cell -type ip -vlnv user.org:user:system_ctl_reg:1.0 system_ctl_reg_0 ]
 
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
@@ -1558,18 +1563,21 @@ CONFIG.NUM_MI {3} \
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_cdma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins axigpio_ctl/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins ps7_0_axi_periph/M03_AXI] [get_bd_intf_pins system_ctl_reg_0/S00_AXI]
 
   # Create port connections
   connect_bd_net -net axi_cdma_0_cdma_introut [get_bd_pins axi_cdma_0/cdma_introut] [get_bd_pins xlconcat_0/In1]
   connect_bd_net -net axi_dma_0_mm2s_introut [get_bd_pins axi_dma_0/mm2s_introut] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net proc_dma_reset_interconnect_aresetn [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_1/ARESETN] [get_bd_pins proc_dma_reset/interconnect_aresetn]
   connect_bd_net -net proc_dma_reset_peripheral_aresetn [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins axi_interconnect_1/M00_ARESETN] [get_bd_pins axi_interconnect_1/S00_ARESETN] [get_bd_pins axi_interconnect_1/S01_ARESETN] [get_bd_pins axis_data_fifo_0/s_axis_aresetn] [get_bd_pins proc_dma_reset/peripheral_aresetn]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_ports ps_fabric_50M_clk] [get_bd_pins axi_cdma_0/s_axi_lite_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axigpio_ctl/s_axi_aclk] [get_bd_pins ps7_0/FCLK_CLK0] [get_bd_pins ps7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_ports ps_fabric_50M_clk] [get_bd_pins axi_cdma_0/s_axi_lite_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axigpio_ctl/s_axi_aclk] [get_bd_pins ps7_0/FCLK_CLK0] [get_bd_pins ps7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins system_ctl_reg_0/s00_axi_aclk]
   connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_ports ps_overlay_clock] [get_bd_pins axi_cdma_0/m_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins axi_interconnect_1/ACLK] [get_bd_pins axi_interconnect_1/M00_ACLK] [get_bd_pins axi_interconnect_1/S00_ACLK] [get_bd_pins axi_interconnect_1/S01_ACLK] [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins proc_dma_reset/slowest_sync_clk] [get_bd_pins ps7_0/FCLK_CLK1] [get_bd_pins ps7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0/S_AXI_HP1_ACLK]
   connect_bd_net -net ps7_0_FCLK_RESET0_N [get_bd_pins ps7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net ps7_0_FCLK_RESET1_N [get_bd_pins proc_dma_reset/ext_reset_in] [get_bd_pins ps7_0/FCLK_RESET1_N]
+  connect_bd_net -net resolution_h_1 [get_bd_ports resolution_h] [get_bd_pins system_ctl_reg_0/resolution_h]
+  connect_bd_net -net resolution_w_1 [get_bd_ports resolution_w] [get_bd_pins system_ctl_reg_0/resolution_w]
   connect_bd_net -net rst_ps7_0_50M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_50M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_cdma_0/s_axi_lite_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axigpio_ctl/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_cdma_0/s_axi_lite_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axigpio_ctl/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins system_ctl_reg_0/s00_axi_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins ps7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins const0/dout] [get_bd_pins ps7_0/SDIO1_CDN]
 
@@ -1581,6 +1589,7 @@ CONFIG.NUM_MI {3} \
   create_bd_addr_seg -range 0x00010000 -offset 0x40200000 [get_bd_addr_spaces ps7_0/Data] [get_bd_addr_segs axi_cdma_0/S_AXI_LITE/Reg] SEG_axi_cdma_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces ps7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces ps7_0/Data] [get_bd_addr_segs axigpio_ctl/S_AXI/Reg] SEG_axigpio_ctl_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x42000000 [get_bd_addr_spaces ps7_0/Data] [get_bd_addr_segs system_ctl_reg_0/S00_AXI/S00_AXI_reg] SEG_system_ctl_reg_0_S00_AXI_reg
 
   # Perform GUI Layout
   regenerate_bd_layout -layout_string {
@@ -1593,8 +1602,11 @@ preplace port UART_0 -pg 1 -y 210 -defaultsOSRD
 preplace port gpio_ctl -pg 1 -y 1140 -defaultsOSRD
 preplace port FIXED_IO -pg 1 -y 190 -defaultsOSRD
 preplace port M_AXIS -pg 1 -y 780 -defaultsOSRD
-preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 690 -defaultsOSRD
+preplace portBus resolution_h -pg 1 -y 1200 -defaultsOSRD
+preplace portBus resolution_w -pg 1 -y 1220 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 810 -defaultsOSRD
 preplace inst axi_dma_0 -pg 1 -lvl 3 -y 790 -defaultsOSRD
+preplace inst system_ctl_reg_0 -pg 1 -lvl 1 -y 1220 -defaultsOSRD
 preplace inst const0 -pg 1 -lvl 5 -y 50 -defaultsOSRD
 preplace inst proc_dma_reset -pg 1 -lvl 3 -y 1230 -defaultsOSRD
 preplace inst axi_cdma_0 -pg 1 -lvl 3 -y 940 -defaultsOSRD
@@ -1605,35 +1617,38 @@ preplace inst axi_interconnect_0 -pg 1 -lvl 4 -y 640 -defaultsOSRD
 preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 770 -defaultsOSRD
 preplace inst axi_interconnect_1 -pg 1 -lvl 4 -y 960 -defaultsOSRD
 preplace inst axis_data_fifo_0 -pg 1 -lvl 5 -y 810 -defaultsOSRD
-preplace netloc ps7_0_axi_periph_M02_AXI 1 2 3 630 1130 NJ 1130 1410J
+preplace netloc ps7_0_axi_periph_M02_AXI 1 2 3 660 700 1120J 800 1390J
 preplace netloc processing_system7_0_UART_0 1 5 1 NJ
-preplace netloc axi_cdma_0_M_AXI 1 3 1 1000
-preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 20 410 NJ 410 NJ 410 NJ 410 1360J 660 1860
-preplace netloc proc_dma_reset_interconnect_aresetn 1 3 1 1010
+preplace netloc axi_cdma_0_M_AXI 1 3 1 1050
+preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 10 490 NJ 490 NJ 490 NJ 490 NJ 490 1870
+preplace netloc proc_dma_reset_interconnect_aresetn 1 3 1 1080
+preplace netloc ps7_0_axi_periph_M03_AXI 1 0 3 20 580 NJ 580 640
 preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 650
-preplace netloc ps7_0_FCLK_RESET1_N 1 2 4 680 1120 NJ 1120 1390J 1070 1850
-preplace netloc axi_cdma_0_cdma_introut 1 3 1 1000
-preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 N
-preplace netloc xlconcat_0_dout 1 4 1 1380
-preplace netloc xlconstant_0_dout 1 5 1 1890
-preplace netloc S00_AXI_1 1 3 1 1060
-preplace netloc proc_dma_reset_peripheral_aresetn 1 3 2 1080 1270 1420J
-preplace netloc axi_dma_0_mm2s_introut 1 3 1 1020
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 4 350 970 640 680 1030J 1250 1430J
-preplace netloc axi_interconnect_0_M00_AXI 1 4 1 1350
-preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1870
+preplace netloc ps7_0_FCLK_RESET1_N 1 2 4 700 1110 NJ 1110 1420J 1050 1860
+preplace netloc axi_cdma_0_cdma_introut 1 3 1 1030
+preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 350
+preplace netloc xlconcat_0_dout 1 4 1 1410
+preplace netloc xlconstant_0_dout 1 5 1 1900
+preplace netloc S00_AXI_1 1 3 1 1090
+preplace netloc proc_dma_reset_peripheral_aresetn 1 3 2 1110 1270 1430J
+preplace netloc axi_dma_0_mm2s_introut 1 3 1 1040
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 5 10 1120 370 1120 680 1120 NJ 1120 1380J
 preplace netloc axi_gpio_0_GPIO 1 5 1 NJ
-preplace netloc S01_AXI_1 1 3 1 1050
+preplace netloc axi_interconnect_0_M00_AXI 1 4 1 1390
+preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1880
+preplace netloc S01_AXI_1 1 3 1 1070
 preplace netloc processing_system7_1_DDR 1 5 1 NJ
 preplace netloc axis_data_fifo_0_M_AXIS 1 5 1 NJ
-preplace netloc axi_cdma_0_M_AXI_SG 1 3 1 1040
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 30 490 360 490 660 490 NJ 490 1400 490 1890
-preplace netloc axi_interconnect_1_M00_AXI 1 4 1 1340
+preplace netloc axi_cdma_0_M_AXI_SG 1 3 1 1060
+preplace netloc resolution_w_1 1 0 1 N
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 0 290 360 290 670 290 NJ 290 1400 500 1900
 preplace netloc processing_system7_1_FIXED_IO 1 5 1 NJ
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 2 N 790 NJ
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N
-preplace netloc processing_system7_0_FCLK_CLK1 1 2 4 670 310 1070 310 1370 500 1880
-levelinfo -pg 1 0 190 500 840 1210 1640 1910 -top 0 -bot 1320
+preplace netloc axi_interconnect_1_M00_AXI 1 4 1 1380
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 2 NJ 790 NJ
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 680
+preplace netloc processing_system7_0_FCLK_CLK1 1 2 4 690 310 1100 310 1420 510 1890
+preplace netloc resolution_h_1 1 0 1 N
+levelinfo -pg 1 -20 190 510 870 1250 1650 1920 -top 0 -bot 1880
 ",
 }
 

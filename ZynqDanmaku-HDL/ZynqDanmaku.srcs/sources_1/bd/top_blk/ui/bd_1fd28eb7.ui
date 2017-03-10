@@ -8,8 +8,11 @@ preplace port UART_0 -pg 1 -y 210 -defaultsOSRD
 preplace port gpio_ctl -pg 1 -y 1140 -defaultsOSRD
 preplace port FIXED_IO -pg 1 -y 190 -defaultsOSRD
 preplace port M_AXIS -pg 1 -y 780 -defaultsOSRD
-preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 690 -defaultsOSRD
+preplace portBus resolution_h -pg 1 -y 1200 -defaultsOSRD
+preplace portBus resolution_w -pg 1 -y 1220 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 810 -defaultsOSRD
 preplace inst axi_dma_0 -pg 1 -lvl 3 -y 790 -defaultsOSRD
+preplace inst system_ctl_reg_0 -pg 1 -lvl 1 -y 1220 -defaultsOSRD
 preplace inst const0 -pg 1 -lvl 5 -y 50 -defaultsOSRD
 preplace inst proc_dma_reset -pg 1 -lvl 3 -y 1230 -defaultsOSRD
 preplace inst axi_cdma_0 -pg 1 -lvl 3 -y 940 -defaultsOSRD
@@ -20,39 +23,42 @@ preplace inst axi_interconnect_0 -pg 1 -lvl 4 -y 640 -defaultsOSRD
 preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 770 -defaultsOSRD
 preplace inst axi_interconnect_1 -pg 1 -lvl 4 -y 960 -defaultsOSRD
 preplace inst axis_data_fifo_0 -pg 1 -lvl 5 -y 810 -defaultsOSRD
-preplace netloc ps7_0_axi_periph_M02_AXI 1 2 3 630 1130 NJ 1130 1410J
+preplace netloc ps7_0_axi_periph_M02_AXI 1 2 3 660 700 1120J 800 1390J
 preplace netloc processing_system7_0_UART_0 1 5 1 NJ
-preplace netloc axi_cdma_0_M_AXI 1 3 1 1000
-preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 20 410 NJ 410 NJ 410 NJ 410 1360J 660 1860
-preplace netloc proc_dma_reset_interconnect_aresetn 1 3 1 1010
+preplace netloc axi_cdma_0_M_AXI 1 3 1 1050
+preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 10 490 NJ 490 NJ 490 NJ 490 NJ 490 1870
+preplace netloc proc_dma_reset_interconnect_aresetn 1 3 1 1080
+preplace netloc ps7_0_axi_periph_M03_AXI 1 0 3 20 580 NJ 580 640
 preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 650
-preplace netloc ps7_0_FCLK_RESET1_N 1 2 4 680 1120 NJ 1120 1390J 1070 1850
-preplace netloc axi_cdma_0_cdma_introut 1 3 1 1000
-preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 N
-preplace netloc xlconcat_0_dout 1 4 1 1380
-preplace netloc xlconstant_0_dout 1 5 1 1890
-preplace netloc S00_AXI_1 1 3 1 1060
-preplace netloc proc_dma_reset_peripheral_aresetn 1 3 2 1080 1270 1420J
-preplace netloc axi_dma_0_mm2s_introut 1 3 1 1020
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 4 350 970 640 680 1030J 1250 1430J
-preplace netloc axi_interconnect_0_M00_AXI 1 4 1 1350
-preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1870
+preplace netloc ps7_0_FCLK_RESET1_N 1 2 4 700 1110 NJ 1110 1420J 1050 1860
+preplace netloc axi_cdma_0_cdma_introut 1 3 1 1030
+preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 350
+preplace netloc xlconcat_0_dout 1 4 1 1410
+preplace netloc xlconstant_0_dout 1 5 1 1900
+preplace netloc S00_AXI_1 1 3 1 1090
+preplace netloc proc_dma_reset_peripheral_aresetn 1 3 2 1110 1270 1430J
+preplace netloc axi_dma_0_mm2s_introut 1 3 1 1040
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 5 10 1120 370 1120 680 1120 NJ 1120 1380J
 preplace netloc axi_gpio_0_GPIO 1 5 1 NJ
-preplace netloc S01_AXI_1 1 3 1 1050
+preplace netloc axi_interconnect_0_M00_AXI 1 4 1 1390
+preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1880
+preplace netloc S01_AXI_1 1 3 1 1070
 preplace netloc processing_system7_1_DDR 1 5 1 NJ
 preplace netloc axis_data_fifo_0_M_AXIS 1 5 1 NJ
-preplace netloc axi_cdma_0_M_AXI_SG 1 3 1 1040
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 30 490 360 490 660 490 NJ 490 1400 490 1890
-preplace netloc axi_interconnect_1_M00_AXI 1 4 1 1340
+preplace netloc axi_cdma_0_M_AXI_SG 1 3 1 1060
+preplace netloc resolution_w_1 1 0 1 N
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 0 290 360 290 670 290 NJ 290 1400 500 1900
 preplace netloc processing_system7_1_FIXED_IO 1 5 1 NJ
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 2 N 790 NJ
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N
-preplace netloc processing_system7_0_FCLK_CLK1 1 2 4 670 310 1070 310 1370 500 1880
-levelinfo -pg 1 0 190 500 840 1210 1640 1910 -top 0 -bot 1320
+preplace netloc axi_interconnect_1_M00_AXI 1 4 1 1380
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 2 NJ 790 NJ
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 680
+preplace netloc processing_system7_0_FCLK_CLK1 1 2 4 690 310 1100 310 1420 510 1890
+preplace netloc resolution_h_1 1 0 1 N
+levelinfo -pg 1 -20 190 510 870 1250 1650 1920 -top 0 -bot 1880
 ",
 }
 {
-   da_axi4_cnt: "4",
+   da_axi4_cnt: "5",
    da_board_cnt: "1",
    da_ps7_cnt: "1",
 }

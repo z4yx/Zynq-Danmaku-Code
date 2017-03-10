@@ -56,9 +56,8 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___150.000______0.000______50.0______116.907____107.936
-// clk_out2___150.000____162.000______50.0______116.907____107.936
-// clk_out3___150.000____-18.000______50.0______116.907____107.936
+// clk_out1___150.000______0.000______50.0______108.562_____91.726
+// clk_out2___150.000____180.000______50.0______108.562_____91.726
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -67,14 +66,18 @@
 
 `timescale 1ps/1ps
 
-(* CORE_GENERATION_INFO = "clk_video,clk_wiz_v5_3_3_0,{component_name=clk_video,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=3,clkin1_period=6.667,clkin2_period=10.0,use_power_down=false,use_reset=false,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
+(* CORE_GENERATION_INFO = "clk_video,clk_wiz_v5_3_3_0,{component_name=clk_video,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=true,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=2,clkin1_period=6.667,clkin2_period=10.0,use_power_down=false,use_reset=false,use_locked=true,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
 
 module clk_video 
  (
   // Clock out ports
   output        clk_out1,
   output        clk_out2,
-  output        clk_out3,
+  // Dynamic phase shift ports
+  input         psclk,
+  input         psen,
+  input         psincdec,
+  output        psdone,
   // Status and control signals
   output        locked,
  // Clock in ports
@@ -86,7 +89,11 @@ module clk_video
   // Clock out ports  
   .clk_out1(clk_out1),
   .clk_out2(clk_out2),
-  .clk_out3(clk_out3),
+  // Dynamic phase shift ports                
+  .psclk(psclk),
+  .psen(psen),
+  .psincdec(psincdec),
+  .psdone(psdone),
   // Status and control signals               
   .locked(locked),
  // Clock in ports
