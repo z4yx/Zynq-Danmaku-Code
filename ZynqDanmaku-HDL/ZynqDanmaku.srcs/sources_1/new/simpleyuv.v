@@ -14,9 +14,7 @@ module simpleyuv(
   input wire[11:0] hsize,
   input wire[11:0] vsize,
   
-  output wire[7:0] pixel_y_out,
-  output wire[7:0] pixel_cb_out,
-  output wire[7:0] pixel_cr_out,
+  output wire[15:0] data,
   
   input wire pause
 );
@@ -38,15 +36,31 @@ end
 assign picNum = counter[28:27];
 
 assign pixel_a_out = realAlpha;
-assign {pixel_y_out, pixel_cb_out, pixel_cr_out} = 
+assign data = 
   (picNum == 2'd0)?(
-    {8'd128, hcnt[8:1], vcnt[8:1]}
+    (hcnt[0]?(
+      {hcnt[8:1], 8'd128}
+    ):(
+      {vcnt[8:1], 8'd128}
+    ))
   ):((picNum == 2'd1)?(
-    {hcnt[8:1], 8'd128, vcnt[8:1]}
+    (hcnt[0]?(
+      {8'd128, hcnt[8:1]}
+    ):(
+      {vcnt[8:1], hcnt[8:1]}
+    ))
   ):((picNum == 2'd2)?(
-    {hcnt[8:1], vcnt[8:1], 8'd128}
+    (hcnt[0]?(
+      {vcnt[8:1], hcnt[8:1]}
+    ):(
+      {8'd128, hcnt[8:1]}
+    ))
   ):(
-    {counter[26:19], hcnt[8:1], vcnt[8:1]}
+    (hcnt[0]?(
+      {hcnt[8:1], counter[26:19]}
+    ):(
+      {vcnt[8:1], counter[26:19]}
+    ))
   )));
   
 
