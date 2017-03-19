@@ -20,7 +20,7 @@ module simpleyuv(
 );
 
 reg[32:0] counter;
-wire[1:0] picNum;
+wire[2:0] picNum;
 reg[1:0] pause_reg;
 
 always @(posedge pxlClk or negedge rst) begin
@@ -35,7 +35,7 @@ end
 
 assign picNum = counter[29:27];
 
-assign data = 
+assign {data[7:0],data[15:8]} = 
   (picNum == 3'd0)?(
     (hcnt[0]?(
       {hcnt[8:1], 8'd128}
@@ -74,9 +74,9 @@ assign data =
     ))
   ):(
     (hcnt[0]?(
-      {hcnt[8:1], counter[27:20]}
+      {8'd1 << hcnt[7:5], counter[27:20]}
     ):(
-      {vcnt[8:1], counter[27:20]}
+      {8'd1 << vcnt[7:5], counter[27:20]}
     ))
   ))))));
   

@@ -91,6 +91,8 @@ wire ps_overlay_clk, ps_fabric_50M_clk;
 
 wire [15:0] pxl_width;
 wire [15:0] pxl_height;
+wire [15:0] now_x;
+wire [15:0] now_y;
 
 wire hps_fpga_reset_n = 1'b1;
 
@@ -190,6 +192,7 @@ wire pixel_clk_to_output;
 
 wire de_to_hdmi[0:1],hs_to_hdmi[0:1],vs_to_hdmi[0:1];
 wire [15:0] ycrcb_to_hdmi[0:1];
+wire [23:0] crycb444[0:1];
 
 assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk|sw_conj};
 // assign led_out_n = switch_in;
@@ -210,13 +213,28 @@ assign CLKA = clk_out_hdmi;
 assign HSA = hs_to_hdmi[0];
 assign O1_VS = vs_to_hdmi[0];
 assign DEA = de_to_hdmi[0];
-assign O1_D[23:8] = {ycrcb_to_hdmi[0]};
+//assign O1_D[23:8] = {ycrcb_to_hdmi[0]};
 
 assign CLKB = clk_out_hdmi;
 assign HSB = hs_to_hdmi[1];
 assign O2_VS = vs_to_hdmi[1];
 assign DEB = de_to_hdmi[1];
-assign {O1_D[7:0],O2_D} = {ycrcb_to_hdmi[1]};
+//assign {O1_D[7:0],O2_D} = {ycrcb_to_hdmi[1]};
+
+assign O1_D = crycb444[0];
+
+simpleyuv testpattern(
+  .pxlClk(pixel_clk_to_output),
+  .rst(in_clk_reset_n),
+  .hcnt(now_x),
+  .vcnt(now_y),
+  .hsize(pxl_width),
+  .vsize(pxl_height),
+  
+//  .data(ycrcb_to_hdmi[0]),
+  
+  .pause(sw_conj)
+);
 
 genvar out_idx;
 generate
@@ -238,12 +256,14 @@ for(out_idx=0;out_idx<2;out_idx=out_idx+1)begin : gen_hdmi
         .out_hs(hs_to_hdmi[out_idx]),
         .out_de(de_to_hdmi[out_idx]),
         .out_ycrcb(ycrcb_to_hdmi[out_idx]),
+        .out_crycb444(crycb444[out_idx]),
     
         .en_overlay(sw_en_overlay[out_idx]),
         .en_blank(sw_blank[out_idx])
         );
 end
 endgenerate
+
 
 danmaku_overlay overlay_logic_1(
    .rst(in_clk_reset_n),
@@ -276,8 +296,8 @@ danmaku_overlay overlay_logic_1(
    .screenY(pxl_height[15:0]),
    .screenPxl(),
   
-   .nowX(),
-   .nowY(),
+   .nowX(now_x),
+   .nowY(now_y),
    .nowPxl(),
   
    .ovf(),

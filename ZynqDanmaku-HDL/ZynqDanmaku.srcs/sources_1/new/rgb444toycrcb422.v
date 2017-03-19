@@ -30,6 +30,7 @@ module rgb444toycrcb422(
     output reg de_o,
     output reg hs_o,
     output reg vs_o,
+    output reg [23:0]out_crycb444,
     output reg [15:0] ycrcb_o
     );
 
@@ -82,6 +83,7 @@ always @(posedge clk or negedge rst_n) begin : proc_output
         de_o <= de_internal;   
         hs_o <= hs_internal;
         vs_o <= vs_internal;
+        out_crycb444 <= {vdata_last,ydata_last,udata_last};
         if(even)begin 
             ycrcb_o <= {(9'b0+udata+udata_last)>>1, ydata_last};
             ycrcb_next <= {(9'b0+vdata+vdata_last)>>1, ydata};

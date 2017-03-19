@@ -37,6 +37,7 @@ module hdmi_out(
     output wire out_hs,
     output wire out_de,
     output wire [15:0]out_ycrcb,
+    output wire [23:0]out_crycb444,
     
     input wire en_overlay,
     input wire en_blank
@@ -71,6 +72,7 @@ rgb444toycrcb422 csc(
     .de_o   (out_de),
     .hs_o   (out_hs),
     .vs_o   (out_vs),
+    .out_crycb444(out_crycb444),
     .ycrcb_o(out_ycrcb)
 );
 
