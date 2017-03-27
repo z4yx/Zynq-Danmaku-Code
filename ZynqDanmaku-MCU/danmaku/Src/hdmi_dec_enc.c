@@ -64,10 +64,10 @@ const uint8_t REGS_7513[][3] = {
 		{0,0x01,0x00}, // Set N Value(6144)
 		{0,0x02,0x18}, // Set N Value(6144)
 		{0,0x03,0x00}, // Set N Value(6144)
-		{0,0x15,0x00}, // Input 444 (RGB or YCrCb) with Separate Syncs, 44.1kHz fs
-        // {0,0x15,0x01}, //16, 20, 24 bit YCbCr 4:2:2 (separate syncs)
+		// {0,0x15,0x00}, // Input 444 (RGB or YCrCb) with Separate Syncs, 44.1kHz fs
+        {0,0x15,0x01}, //16, 20, 24 bit YCbCr 4:2:2 (separate syncs)
         // {0,0x16,0x70}, // Output format 444, 24-bit input
-		{0,0x16,0x3c}, // Output format 444, 16-bit input
+		{0,0x16,0x2c}, // Output format 444, 16-bit input
         // {0,0x18,0x46}, // CSC disabled
         // {0,0x18,0xC4},
         // {0,0x19,0x00},
