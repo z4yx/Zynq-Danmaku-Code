@@ -15,4 +15,9 @@ void HDMIEnc_SetEDID(uint8_t* edid);
 void HDMIEnc_EnableEDID(void);
 void HDMIEnc_DisableEDID(void);
 
+struct register_flag_t{
+    uint8_t bit;
+    const char* name;
+};
+
 #endif /* HDMI_DEC_ENC_H_ */
