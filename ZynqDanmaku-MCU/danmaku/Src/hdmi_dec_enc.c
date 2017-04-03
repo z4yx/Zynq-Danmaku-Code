@@ -20,6 +20,42 @@ extern I2C_HandleTypeDef hi2c1;
 #define ADV7513_ADDR(idx) (0x72|((idx)<<3))
 #define ADV7513_EDID_ADDR(idx) (0x52|((idx)<<3))
 
+const static struct register_flag_t adv7513_reg42[] = {
+    {.bit = 1<<7, .name="PowerDownPolHigh"},
+    {.bit = 1<<6, .name="HPD_High"},
+    {.bit = 1<<5, .name="ClkTermDet"},
+    {.bit = 1<<3, .name="I2S_64b"},
+};
+
+const static struct register_flag_t adv7611_io_reg6a[] = {
+    {.bit = 1<<6, .name="TMDSLockRaw"},
+    {.bit = 1<<4, .name="TMDSDet"},
+    {.bit = 1<<2, .name="Video3DRaw"},
+    {.bit = 1<<1, .name="VSLockRaw"},
+    {.bit = 1<<0, .name="DELockRaw"},
+};
+
+const static struct register_flag_t adv7611_hdmi_reg04[] = {
+    {.bit = 1<<6, .name="AVMute"},
+    {.bit = 1<<5, .name="HDCPRead"},
+    {.bit = 1<<4, .name="HDCPErr"},
+    {.bit = 1<<3, .name="HDCPExpire"},
+    {.bit = 1<<1, .name="TMDSLock"},
+    {.bit = 1<<0, .name="AudioLock"},
+};
+
+static void print_reg_state(const struct register_flag_t* def, int len, uint8_t val)
+{
+    int i;
+    for (i = 0; i < len; ++i)
+    {
+        if((def[i].bit & val) == def[i].bit){
+            printf(" %s", def[i].name);
+        }
+    }
+    printf("\r\n");
+}
+
 uint8_t i2c_read_8(uint8_t baseAddr, uint8_t subAddress)
 {
     HAL_StatusTypeDef ret;
@@ -36,7 +72,7 @@ void i2c_write_8(uint8_t baseAddr, uint8_t subAddress, uint8_t writeData)
     HAL_StatusTypeDef ret;
     ret = HAL_I2C_Mem_Write(&hi2c1, baseAddr, subAddress, I2C_MEMADD_SIZE_8BIT, &writeData, 1, 100);
     if(ret != HAL_OK){
-        ERR_MSG(" HAL_I2C_Mem_Write: %d", ret);
+        ERR_MSG(" HAL_I2C_Mem_Write[%x,%x]: %d",baseAddr,subAddress, ret);
     }
 }
 
@@ -46,7 +82,7 @@ void i2c_read_multibytes(uint8_t baseAddr, uint8_t subAddress, uint32_t count, u
     HAL_StatusTypeDef ret;
     ret = HAL_I2C_Mem_Read(&hi2c1, baseAddr, subAddress, I2C_MEMADD_SIZE_8BIT, buf, count, 100);
     if(ret != HAL_OK){
-        ERR_MSG(" HAL_I2C_Mem_Read: %d", ret);
+        ERR_MSG(" HAL_I2C_Mem_Read[%x,%x]: %d",baseAddr,subAddress, ret);
     }
 }
 
@@ -60,7 +96,29 @@ void i2c_write_multibytes(uint8_t baseAddr, uint8_t subAddress, uint32_t count, 
     }
 }
 
-const uint8_t REGS_7513[][3] = {
+//the registers can be written when HPD is low
+const uint8_t REGS_7513_Init[][3] = {
+    {0,0x96,0x20}, // HPD Interrupt clear
+    {0,0x98,0x03}, // ADI Recommended Write
+    {0,0x99,0x02}, // ADI Recommended Write
+    {0,0x9A,0xE0}, // Must be set to 0b1110000
+    {0,0x9C,0x30}, // PLL Filter R1 Value
+    {0,0x9D,0x61}, // Set clock divide
+    {0,0xA2,0xA4}, // ADI Recommended Write
+    {0,0xA3,0xA4}, // ADI Recommended Write
+    {0,0xA5,0x04}, // ADI Recommended Write
+    {0,0xAB,0x40}, // ADI Recommended Write
+    {0,0xD1,0xFF}, // ADI Recommended Write
+    {0,0xDE,0xD8}, // ADI Recommended Write
+    {0,0xE0,0xD0}, // Must be set to 0xD0 for proper operation
+    {0,0xE4,0x60}, // VCO_Swing_Reference_Voltage
+    {0,0xF9,0x00}, // Must be set to 0x00 for proper operation
+    {0,0xFA,0x7D}, // Nbr of times to search for good phase
+};
+
+//the registers to be written after HPD assert
+const uint8_t REGS_7513_Startup[][3] = {
+        {0,0x41,0x10}, // Power down control
 		{0,0x01,0x00}, // Set N Value(6144)
 		{0,0x02,0x18}, // Set N Value(6144)
 		{0,0x03,0x00}, // Set N Value(6144)
@@ -68,29 +126,12 @@ const uint8_t REGS_7513[][3] = {
 		{0,0x16,0x70}, // Output format 444, 24-bit input
 		{0,0x18,0x46}, // CSC disabled
 		{0,0x40,0x80}, // General Control packet enable
-		{0,0x41,0x10}, // Power down control
 		{0,0x48,0x08}, // Data right justified
 		{0,0x49,0xA8}, // Set Dither_mode - 12-to-10 bit
 		{0,0x4C,0x00}, // 8 bit Output
 		{0,0x56,0x08}, // Set active format Aspect
-		{0,0x96,0x20}, // HPD Interrupt clear
-		{0,0x98,0x03}, // ADI Recommended Write
-		{0,0x99,0x02}, // ADI Recommended Write
-		{0,0x9A,0xE0}, // Must be set to 0b1110000
-		{0,0x9C,0x30}, // PLL Filter R1 Value
-		{0,0x9D,0x61}, // Set clock divide
-		{0,0xA2,0xA4}, // ADI Recommended Write
-		{0,0xA3,0xA4}, // ADI Recommended Write
-		{0,0xA5,0x04}, // ADI Recommended Write
-		{0,0xAB,0x40}, // ADI Recommended Write
-		{0,0xAF,0x16}, // Set HDMI Mode
+		{0,0xAF,0x04}, // Set DVI Mode
 		{0,0xBA,0x60}, // No clock delay
-		{0,0xD1,0xFF}, // ADI Recommended Write
-		{0,0xDE,0xD8}, // ADI Recommended Write
-		{0,0xE0,0xD0}, // Must be set to 0xD0 for proper operation
-		{0,0xE4,0x60}, // VCO_Swing_Reference_Voltage
-		{0,0xF9,0x00}, // Must be set to 0x00 for proper operation
-		{0,0xFA,0x7D}, // Nbr of times to search for good phase
 };
 
 const uint8_t REGS_7611[][3] = {
@@ -165,11 +206,13 @@ static void HDMIEnc_ReadEDID(int idx)
 
 static void HDMIEnc_DetectMonitor(int idx)
 {
+    int i;
     uint8_t status = i2c_read_8(ADV7513_ADDR(idx),0x42);
     uint8_t edid_ready;
     if(status != ADV7513_0x42[idx]){
         DBG_MSG("enc[%d] 0x42 changed to 0x%x",
             idx, status);
+        print_reg_state(adv7513_reg42, ARRAY_SIZE(adv7513_reg42), status);
         ADV7513_0x42[idx] = status;
     }
     bool hpd = !!(status & ((1<<6)/*|(1<<5)*/));
@@ -180,6 +223,14 @@ static void HDMIEnc_DetectMonitor(int idx)
             if(hpd){
                 INFO_MSG("enc[%d] HPD changed to %d",
                     idx, (int)hpd);
+
+                DBG_MSG("Writing registers...");
+                HAL_Delay(10);
+                for(i=0; i<sizeof(REGS_7513_Startup)/sizeof(REGS_7513_Startup[0]); i++){
+                    i2c_write_8(ADV7513_ADDR(idx),REGS_7513_Startup[i][1],REGS_7513_Startup[i][2]);
+                }
+                i2c_write_8(ADV7513_ADDR(idx),0x43,ADV7513_EDID_ADDR(idx));
+
                 last_reread = HAL_GetTick();
                 MonitorState[idx] = 1;
             }
@@ -249,16 +300,13 @@ int HDMI_Init(void)
 
 	DBG_MSG("ADV7611 init done");
 
-    for(i=0; i<sizeof(REGS_7513)/sizeof(REGS_7513[0]); i++){
-        i2c_write_8(ADV7513_ADDR(0),REGS_7513[i][1],REGS_7513[i][2]);
+    for(i=0; i<sizeof(REGS_7513_Init)/sizeof(REGS_7513_Init[0]); i++){
+        i2c_write_8(ADV7513_ADDR(0),REGS_7513_Init[i][1],REGS_7513_Init[i][2]);
     }
 
-    for(i=0; i<sizeof(REGS_7513)/sizeof(REGS_7513[0]); i++){
-        i2c_write_8(ADV7513_ADDR(1),REGS_7513[i][1],REGS_7513[i][2]);
+    for(i=0; i<sizeof(REGS_7513_Init)/sizeof(REGS_7513_Init[0]); i++){
+        i2c_write_8(ADV7513_ADDR(1),REGS_7513_Init[i][1],REGS_7513_Init[i][2]);
     }
-
-    i2c_write_8(ADV7513_ADDR(0),0x43,ADV7513_EDID_ADDR(0));
-    i2c_write_8(ADV7513_ADDR(1),0x43,ADV7513_EDID_ADDR(1));
 
     INFO_MSG("ADV7513 rev [0x%x, 0x%x]",
         i2c_read_8(ADV7513_ADDR(0),0x00),
@@ -276,11 +324,13 @@ void HDMIDec_CheckInput(void)
     reg = i2c_read_8(ADV7611_IO_ADDR,0x6A);
     if(reg != IOx6A){
         DBG_MSG("IO[0x6A] changed to 0x%x", reg);
+        print_reg_state(adv7611_io_reg6a,ARRAY_SIZE(adv7611_io_reg6a),reg);
         IOx6A = reg;
     }
     reg = i2c_read_8(ADV7611_HDMI_ADDR,0x04);
     if(reg != HDMIx04){
         DBG_MSG("HDMI[0x04] changed to 0x%x", reg);
+        print_reg_state(adv7611_hdmi_reg04,ARRAY_SIZE(adv7611_hdmi_reg04),reg);
         HDMIx04 = reg;
     }
     static uint32_t last = 0;
