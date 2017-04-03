@@ -493,6 +493,17 @@
 
 /******************************************************************/
 
+/* Definitions for driver SYSTEM_CTL_REG */
+#define XPAR_SYSTEM_CTL_REG_NUM_INSTANCES 1
+
+/* Definitions for peripheral SYSTEM_CTL_REG_0 */
+#define XPAR_SYSTEM_CTL_REG_0_DEVICE_ID 0
+#define XPAR_SYSTEM_CTL_REG_0_S00_AXI_BASEADDR 0x42000000
+#define XPAR_SYSTEM_CTL_REG_0_S00_AXI_HIGHADDR 0x4200FFFF
+
+
+/******************************************************************/
+
 /* Definitions for driver TTCPS */
 #define XPAR_XTTCPS_NUM_INSTANCES 3
 

@@ -33,11 +33,11 @@ module hdmi_out(
     input wire overlay_de,
     input wire [23:0]overlay_rgb,
     
-    output wire out_vs,
-    output wire out_hs,
-    output wire out_de,
-    output wire [15:0]out_ycrcb,
-    output wire [23:0]out_crycb444,
+    output reg out_vs,
+    output reg out_hs,
+    output reg out_de,
+    output reg [15:0]out_ycrcb,
+    output reg [23:0]out_crycb444,
     
     input wire en_overlay,
     input wire en_blank
@@ -62,6 +62,9 @@ begin
     {vs_to_csc,hs_to_csc,de_to_csc,rgb_to_csc} <= {inner_vs,inner_hs,inner_de,en_blank_sync[1] ? 24'b0 : inner_rgb};
 end
 
+wire csc_de, csc_hs, csc_vs;
+wire [15:0] csc_ycrcb;
+wire [23:0] csc_444;
 rgb444toycrcb422 csc(
     .clk    (clk),
     .rst_n  (rst_n),
@@ -69,11 +72,24 @@ rgb444toycrcb422 csc(
     .hs_i   (hs_to_csc),
     .vs_i   (vs_to_csc),
     .rgb_i  (rgb_to_csc),
-    .de_o   (out_de),
-    .hs_o   (out_hs),
-    .vs_o   (out_vs),
-    .out_crycb444(out_crycb444),
-    .ycrcb_o(out_ycrcb)
+    .de_o   (csc_de),
+    .hs_o   (csc_hs),
+    .vs_o   (csc_vs),
+    .out_crycb444(csc_444),
+    .ycrcb_o(csc_ycrcb)
 );
+
+reg dly_de, dly_hs, dly_vs;
+reg [15:0] dly_ycrcb;
+reg [23:0] dly_444;
+
+always@(posedge clk)
+begin
+    {out_de,dly_de} <= {dly_de,csc_de};
+    {out_hs,dly_hs} <= {dly_hs,csc_hs};
+    {out_vs,dly_vs} <= {dly_vs,csc_vs};
+    {out_crycb444,dly_444} <= {dly_444,csc_444};
+    {out_ycrcb,dly_ycrcb} <= {dly_ycrcb,csc_ycrcb};
+end
 
 endmodule

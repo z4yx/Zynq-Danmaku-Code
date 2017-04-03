@@ -534,6 +534,13 @@
 			xlnx,tri-default = <0xffffffff>;
 			xlnx,tri-default-2 = <0xffffffff>;
 		};
+
+		system_ctl_reg@42000000 {
+			compatible = "xlnx,system-ctl-reg-1.0";
+			reg = <0x42000000 0x10000>;
+			xlnx,s00-axi-addr-width = <0x5>;
+			xlnx,s00-axi-data-width = <0x20>;
+		};
 	};
 
 	phy0 {

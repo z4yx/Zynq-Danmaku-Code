@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-//Date        : Fri Mar 10 17:11:15 2017
+//Date        : Mon Apr  3 21:18:39 2017
 //Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
 //Command     : generate_target top_blk.bd
 //Design      : top_blk
@@ -2677,6 +2677,7 @@ module top_blk
     gpio_ctl_tri_t,
     ps_fabric_50M_clk,
     ps_overlay_clock,
+    ps_reset_n,
     resolution_h,
     resolution_w);
   inout [14:0]DDR_addr;
@@ -2710,6 +2711,7 @@ module top_blk
   output [1:0]gpio_ctl_tri_t;
   output ps_fabric_50M_clk;
   output ps_overlay_clock;
+  output ps_reset_n;
   input [15:0]resolution_h;
   input [15:0]resolution_w;
 
@@ -3052,6 +3054,7 @@ module top_blk
   assign processing_system7_0_UART_0_RxD = UART_0_rxd;
   assign ps_fabric_50M_clk = processing_system7_0_FCLK_CLK0;
   assign ps_overlay_clock = processing_system7_0_FCLK_CLK1;
+  assign ps_reset_n = ps7_0_FCLK_RESET0_N;
   assign resolution_h_1 = resolution_h[15:0];
   assign resolution_w_1 = resolution_w[15:0];
   top_blk_axi_cdma_0_0 axi_cdma_0

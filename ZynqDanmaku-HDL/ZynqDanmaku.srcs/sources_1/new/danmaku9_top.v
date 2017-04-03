@@ -87,7 +87,7 @@ module danmaku9_top(
 wire [63:0]M_AXIS_tdata;
 wire M_AXIS_tready;
 wire M_AXIS_tvalid;
-wire ps_overlay_clk, ps_fabric_50M_clk;
+wire ps_overlay_clk, ps_fabric_50M_clk, ps_fabric_rstn;
 
 wire [15:0] pxl_width;
 wire [15:0] pxl_height;
@@ -124,6 +124,7 @@ top_blk_wrapper top_blk_i
     .M_AXIS_tvalid(M_AXIS_tvalid),
     .ps_overlay_clock(ps_overlay_clk),
     .ps_fabric_50M_clk(ps_fabric_50M_clk),
+    .ps_reset_n(ps_fabric_rstn),
     .UART_0_rxd(mcu_tx),
     .UART_0_txd(mcu_rx),
     .resolution_h(pxl_height),
@@ -143,6 +144,13 @@ clock_reset_gen in_rst(
   .clk    (in_clk_pll),
   .locked (in_clk_locked),
   .reset_n(in_clk_reset_n)
+);
+
+wire ps_overlay_clk_rstn;
+clock_reset_gen feeder_rst(
+  .clk    (ps_overlay_clk),
+  .locked (ps_fabric_rstn),
+  .reset_n(ps_overlay_clk_rstn)
 );
 
 wire scdt_to_overlay;
@@ -320,7 +328,7 @@ pixel_data_adapter dma2overlay(
 );
 
 test_img_feeder feeder1(
-  .rst(in_clk_reset_n),
+  .rst(ps_overlay_clk_rstn),
   .clk_feeder(ps_overlay_clk),
   .fifoData_out(pixel_fifo_data_int),
   .fifoRdclk(pixel_fifo_clk),

@@ -165,6 +165,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
 CONFIG.ASSOCIATED_BUSIF {M_AXIS} \
  ] $ps_overlay_clock
+  set ps_reset_n [ create_bd_port -dir O -type rst ps_reset_n ]
   set resolution_h [ create_bd_port -dir I -from 15 -to 0 resolution_h ]
   set resolution_w [ create_bd_port -dir I -from 15 -to 0 resolution_w ]
 
@@ -1572,7 +1573,7 @@ CONFIG.NUM_MI {4} \
   connect_bd_net -net proc_dma_reset_peripheral_aresetn [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins axi_interconnect_1/M00_ARESETN] [get_bd_pins axi_interconnect_1/S00_ARESETN] [get_bd_pins axi_interconnect_1/S01_ARESETN] [get_bd_pins axis_data_fifo_0/s_axis_aresetn] [get_bd_pins proc_dma_reset/peripheral_aresetn]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_ports ps_fabric_50M_clk] [get_bd_pins axi_cdma_0/s_axi_lite_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axigpio_ctl/s_axi_aclk] [get_bd_pins ps7_0/FCLK_CLK0] [get_bd_pins ps7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins system_ctl_reg_0/s00_axi_aclk]
   connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_ports ps_overlay_clock] [get_bd_pins axi_cdma_0/m_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins axi_interconnect_1/ACLK] [get_bd_pins axi_interconnect_1/M00_ACLK] [get_bd_pins axi_interconnect_1/S00_ACLK] [get_bd_pins axi_interconnect_1/S01_ACLK] [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins proc_dma_reset/slowest_sync_clk] [get_bd_pins ps7_0/FCLK_CLK1] [get_bd_pins ps7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0/S_AXI_HP1_ACLK]
-  connect_bd_net -net ps7_0_FCLK_RESET0_N [get_bd_pins ps7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
+  connect_bd_net -net ps7_0_FCLK_RESET0_N [get_bd_ports ps_reset_n] [get_bd_pins ps7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net ps7_0_FCLK_RESET1_N [get_bd_pins proc_dma_reset/ext_reset_in] [get_bd_pins ps7_0/FCLK_RESET1_N]
   connect_bd_net -net resolution_h_1 [get_bd_ports resolution_h] [get_bd_pins system_ctl_reg_0/resolution_h]
   connect_bd_net -net resolution_w_1 [get_bd_ports resolution_w] [get_bd_pins system_ctl_reg_0/resolution_w]
@@ -1600,6 +1601,7 @@ preplace port ps_overlay_clock -pg 1 -y 390 -defaultsOSRD
 preplace port ps_fabric_50M_clk -pg 1 -y 370 -defaultsOSRD
 preplace port UART_0 -pg 1 -y 210 -defaultsOSRD
 preplace port gpio_ctl -pg 1 -y 1140 -defaultsOSRD
+preplace port ps_reset_n -pg 1 -y 430 -defaultsOSRD
 preplace port FIXED_IO -pg 1 -y 190 -defaultsOSRD
 preplace port M_AXIS -pg 1 -y 780 -defaultsOSRD
 preplace portBus resolution_h -pg 1 -y 1200 -defaultsOSRD
@@ -1620,7 +1622,7 @@ preplace inst axis_data_fifo_0 -pg 1 -lvl 5 -y 810 -defaultsOSRD
 preplace netloc ps7_0_axi_periph_M02_AXI 1 2 3 660 700 1120J 800 1390J
 preplace netloc processing_system7_0_UART_0 1 5 1 NJ
 preplace netloc axi_cdma_0_M_AXI 1 3 1 1050
-preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 10 490 NJ 490 NJ 490 NJ 490 NJ 490 1870
+preplace netloc ps7_0_FCLK_RESET0_N 1 0 6 10 490 NJ 490 NJ 490 NJ 490 NJ 490 1880
 preplace netloc proc_dma_reset_interconnect_aresetn 1 3 1 1080
 preplace netloc ps7_0_axi_periph_M03_AXI 1 0 3 20 580 NJ 580 640
 preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 650
@@ -1635,7 +1637,7 @@ preplace netloc axi_dma_0_mm2s_introut 1 3 1 1040
 preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 5 10 1120 370 1120 680 1120 NJ 1120 1380J
 preplace netloc axi_gpio_0_GPIO 1 5 1 NJ
 preplace netloc axi_interconnect_0_M00_AXI 1 4 1 1390
-preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1880
+preplace netloc S00_AXI_2 1 1 5 370 480 NJ 480 NJ 480 NJ 480 1870
 preplace netloc S01_AXI_1 1 3 1 1070
 preplace netloc processing_system7_1_DDR 1 5 1 NJ
 preplace netloc axis_data_fifo_0_M_AXIS 1 5 1 NJ
