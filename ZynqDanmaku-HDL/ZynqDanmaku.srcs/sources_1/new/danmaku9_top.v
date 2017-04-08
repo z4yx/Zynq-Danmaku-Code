@@ -188,13 +188,17 @@ wire pixel_clk_to_output;
 wire de_to_hdmi[0:1],hs_to_hdmi[0:1],vs_to_hdmi[0:1];
 wire [23:0] rgb_to_hdmi[0:1];
 
-assign led_out_n = ~{sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],led_flash_clk|sw_conj};
-// assign led_out_n = switch_in;
-
 assign pixel_fifo_data = sw_test_pattern ? pixel_fifo_data_int : pixel_fifo_data_ext;
 assign pixel_fifo_empty = sw_test_pattern ? pixel_fifo_empty_int : pixel_fifo_empty_ext;
 
 led_clkdiv led_flash(.clk(odck_to_overlay), .divided(led_flash_clk));
+
+led_pwm_ctl leds(
+  .clk_fabric(ps_fabric_50M_clk),
+  .enable    ({4'hf, sw_conj?led_flash_clk:1'b1}),
+  .active    ({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj}),
+  .led_o_n   (led_out_n)
+);
 
 bistable_switch #(.WIDTH(5)) btn(
   .clk      (ps_fabric_50M_clk),
