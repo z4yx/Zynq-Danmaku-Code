@@ -2947,6 +2947,17 @@ CONFIG_bridge-utils=y
 # CONFIG_peekpoke-dbg is not set
 
 #
+# modules 
+#
+
+#
+# udmabuf 
+#
+CONFIG_udmabuf=y
+# CONFIG_udmabuf-dbg is not set
+# CONFIG_udmabuf-dev is not set
+
+#
 # PetaLinux RootFS Settings
 #
 CONFIG_ROOTFS_ROOT_PASSWD="root"
