@@ -103,7 +103,6 @@
 		output wire [2 : 0] m00_axi_arprot,
 		output wire  m00_axi_arvalid,
 		input wire  m00_axi_arready,
-		input wire [C_M00_AXI_ID_WIDTH-1 : 0] m00_axi_rid,
 		input wire [C_M00_AXI_DATA_WIDTH-1 : 0] m00_axi_rdata,
 		input wire [1 : 0] m00_axi_rresp,
 		input wire  m00_axi_rlast,

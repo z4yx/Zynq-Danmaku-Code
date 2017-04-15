@@ -17,6 +17,7 @@
 		// Users to add ports here
         input wire [15:0] resolution_h,
         input wire [15:0] resolution_w,
+        input wire [31:0] overlay_fifo_cnt,
 
 		// User ports ends
 		// Do not modify the ports beyond this line
@@ -52,6 +53,7 @@
 	) system_ctl_reg_v1_0_S00_AXI_inst (
 		.resolution_w(resolution_w),
 		.resolution_h(resolution_h),
+		.overlay_fifo_cnt(overlay_fifo_cnt),
 		.S_AXI_ACLK(s00_axi_aclk),
 		.S_AXI_ARESETN(s00_axi_aresetn),
 		.S_AXI_AWADDR(s00_axi_awaddr),

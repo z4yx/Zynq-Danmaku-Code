@@ -17,6 +17,7 @@
 		// Users to add ports here
         input wire [15:0] resolution_h,
         input wire [15:0] resolution_w,
+        input wire [31:0] overlay_fifo_cnt,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -106,7 +107,7 @@
 	//------------------------------------------------
 	//-- Number of Slave Registers 8
 	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg0; //={resolution_h,resolution_w}
-	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg1;
+	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg1; //=overlay_fifo_cnt
 	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg2;
 	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg3;
 	reg [C_S_AXI_DATA_WIDTH-1:0]	slv_reg4;
@@ -218,7 +219,7 @@
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
 //	      slv_reg0 <= 0;
-	      slv_reg1 <= 0;
+//	      slv_reg1 <= 0;
 	      slv_reg2 <= 0;
 	      slv_reg3 <= 0;
 	      slv_reg4 <= 0;
@@ -242,7 +243,7 @@
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 1
-	                slv_reg1[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+//	                slv_reg1[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
 	              end  
 	          3'h2:
 	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
@@ -288,7 +289,7 @@
 	              end  
 	          default : begin
 //	                      slv_reg0 <= slv_reg0;
-	                      slv_reg1 <= slv_reg1;
+//	                      slv_reg1 <= slv_reg1;
 	                      slv_reg2 <= slv_reg2;
 	                      slv_reg3 <= slv_reg3;
 	                      slv_reg4 <= slv_reg4;
@@ -435,11 +436,16 @@
 	end    
 
 	// Add user logic here
-	reg [31:0] resolution_sync;
+	reg [31:0] resolution_sync[0:1];
+	reg [31:0] overlay_fifo_cnt_sync[0:1];
 
 	always @(posedge S_AXI_ACLK) begin : proc_resolution_sync
-		resolution_sync <= {resolution_h,resolution_w};
-		slv_reg0 <= resolution_sync;
+		resolution_sync[0] <= {resolution_w,resolution_h};
+		resolution_sync[1] <= resolution_sync[0];
+        overlay_fifo_cnt_sync[0] <= overlay_fifo_cnt;
+        overlay_fifo_cnt_sync[1] <= overlay_fifo_cnt_sync[0];
+		slv_reg0 <= resolution_sync[1];
+		slv_reg1 <= overlay_fifo_cnt_sync[1];
 	end
 	
 	// User logic ends
