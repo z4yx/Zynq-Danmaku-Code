@@ -1,0 +1,14 @@
+[Unit]
+Description=Danmaku Render
+Requires=danmaku-fetcher.service
+After=danmaku-fetcher.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/Host-Program
+ExecStart=/bin/bash -c '/root/Host-Program/danmaku </tmp/danmaku.fifo >/var/log/render.log 2>&1'
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
