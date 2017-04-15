@@ -94,6 +94,7 @@ wire [15:0] pxl_height;
 
 wire hps_fpga_reset_n = 1'b1;
 
+wire sw_debug, sw_test_pattern, sw_pattern_pause;
    
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
@@ -124,7 +125,11 @@ top_blk_wrapper top_blk_i
     .ps_fabric_50M_clk(ps_fabric_50M_clk),
     .UART_0_rxd(mcu_tx),
     .UART_0_txd(mcu_rx),
-    .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}));
+    .resolution_h(pxl_height),
+    .resolution_w(pxl_width),
+    .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}),
+    .gpo_tri_o({sw_debug,sw_test_pattern,sw_pattern_pause})
+    );
 
 //`default_nettype none
 
@@ -174,7 +179,6 @@ wire[31:0] pixel_fifo_data_ext;
 wire[31:0] pixel_fifo_data_int;
 wire pixel_fifo_empty_ext;
 wire pixel_fifo_empty_int;
-wire sw_debug=1, sw_test_pattern=1, sw_pattern_pause=0;
 wire sw_blank[0:1];
 wire sw_en_overlay[0:1];
 wire sw_conj;
