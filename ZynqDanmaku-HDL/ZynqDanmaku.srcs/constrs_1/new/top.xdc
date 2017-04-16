@@ -134,16 +134,23 @@ set_output_delay -clock hdmi_clk_a -min -add_delay -1.400 [get_ports O1_VS]
 set_output_delay -clock hdmi_clk_a -max -add_delay 1.900 [get_ports O1_VS]
 
 set_output_delay -clock hdmi_clk_b -min -add_delay -1.300 [get_ports {O2_D[*]}]
-set_output_delay -clock hdmi_clk_b -max -add_delay 1.95 [get_ports {O2_D[*]}]
+set_output_delay -clock hdmi_clk_b -max -add_delay 1.950 [get_ports {O2_D[*]}]
 set_output_delay -clock hdmi_clk_b -min -add_delay -1.300 [get_ports DEB]
-set_output_delay -clock hdmi_clk_b -max -add_delay 1.95 [get_ports DEB]
+set_output_delay -clock hdmi_clk_b -max -add_delay 1.950 [get_ports DEB]
 set_output_delay -clock hdmi_clk_b -min -add_delay -1.300 [get_ports HSB]
-set_output_delay -clock hdmi_clk_b -max -add_delay 1.95 [get_ports HSB]
+set_output_delay -clock hdmi_clk_b -max -add_delay 1.950 [get_ports HSB]
 set_output_delay -clock hdmi_clk_b -min -add_delay -1.300 [get_ports O2_VS]
-set_output_delay -clock hdmi_clk_b -max -add_delay 1.95 [get_ports O2_VS]
+set_output_delay -clock hdmi_clk_b -max -add_delay 1.950 [get_ports O2_VS]
+
+set_property ASYNC_REG true [get_cells {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[0][*]}]
+set_property ASYNC_REG true [get_cells {gen_hdmi[*].hdmi_o/en_overlay_sync_reg[0]}]
+set_property ASYNC_REG true [get_cells {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]}]
 
 set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_overlay_sync_reg[0]/D}]
 set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]/D}]
-set_false_path -from [get_pins {overlay_logic_1/pxlCounter_inst/screenX_reg[*]/C}] -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[*]/D}]
-
+set_false_path -from [get_pins {overlay_logic_1/pxlCounter_inst/screenX_reg[*]/C}] -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[0][*]/D}]
+set_false_path -from [get_pins {top_blk_i/top_blk_i/axis_data_fifo_0/inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gdcf.dc/dc/count_reg[*]/C}] -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/overlay_fifo_cnt_sync_reg[0][*]/D}]
+set_false_path -from [get_pins {top_blk_i/top_blk_i/axigpio_ctl/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[*]/C}]
 #set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks clk_out1_clk_wiz_0]
+
+
