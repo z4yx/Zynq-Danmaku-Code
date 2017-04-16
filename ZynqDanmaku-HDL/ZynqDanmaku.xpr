@@ -36,13 +36,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="34"/>
-    <Option Name="WTModelSimExportSim" Val="34"/>
-    <Option Name="WTQuestaExportSim" Val="34"/>
-    <Option Name="WTIesExportSim" Val="34"/>
-    <Option Name="WTVcsExportSim" Val="34"/>
-    <Option Name="WTRivieraExportSim" Val="34"/>
-    <Option Name="WTActivehdlExportSim" Val="34"/>
+    <Option Name="WTXSimExportSim" Val="36"/>
+    <Option Name="WTModelSimExportSim" Val="36"/>
+    <Option Name="WTQuestaExportSim" Val="36"/>
+    <Option Name="WTIesExportSim" Val="36"/>
+    <Option Name="WTVcsExportSim" Val="36"/>
+    <Option Name="WTRivieraExportSim" Val="36"/>
+    <Option Name="WTActivehdlExportSim" Val="36"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -79,48 +79,49 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.v"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_2/top_blk_xbar_2.xci">
-          <Proxy FileSetName="top_blk_xbar_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_proc_sys_reset_0_0/top_blk_proc_sys_reset_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
-          <Proxy FileSetName="top_blk_xbar_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_cdma_0_0/top_blk_axi_cdma_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axis_data_fifo_0_0/top_blk_axis_data_fifo_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_0_0/top_blk_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_axi_periph_0/top_blk_ps7_0_axi_periph_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_const0_0/top_blk_const0_0.xci">
+          <Proxy FileSetName="top_blk_const0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axigpio_ctl_0/top_blk_axigpio_ctl_0.xci">
           <Proxy FileSetName="top_blk_axigpio_ctl_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_1_0/top_blk_axi_interconnect_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci">
+          <Proxy FileSetName="top_blk_axi_dma_0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_rst_ps7_0_50M_0/top_blk_rst_ps7_0_50M_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_3/top_blk_xbar_3.xci">
-          <Proxy FileSetName="top_blk_xbar_3"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
+          <Proxy FileSetName="top_blk_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_const0_0/top_blk_const0_0.xci">
-          <Proxy FileSetName="top_blk_const0_0"/>
-        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_axi_periph_0/top_blk_ps7_0_axi_periph_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_0/top_blk_ps7_0_0.xci">
           <Proxy FileSetName="top_blk_ps7_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0.xci">
           <Proxy FileSetName="top_blk_xlconcat_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.v"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_2/top_blk_xbar_2.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_cdma_0_0/top_blk_axi_cdma_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_system_ctl_reg_0_0/top_blk_system_ctl_reg_0_0.xci">
           <Proxy FileSetName="top_blk_system_ctl_reg_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_0/top_blk_auto_us_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.hwdef"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_1/top_blk_auto_us_1.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="top_blk_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_0/top_blk_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_1/top_blk_auto_pc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_proc_sys_reset_0_0/top_blk_proc_sys_reset_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_0_0/top_blk_axi_interconnect_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk.hwh"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_pixel_transparent_0_4/top_blk_pixel_transparent_0_4.xci">
+          <Proxy FileSetName="top_blk_pixel_transparent_0_4"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_0/top_blk_auto_us_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_0/top_blk_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_w_0/top_blk_auto_rs_w_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_0/top_blk_auto_rs_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_1/top_blk_auto_pc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.hwdef"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="top_blk_ooc.xdc"/>
       </File>
       <File Path="$PSRCDIR/sources_1/new/simple.v">
         <FileInfo>
@@ -207,6 +208,13 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/clock_reset_gen.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/led_pwm_ctl.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -308,12 +316,6 @@
         <Option Name="XSimWcfgFile" Val="$PSIMDIR/rgb444toycrcb422_tb_behav.wcfg"/>
       </Config>
     </FileSet>
-    <FileSet Name="top_blk_xbar_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_xbar_2">
-      <Config>
-        <Option Name="TopModule" Val="top_blk_xbar_2"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="top_blk_xlconcat_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_xlconcat_0_0">
       <Config>
         <Option Name="TopModule" Val="top_blk_xlconcat_0_0"/>
@@ -323,12 +325,6 @@
     <FileSet Name="top_blk_xbar_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_xbar_0">
       <Config>
         <Option Name="TopModule" Val="top_blk_xbar_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="top_blk_xbar_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_xbar_3">
-      <Config>
-        <Option Name="TopModule" Val="top_blk_xbar_3"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -376,12 +372,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="top_blk_system_ctl_reg_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_system_ctl_reg_0_0">
-      <Config>
-        <Option Name="TopModule" Val="top_blk_system_ctl_reg_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="clk_wiz_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/clk_wiz_0">
       <File Path="$PSRCDIR/sources_1/ip/clk_wiz_0/clk_wiz_0.xci">
         <FileInfo>
@@ -392,6 +382,24 @@
       </File>
       <Config>
         <Option Name="TopModule" Val="clk_wiz_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="top_blk_axi_dma_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_axi_dma_0_0">
+      <Config>
+        <Option Name="TopModule" Val="top_blk_axi_dma_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="top_blk_system_ctl_reg_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_system_ctl_reg_0_0">
+      <Config>
+        <Option Name="TopModule" Val="top_blk_system_ctl_reg_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="top_blk_pixel_transparent_0_4" Type="BlockSrcs" RelSrcDir="$PSRCDIR/top_blk_pixel_transparent_0_4">
+      <Config>
+        <Option Name="TopModule" Val="top_blk_pixel_transparent_0_4"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -426,14 +434,6 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_xbar_2_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xbar_2" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xbar_2_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="top_blk_xlconcat_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xlconcat_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xlconcat_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
@@ -443,14 +443,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xbar_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xbar_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="top_blk_xbar_3_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xbar_3" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_3" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xbar_3_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
@@ -498,6 +490,22 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
+    <Run Id="clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_0" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="top_blk_axi_dma_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_axi_dma_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_axi_dma_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_axi_dma_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
     <Run Id="top_blk_system_ctl_reg_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_system_ctl_reg_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_system_ctl_reg_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_system_ctl_reg_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
@@ -506,7 +514,7 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_0" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_pixel_transparent_0_4_synth_1" Type="Ft3:Synth" SrcSet="top_blk_pixel_transparent_0_4" Part="xc7z010clg400-1" ConstrsSet="top_blk_pixel_transparent_0_4" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_pixel_transparent_0_4_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -532,21 +540,6 @@
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_xbar_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_2" Description="Default settings for Implementation." SynthRun="top_blk_xbar_2_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="top_blk_xlconcat_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_0_0" Description="Default settings for Implementation." SynthRun="top_blk_xlconcat_0_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
@@ -563,21 +556,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_0" Description="Default settings for Implementation." SynthRun="top_blk_xbar_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="top_blk_xbar_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_3" Description="Default settings for Implementation." SynthRun="top_blk_xbar_3_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
@@ -667,6 +645,36 @@
       </Strategy>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
+    <Run Id="clk_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Default settings for Implementation." SynthRun="clk_wiz_0_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="top_blk_axi_dma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_axi_dma_0_0" Description="Default settings for Implementation." SynthRun="top_blk_axi_dma_0_0_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
     <Run Id="top_blk_system_ctl_reg_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_system_ctl_reg_0_0" Description="Default settings for Implementation." SynthRun="top_blk_system_ctl_reg_0_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
@@ -682,7 +690,7 @@
       </Strategy>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="clk_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Default settings for Implementation." SynthRun="clk_wiz_0_synth_1" IncludeInArchive="false">
+    <Run Id="top_blk_pixel_transparent_0_4_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_pixel_transparent_0_4" Description="Default settings for Implementation." SynthRun="top_blk_pixel_transparent_0_4_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
           <Desc>Default settings for Implementation.</Desc>

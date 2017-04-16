@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: user.org:user:system_ctl_reg:1.0
-// IP Revision: 3
+// IP VLNV: user.org:user:system_ctl_reg:1.2
+// IP Revision: 1
 
 `timescale 1ns/1ps
 
@@ -56,6 +56,7 @@
 module top_blk_system_ctl_reg_0_0 (
   resolution_h,
   resolution_w,
+  overlay_fifo_cnt,
   s00_axi_awaddr,
   s00_axi_awprot,
   s00_axi_awvalid,
@@ -81,6 +82,7 @@ module top_blk_system_ctl_reg_0_0 (
 
 input wire [15 : 0] resolution_h;
 input wire [15 : 0] resolution_w;
+input wire [31 : 0] overlay_fifo_cnt;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *)
 input wire [4 : 0] s00_axi_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *)
@@ -130,6 +132,7 @@ input wire s00_axi_aresetn;
   ) inst (
     .resolution_h(resolution_h),
     .resolution_w(resolution_w),
+    .overlay_fifo_cnt(overlay_fifo_cnt),
     .s00_axi_awaddr(s00_axi_awaddr),
     .s00_axi_awprot(s00_axi_awprot),
     .s00_axi_awvalid(s00_axi_awvalid),
