@@ -110,6 +110,17 @@
 		output wire  m00_axi_rready
 	);
 	// Add user logic here
+	
+	
+wire[C_M00_AXI_DATA_WIDTH/8-1:0] mask;
+
+generate
+genvar i;
+for(i=0;i<C_M00_AXI_DATA_WIDTH/8;i=i+1)begin : proc_mask
+    assign mask[i] = (s00_axi_wdata[(i+1)*8-4:i*8] != 5'hd);
+end
+endgenerate
+	
 assign m00_axi_awaddr=s00_axi_awaddr;
 assign m00_axi_awlen=s00_axi_awlen;
 assign m00_axi_awsize=s00_axi_awsize;
@@ -121,7 +132,7 @@ assign m00_axi_awvalid=s00_axi_awvalid;
 assign s00_axi_awready=m00_axi_awready;
 
 assign m00_axi_wdata=s00_axi_wdata;
-assign m00_axi_wstrb=s00_axi_wstrb;
+assign m00_axi_wstrb=s00_axi_wstrb & mask;
 assign m00_axi_wlast=s00_axi_wlast;
 assign m00_axi_wvalid=s00_axi_wvalid;
 assign s00_axi_wready=m00_axi_wready;
