@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/root/Host-Program
+WorkingDirectory=/root/ZynqDanmaku-Host
 ExecStartPre=-/usr/bin/mkfifo /tmp/danmaku.fifo
-ExecStart=/bin/sh -c '/root/Host-Program/node_modules/.bin/coffee /root/Host-Program/fetcher.coffee >/tmp/danmaku.fifo'
+ExecStart=/bin/sh -c '/root/ZynqDanmaku-Host/node_modules/.bin/coffee /root/ZynqDanmaku-Host/fetcher.coffee >/tmp/danmaku.fifo'
 Restart=always
 
 [Install]
