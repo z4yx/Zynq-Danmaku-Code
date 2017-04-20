@@ -57,7 +57,7 @@
 ## MM2S
 
 set mm2s_sts_wr_clock [get_clocks -of_objects [get_ports m_axi_mm2s_aclk]]
-set mm2s_sts_rd_clock [get_clocks -of_objects [get_ports m_axi_sg_aclk]]
+set mm2s_sts_rd_clock [get_clocks -of_objects [get_ports s_axi_lite_aclk]]
   set mm2s_sts_wr_clk_period     [get_property PERIOD $mm2s_sts_wr_clock]
   set mm2s_sts_rd_clk_period     [get_property PERIOD $mm2s_sts_rd_clock]
   set mm2s_sts_skew_value [expr {(($mm2s_sts_wr_clk_period < $mm2s_sts_rd_clk_period) ? $mm2s_sts_wr_clk_period : $mm2s_sts_rd_clk_period)} ]
@@ -71,7 +71,7 @@ set mm2s_sts_rd_clock [get_clocks -of_objects [get_ports m_axi_sg_aclk]]
 set_false_path -to [get_pins -hierarchical -filter {NAME =~ *gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0]/D}] 
 
 
-set mm2s_cmd_wr_clock [get_clocks -of_objects [get_ports m_axi_sg_aclk]]
+set mm2s_cmd_wr_clock [get_clocks -of_objects [get_ports s_axi_lite_aclk]]
 set mm2s_cmd_rd_clock [get_clocks -of_objects [get_ports m_axi_mm2s_aclk]]
   set mm2s_cmd_wr_clk_period     [get_property PERIOD $mm2s_cmd_wr_clock]
   set mm2s_cmd_rd_clk_period     [get_property PERIOD $mm2s_cmd_rd_clock]

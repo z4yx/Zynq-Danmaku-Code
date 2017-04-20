@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER pixel_transparent
+	OPTION supported_peripherals = (pixel_transparent);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = pixel_transparent;
+END DRIVER

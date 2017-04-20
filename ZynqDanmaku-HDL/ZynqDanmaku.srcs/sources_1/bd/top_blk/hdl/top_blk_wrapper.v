@@ -1,8 +1,8 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-//Date        : Wed Mar  1 17:18:39 2017
-//Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
+//Date        : Sun Apr 16 10:40:39 2017
+//Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
 //Purpose     : IP block netlist
@@ -37,8 +37,12 @@ module top_blk_wrapper
     UART_0_rxd,
     UART_0_txd,
     gpio_ctl_tri_io,
+    gpo_tri_o,
     ps_fabric_50M_clk,
-    ps_overlay_clock);
+    ps_overlay_clock,
+    ps_reset_n,
+    resolution_h,
+    resolution_w);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -66,8 +70,12 @@ module top_blk_wrapper
   input UART_0_rxd;
   output UART_0_txd;
   inout [1:0]gpio_ctl_tri_io;
+  output [2:0]gpo_tri_o;
   output ps_fabric_50M_clk;
   output ps_overlay_clock;
+  output ps_reset_n;
+  input [15:0]resolution_h;
+  input [15:0]resolution_w;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -103,8 +111,12 @@ module top_blk_wrapper
   wire [1:1]gpio_ctl_tri_o_1;
   wire [0:0]gpio_ctl_tri_t_0;
   wire [1:1]gpio_ctl_tri_t_1;
+  wire [2:0]gpo_tri_o;
   wire ps_fabric_50M_clk;
   wire ps_overlay_clock;
+  wire ps_reset_n;
+  wire [15:0]resolution_h;
+  wire [15:0]resolution_w;
 
   IOBUF gpio_ctl_tri_iobuf_0
        (.I(gpio_ctl_tri_o_0),
@@ -146,6 +158,10 @@ module top_blk_wrapper
         .gpio_ctl_tri_i({gpio_ctl_tri_i_1,gpio_ctl_tri_i_0}),
         .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
         .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),
+        .gpo_tri_o(gpo_tri_o),
         .ps_fabric_50M_clk(ps_fabric_50M_clk),
-        .ps_overlay_clock(ps_overlay_clock));
+        .ps_overlay_clock(ps_overlay_clock),
+        .ps_reset_n(ps_reset_n),
+        .resolution_h(resolution_h),
+        .resolution_w(resolution_w));
 endmodule

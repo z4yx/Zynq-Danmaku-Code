@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
--- Date        : Wed Mar  1 11:41:33 2017
+-- Date        : Mon Apr 10 17:08:35 2017
 -- Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/bd/top_blk/ip/top_blk_ps7_0_0/top_blk_ps7_0_0_sim_netlist.vhdl
@@ -807,9 +807,9 @@ entity top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 is
   attribute C_USE_S_AXI_HP0 : integer;
   attribute C_USE_S_AXI_HP0 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 1;
   attribute C_USE_S_AXI_HP1 : integer;
-  attribute C_USE_S_AXI_HP1 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 1;
+  attribute C_USE_S_AXI_HP1 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
   attribute C_USE_S_AXI_HP2 : integer;
-  attribute C_USE_S_AXI_HP2 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
+  attribute C_USE_S_AXI_HP2 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 1;
   attribute C_USE_S_AXI_HP3 : integer;
   attribute C_USE_S_AXI_HP3 of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
   attribute HW_HANDOFF : string;
@@ -817,7 +817,7 @@ entity top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 is
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is "processing_system7_v5_5_processing_system7";
   attribute POWER : string;
-  attribute POWER of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666666} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333333} readRate={0.5} writeRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={I2C} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS33} bidis={2} ioBank={Vcco_p0} clockFreq={100.000000} usageRate={0.5} /><IO interface={UART} ioStandard={} bidis={0} ioBank={} clockFreq={100.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={125.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_HP1} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={S_AXI_HP0} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={50} usageRate={0.5} />/>";
+  attribute POWER of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666666} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333333} readRate={0.5} writeRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={I2C} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS33} bidis={2} ioBank={Vcco_p0} clockFreq={100.000000} usageRate={0.5} /><IO interface={UART} ioStandard={} bidis={0} ioBank={} clockFreq={100.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={125.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_HP2} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={S_AXI_HP0} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={50} usageRate={0.5} />/>";
   attribute USE_TRACE_DATA_EDGE_DETECTOR : integer;
   attribute USE_TRACE_DATA_EDGE_DETECTOR of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
 end top_blk_ps7_0_0_processing_system7_v5_5_processing_system7;
@@ -3425,51 +3425,51 @@ entity top_blk_ps7_0_0 is
     S_AXI_HP0_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
     S_AXI_HP0_WDATA : in STD_LOGIC_VECTOR ( 63 downto 0 );
     S_AXI_HP0_WSTRB : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    S_AXI_HP1_ARREADY : out STD_LOGIC;
-    S_AXI_HP1_AWREADY : out STD_LOGIC;
-    S_AXI_HP1_BVALID : out STD_LOGIC;
-    S_AXI_HP1_RLAST : out STD_LOGIC;
-    S_AXI_HP1_RVALID : out STD_LOGIC;
-    S_AXI_HP1_WREADY : out STD_LOGIC;
-    S_AXI_HP1_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_BID : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_RID : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_RDATA : out STD_LOGIC_VECTOR ( 63 downto 0 );
-    S_AXI_HP1_RCOUNT : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    S_AXI_HP1_WCOUNT : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    S_AXI_HP1_RACOUNT : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    S_AXI_HP1_WACOUNT : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_ACLK : in STD_LOGIC;
-    S_AXI_HP1_ARVALID : in STD_LOGIC;
-    S_AXI_HP1_AWVALID : in STD_LOGIC;
-    S_AXI_HP1_BREADY : in STD_LOGIC;
-    S_AXI_HP1_RDISSUECAP1_EN : in STD_LOGIC;
-    S_AXI_HP1_RREADY : in STD_LOGIC;
-    S_AXI_HP1_WLAST : in STD_LOGIC;
-    S_AXI_HP1_WRISSUECAP1_EN : in STD_LOGIC;
-    S_AXI_HP1_WVALID : in STD_LOGIC;
-    S_AXI_HP1_ARBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_ARLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_ARSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    S_AXI_HP1_AWBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_AWLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    S_AXI_HP1_AWSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    S_AXI_HP1_ARPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    S_AXI_HP1_AWPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    S_AXI_HP1_ARADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    S_AXI_HP1_AWADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    S_AXI_HP1_ARCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_ARLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_ARQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_AWCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_AWLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_AWQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    S_AXI_HP1_ARID : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_AWID : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    S_AXI_HP1_WDATA : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    S_AXI_HP1_WSTRB : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    S_AXI_HP2_ARREADY : out STD_LOGIC;
+    S_AXI_HP2_AWREADY : out STD_LOGIC;
+    S_AXI_HP2_BVALID : out STD_LOGIC;
+    S_AXI_HP2_RLAST : out STD_LOGIC;
+    S_AXI_HP2_RVALID : out STD_LOGIC;
+    S_AXI_HP2_WREADY : out STD_LOGIC;
+    S_AXI_HP2_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_BID : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_RID : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_RDATA : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    S_AXI_HP2_RCOUNT : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    S_AXI_HP2_WCOUNT : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    S_AXI_HP2_RACOUNT : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_HP2_WACOUNT : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_ACLK : in STD_LOGIC;
+    S_AXI_HP2_ARVALID : in STD_LOGIC;
+    S_AXI_HP2_AWVALID : in STD_LOGIC;
+    S_AXI_HP2_BREADY : in STD_LOGIC;
+    S_AXI_HP2_RDISSUECAP1_EN : in STD_LOGIC;
+    S_AXI_HP2_RREADY : in STD_LOGIC;
+    S_AXI_HP2_WLAST : in STD_LOGIC;
+    S_AXI_HP2_WRISSUECAP1_EN : in STD_LOGIC;
+    S_AXI_HP2_WVALID : in STD_LOGIC;
+    S_AXI_HP2_ARBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_ARLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_ARSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_HP2_AWBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_AWLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_HP2_AWSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_HP2_ARPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_HP2_AWPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_HP2_ARADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_HP2_AWADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_HP2_ARCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_ARLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_ARQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_AWCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_AWLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_AWQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_HP2_ARID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_AWID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_HP2_WDATA : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    S_AXI_HP2_WSTRB : in STD_LOGIC_VECTOR ( 7 downto 0 );
     IRQ_F2P : in STD_LOGIC_VECTOR ( 1 downto 0 );
     FCLK_CLK0 : out STD_LOGIC;
     FCLK_CLK1 : out STD_LOGIC;
@@ -3654,13 +3654,13 @@ architecture STRUCTURE of top_blk_ps7_0_0 is
   signal NLW_inst_S_AXI_GP1_WREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP0_ARESETN_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP1_ARESETN_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_ARREADY_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_AWREADY_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_BVALID_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_RLAST_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_RVALID_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_S_AXI_HP1_WREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP2_ARESETN_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_ARREADY_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_AWREADY_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_BVALID_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_RLAST_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_RVALID_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_HP2_WREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP3_ARESETN_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP3_ARREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_HP3_AWREADY_UNCONNECTED : STD_LOGIC;
@@ -3731,15 +3731,15 @@ architecture STRUCTURE of top_blk_ps7_0_0 is
   signal NLW_inst_S_AXI_GP1_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_inst_S_AXI_GP1_RID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal NLW_inst_S_AXI_GP1_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_S_AXI_HP2_BID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_S_AXI_HP2_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_S_AXI_HP2_RACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_inst_S_AXI_HP2_RCOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_inst_S_AXI_HP2_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal NLW_inst_S_AXI_HP2_RID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_S_AXI_HP2_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_S_AXI_HP2_WACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_S_AXI_HP2_WCOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal NLW_inst_S_AXI_HP1_BID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal NLW_inst_S_AXI_HP1_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal NLW_inst_S_AXI_HP1_RACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal NLW_inst_S_AXI_HP1_RCOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal NLW_inst_S_AXI_HP1_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal NLW_inst_S_AXI_HP1_RID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal NLW_inst_S_AXI_HP1_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal NLW_inst_S_AXI_HP1_WACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal NLW_inst_S_AXI_HP1_WCOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal NLW_inst_S_AXI_HP3_BID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal NLW_inst_S_AXI_HP3_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_S_AXI_HP3_RACOUNT_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -3856,15 +3856,15 @@ architecture STRUCTURE of top_blk_ps7_0_0 is
   attribute C_USE_S_AXI_HP0 : integer;
   attribute C_USE_S_AXI_HP0 of inst : label is 1;
   attribute C_USE_S_AXI_HP1 : integer;
-  attribute C_USE_S_AXI_HP1 of inst : label is 1;
+  attribute C_USE_S_AXI_HP1 of inst : label is 0;
   attribute C_USE_S_AXI_HP2 : integer;
-  attribute C_USE_S_AXI_HP2 of inst : label is 0;
+  attribute C_USE_S_AXI_HP2 of inst : label is 1;
   attribute C_USE_S_AXI_HP3 : integer;
   attribute C_USE_S_AXI_HP3 of inst : label is 0;
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of inst : label is "top_blk_ps7_0_0.hwdef";
   attribute POWER : string;
-  attribute POWER of inst : label is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666666} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333333} readRate={0.5} writeRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={I2C} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS33} bidis={2} ioBank={Vcco_p0} clockFreq={100.000000} usageRate={0.5} /><IO interface={UART} ioStandard={} bidis={0} ioBank={} clockFreq={100.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={125.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_HP1} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={S_AXI_HP0} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={50} usageRate={0.5} />/>";
+  attribute POWER of inst : label is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666666} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333333} readRate={0.5} writeRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={I2C} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS33} bidis={2} ioBank={Vcco_p0} clockFreq={100.000000} usageRate={0.5} /><IO interface={UART} ioStandard={} bidis={0} ioBank={} clockFreq={100.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={125.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_HP2} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={S_AXI_HP0} dataWidth={64} clockFreq={142} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={50} usageRate={0.5} />/>";
   attribute USE_TRACE_DATA_EDGE_DETECTOR : integer;
   attribute USE_TRACE_DATA_EDGE_DETECTOR of inst : label is 0;
 begin
@@ -4541,98 +4541,98 @@ inst: entity work.top_blk_ps7_0_0_processing_system7_v5_5_processing_system7
       S_AXI_HP0_WRISSUECAP1_EN => S_AXI_HP0_WRISSUECAP1_EN,
       S_AXI_HP0_WSTRB(7 downto 0) => S_AXI_HP0_WSTRB(7 downto 0),
       S_AXI_HP0_WVALID => S_AXI_HP0_WVALID,
-      S_AXI_HP1_ACLK => S_AXI_HP1_ACLK,
-      S_AXI_HP1_ARADDR(31 downto 0) => S_AXI_HP1_ARADDR(31 downto 0),
-      S_AXI_HP1_ARBURST(1 downto 0) => S_AXI_HP1_ARBURST(1 downto 0),
-      S_AXI_HP1_ARCACHE(3 downto 0) => S_AXI_HP1_ARCACHE(3 downto 0),
+      S_AXI_HP1_ACLK => '0',
+      S_AXI_HP1_ARADDR(31 downto 0) => B"00000000000000000000000000000000",
+      S_AXI_HP1_ARBURST(1 downto 0) => B"00",
+      S_AXI_HP1_ARCACHE(3 downto 0) => B"0000",
       S_AXI_HP1_ARESETN => NLW_inst_S_AXI_HP1_ARESETN_UNCONNECTED,
-      S_AXI_HP1_ARID(5 downto 0) => S_AXI_HP1_ARID(5 downto 0),
-      S_AXI_HP1_ARLEN(3 downto 0) => S_AXI_HP1_ARLEN(3 downto 0),
-      S_AXI_HP1_ARLOCK(1 downto 0) => S_AXI_HP1_ARLOCK(1 downto 0),
-      S_AXI_HP1_ARPROT(2 downto 0) => S_AXI_HP1_ARPROT(2 downto 0),
-      S_AXI_HP1_ARQOS(3 downto 0) => S_AXI_HP1_ARQOS(3 downto 0),
-      S_AXI_HP1_ARREADY => S_AXI_HP1_ARREADY,
-      S_AXI_HP1_ARSIZE(2 downto 0) => S_AXI_HP1_ARSIZE(2 downto 0),
-      S_AXI_HP1_ARVALID => S_AXI_HP1_ARVALID,
-      S_AXI_HP1_AWADDR(31 downto 0) => S_AXI_HP1_AWADDR(31 downto 0),
-      S_AXI_HP1_AWBURST(1 downto 0) => S_AXI_HP1_AWBURST(1 downto 0),
-      S_AXI_HP1_AWCACHE(3 downto 0) => S_AXI_HP1_AWCACHE(3 downto 0),
-      S_AXI_HP1_AWID(5 downto 0) => S_AXI_HP1_AWID(5 downto 0),
-      S_AXI_HP1_AWLEN(3 downto 0) => S_AXI_HP1_AWLEN(3 downto 0),
-      S_AXI_HP1_AWLOCK(1 downto 0) => S_AXI_HP1_AWLOCK(1 downto 0),
-      S_AXI_HP1_AWPROT(2 downto 0) => S_AXI_HP1_AWPROT(2 downto 0),
-      S_AXI_HP1_AWQOS(3 downto 0) => S_AXI_HP1_AWQOS(3 downto 0),
-      S_AXI_HP1_AWREADY => S_AXI_HP1_AWREADY,
-      S_AXI_HP1_AWSIZE(2 downto 0) => S_AXI_HP1_AWSIZE(2 downto 0),
-      S_AXI_HP1_AWVALID => S_AXI_HP1_AWVALID,
-      S_AXI_HP1_BID(5 downto 0) => S_AXI_HP1_BID(5 downto 0),
-      S_AXI_HP1_BREADY => S_AXI_HP1_BREADY,
-      S_AXI_HP1_BRESP(1 downto 0) => S_AXI_HP1_BRESP(1 downto 0),
-      S_AXI_HP1_BVALID => S_AXI_HP1_BVALID,
-      S_AXI_HP1_RACOUNT(2 downto 0) => S_AXI_HP1_RACOUNT(2 downto 0),
-      S_AXI_HP1_RCOUNT(7 downto 0) => S_AXI_HP1_RCOUNT(7 downto 0),
-      S_AXI_HP1_RDATA(63 downto 0) => S_AXI_HP1_RDATA(63 downto 0),
-      S_AXI_HP1_RDISSUECAP1_EN => S_AXI_HP1_RDISSUECAP1_EN,
-      S_AXI_HP1_RID(5 downto 0) => S_AXI_HP1_RID(5 downto 0),
-      S_AXI_HP1_RLAST => S_AXI_HP1_RLAST,
-      S_AXI_HP1_RREADY => S_AXI_HP1_RREADY,
-      S_AXI_HP1_RRESP(1 downto 0) => S_AXI_HP1_RRESP(1 downto 0),
-      S_AXI_HP1_RVALID => S_AXI_HP1_RVALID,
-      S_AXI_HP1_WACOUNT(5 downto 0) => S_AXI_HP1_WACOUNT(5 downto 0),
-      S_AXI_HP1_WCOUNT(7 downto 0) => S_AXI_HP1_WCOUNT(7 downto 0),
-      S_AXI_HP1_WDATA(63 downto 0) => S_AXI_HP1_WDATA(63 downto 0),
-      S_AXI_HP1_WID(5 downto 0) => S_AXI_HP1_WID(5 downto 0),
-      S_AXI_HP1_WLAST => S_AXI_HP1_WLAST,
-      S_AXI_HP1_WREADY => S_AXI_HP1_WREADY,
-      S_AXI_HP1_WRISSUECAP1_EN => S_AXI_HP1_WRISSUECAP1_EN,
-      S_AXI_HP1_WSTRB(7 downto 0) => S_AXI_HP1_WSTRB(7 downto 0),
-      S_AXI_HP1_WVALID => S_AXI_HP1_WVALID,
-      S_AXI_HP2_ACLK => '0',
-      S_AXI_HP2_ARADDR(31 downto 0) => B"00000000000000000000000000000000",
-      S_AXI_HP2_ARBURST(1 downto 0) => B"00",
-      S_AXI_HP2_ARCACHE(3 downto 0) => B"0000",
+      S_AXI_HP1_ARID(5 downto 0) => B"000000",
+      S_AXI_HP1_ARLEN(3 downto 0) => B"0000",
+      S_AXI_HP1_ARLOCK(1 downto 0) => B"00",
+      S_AXI_HP1_ARPROT(2 downto 0) => B"000",
+      S_AXI_HP1_ARQOS(3 downto 0) => B"0000",
+      S_AXI_HP1_ARREADY => NLW_inst_S_AXI_HP1_ARREADY_UNCONNECTED,
+      S_AXI_HP1_ARSIZE(2 downto 0) => B"000",
+      S_AXI_HP1_ARVALID => '0',
+      S_AXI_HP1_AWADDR(31 downto 0) => B"00000000000000000000000000000000",
+      S_AXI_HP1_AWBURST(1 downto 0) => B"00",
+      S_AXI_HP1_AWCACHE(3 downto 0) => B"0000",
+      S_AXI_HP1_AWID(5 downto 0) => B"000000",
+      S_AXI_HP1_AWLEN(3 downto 0) => B"0000",
+      S_AXI_HP1_AWLOCK(1 downto 0) => B"00",
+      S_AXI_HP1_AWPROT(2 downto 0) => B"000",
+      S_AXI_HP1_AWQOS(3 downto 0) => B"0000",
+      S_AXI_HP1_AWREADY => NLW_inst_S_AXI_HP1_AWREADY_UNCONNECTED,
+      S_AXI_HP1_AWSIZE(2 downto 0) => B"000",
+      S_AXI_HP1_AWVALID => '0',
+      S_AXI_HP1_BID(5 downto 0) => NLW_inst_S_AXI_HP1_BID_UNCONNECTED(5 downto 0),
+      S_AXI_HP1_BREADY => '0',
+      S_AXI_HP1_BRESP(1 downto 0) => NLW_inst_S_AXI_HP1_BRESP_UNCONNECTED(1 downto 0),
+      S_AXI_HP1_BVALID => NLW_inst_S_AXI_HP1_BVALID_UNCONNECTED,
+      S_AXI_HP1_RACOUNT(2 downto 0) => NLW_inst_S_AXI_HP1_RACOUNT_UNCONNECTED(2 downto 0),
+      S_AXI_HP1_RCOUNT(7 downto 0) => NLW_inst_S_AXI_HP1_RCOUNT_UNCONNECTED(7 downto 0),
+      S_AXI_HP1_RDATA(63 downto 0) => NLW_inst_S_AXI_HP1_RDATA_UNCONNECTED(63 downto 0),
+      S_AXI_HP1_RDISSUECAP1_EN => '0',
+      S_AXI_HP1_RID(5 downto 0) => NLW_inst_S_AXI_HP1_RID_UNCONNECTED(5 downto 0),
+      S_AXI_HP1_RLAST => NLW_inst_S_AXI_HP1_RLAST_UNCONNECTED,
+      S_AXI_HP1_RREADY => '0',
+      S_AXI_HP1_RRESP(1 downto 0) => NLW_inst_S_AXI_HP1_RRESP_UNCONNECTED(1 downto 0),
+      S_AXI_HP1_RVALID => NLW_inst_S_AXI_HP1_RVALID_UNCONNECTED,
+      S_AXI_HP1_WACOUNT(5 downto 0) => NLW_inst_S_AXI_HP1_WACOUNT_UNCONNECTED(5 downto 0),
+      S_AXI_HP1_WCOUNT(7 downto 0) => NLW_inst_S_AXI_HP1_WCOUNT_UNCONNECTED(7 downto 0),
+      S_AXI_HP1_WDATA(63 downto 0) => B"0000000000000000000000000000000000000000000000000000000000000000",
+      S_AXI_HP1_WID(5 downto 0) => B"000000",
+      S_AXI_HP1_WLAST => '0',
+      S_AXI_HP1_WREADY => NLW_inst_S_AXI_HP1_WREADY_UNCONNECTED,
+      S_AXI_HP1_WRISSUECAP1_EN => '0',
+      S_AXI_HP1_WSTRB(7 downto 0) => B"00000000",
+      S_AXI_HP1_WVALID => '0',
+      S_AXI_HP2_ACLK => S_AXI_HP2_ACLK,
+      S_AXI_HP2_ARADDR(31 downto 0) => S_AXI_HP2_ARADDR(31 downto 0),
+      S_AXI_HP2_ARBURST(1 downto 0) => S_AXI_HP2_ARBURST(1 downto 0),
+      S_AXI_HP2_ARCACHE(3 downto 0) => S_AXI_HP2_ARCACHE(3 downto 0),
       S_AXI_HP2_ARESETN => NLW_inst_S_AXI_HP2_ARESETN_UNCONNECTED,
-      S_AXI_HP2_ARID(5 downto 0) => B"000000",
-      S_AXI_HP2_ARLEN(3 downto 0) => B"0000",
-      S_AXI_HP2_ARLOCK(1 downto 0) => B"00",
-      S_AXI_HP2_ARPROT(2 downto 0) => B"000",
-      S_AXI_HP2_ARQOS(3 downto 0) => B"0000",
-      S_AXI_HP2_ARREADY => NLW_inst_S_AXI_HP2_ARREADY_UNCONNECTED,
-      S_AXI_HP2_ARSIZE(2 downto 0) => B"000",
-      S_AXI_HP2_ARVALID => '0',
-      S_AXI_HP2_AWADDR(31 downto 0) => B"00000000000000000000000000000000",
-      S_AXI_HP2_AWBURST(1 downto 0) => B"00",
-      S_AXI_HP2_AWCACHE(3 downto 0) => B"0000",
-      S_AXI_HP2_AWID(5 downto 0) => B"000000",
-      S_AXI_HP2_AWLEN(3 downto 0) => B"0000",
-      S_AXI_HP2_AWLOCK(1 downto 0) => B"00",
-      S_AXI_HP2_AWPROT(2 downto 0) => B"000",
-      S_AXI_HP2_AWQOS(3 downto 0) => B"0000",
-      S_AXI_HP2_AWREADY => NLW_inst_S_AXI_HP2_AWREADY_UNCONNECTED,
-      S_AXI_HP2_AWSIZE(2 downto 0) => B"000",
-      S_AXI_HP2_AWVALID => '0',
-      S_AXI_HP2_BID(5 downto 0) => NLW_inst_S_AXI_HP2_BID_UNCONNECTED(5 downto 0),
-      S_AXI_HP2_BREADY => '0',
-      S_AXI_HP2_BRESP(1 downto 0) => NLW_inst_S_AXI_HP2_BRESP_UNCONNECTED(1 downto 0),
-      S_AXI_HP2_BVALID => NLW_inst_S_AXI_HP2_BVALID_UNCONNECTED,
-      S_AXI_HP2_RACOUNT(2 downto 0) => NLW_inst_S_AXI_HP2_RACOUNT_UNCONNECTED(2 downto 0),
-      S_AXI_HP2_RCOUNT(7 downto 0) => NLW_inst_S_AXI_HP2_RCOUNT_UNCONNECTED(7 downto 0),
-      S_AXI_HP2_RDATA(63 downto 0) => NLW_inst_S_AXI_HP2_RDATA_UNCONNECTED(63 downto 0),
-      S_AXI_HP2_RDISSUECAP1_EN => '0',
-      S_AXI_HP2_RID(5 downto 0) => NLW_inst_S_AXI_HP2_RID_UNCONNECTED(5 downto 0),
-      S_AXI_HP2_RLAST => NLW_inst_S_AXI_HP2_RLAST_UNCONNECTED,
-      S_AXI_HP2_RREADY => '0',
-      S_AXI_HP2_RRESP(1 downto 0) => NLW_inst_S_AXI_HP2_RRESP_UNCONNECTED(1 downto 0),
-      S_AXI_HP2_RVALID => NLW_inst_S_AXI_HP2_RVALID_UNCONNECTED,
-      S_AXI_HP2_WACOUNT(5 downto 0) => NLW_inst_S_AXI_HP2_WACOUNT_UNCONNECTED(5 downto 0),
-      S_AXI_HP2_WCOUNT(7 downto 0) => NLW_inst_S_AXI_HP2_WCOUNT_UNCONNECTED(7 downto 0),
-      S_AXI_HP2_WDATA(63 downto 0) => B"0000000000000000000000000000000000000000000000000000000000000000",
-      S_AXI_HP2_WID(5 downto 0) => B"000000",
-      S_AXI_HP2_WLAST => '0',
-      S_AXI_HP2_WREADY => NLW_inst_S_AXI_HP2_WREADY_UNCONNECTED,
-      S_AXI_HP2_WRISSUECAP1_EN => '0',
-      S_AXI_HP2_WSTRB(7 downto 0) => B"00000000",
-      S_AXI_HP2_WVALID => '0',
+      S_AXI_HP2_ARID(5 downto 0) => S_AXI_HP2_ARID(5 downto 0),
+      S_AXI_HP2_ARLEN(3 downto 0) => S_AXI_HP2_ARLEN(3 downto 0),
+      S_AXI_HP2_ARLOCK(1 downto 0) => S_AXI_HP2_ARLOCK(1 downto 0),
+      S_AXI_HP2_ARPROT(2 downto 0) => S_AXI_HP2_ARPROT(2 downto 0),
+      S_AXI_HP2_ARQOS(3 downto 0) => S_AXI_HP2_ARQOS(3 downto 0),
+      S_AXI_HP2_ARREADY => S_AXI_HP2_ARREADY,
+      S_AXI_HP2_ARSIZE(2 downto 0) => S_AXI_HP2_ARSIZE(2 downto 0),
+      S_AXI_HP2_ARVALID => S_AXI_HP2_ARVALID,
+      S_AXI_HP2_AWADDR(31 downto 0) => S_AXI_HP2_AWADDR(31 downto 0),
+      S_AXI_HP2_AWBURST(1 downto 0) => S_AXI_HP2_AWBURST(1 downto 0),
+      S_AXI_HP2_AWCACHE(3 downto 0) => S_AXI_HP2_AWCACHE(3 downto 0),
+      S_AXI_HP2_AWID(5 downto 0) => S_AXI_HP2_AWID(5 downto 0),
+      S_AXI_HP2_AWLEN(3 downto 0) => S_AXI_HP2_AWLEN(3 downto 0),
+      S_AXI_HP2_AWLOCK(1 downto 0) => S_AXI_HP2_AWLOCK(1 downto 0),
+      S_AXI_HP2_AWPROT(2 downto 0) => S_AXI_HP2_AWPROT(2 downto 0),
+      S_AXI_HP2_AWQOS(3 downto 0) => S_AXI_HP2_AWQOS(3 downto 0),
+      S_AXI_HP2_AWREADY => S_AXI_HP2_AWREADY,
+      S_AXI_HP2_AWSIZE(2 downto 0) => S_AXI_HP2_AWSIZE(2 downto 0),
+      S_AXI_HP2_AWVALID => S_AXI_HP2_AWVALID,
+      S_AXI_HP2_BID(5 downto 0) => S_AXI_HP2_BID(5 downto 0),
+      S_AXI_HP2_BREADY => S_AXI_HP2_BREADY,
+      S_AXI_HP2_BRESP(1 downto 0) => S_AXI_HP2_BRESP(1 downto 0),
+      S_AXI_HP2_BVALID => S_AXI_HP2_BVALID,
+      S_AXI_HP2_RACOUNT(2 downto 0) => S_AXI_HP2_RACOUNT(2 downto 0),
+      S_AXI_HP2_RCOUNT(7 downto 0) => S_AXI_HP2_RCOUNT(7 downto 0),
+      S_AXI_HP2_RDATA(63 downto 0) => S_AXI_HP2_RDATA(63 downto 0),
+      S_AXI_HP2_RDISSUECAP1_EN => S_AXI_HP2_RDISSUECAP1_EN,
+      S_AXI_HP2_RID(5 downto 0) => S_AXI_HP2_RID(5 downto 0),
+      S_AXI_HP2_RLAST => S_AXI_HP2_RLAST,
+      S_AXI_HP2_RREADY => S_AXI_HP2_RREADY,
+      S_AXI_HP2_RRESP(1 downto 0) => S_AXI_HP2_RRESP(1 downto 0),
+      S_AXI_HP2_RVALID => S_AXI_HP2_RVALID,
+      S_AXI_HP2_WACOUNT(5 downto 0) => S_AXI_HP2_WACOUNT(5 downto 0),
+      S_AXI_HP2_WCOUNT(7 downto 0) => S_AXI_HP2_WCOUNT(7 downto 0),
+      S_AXI_HP2_WDATA(63 downto 0) => S_AXI_HP2_WDATA(63 downto 0),
+      S_AXI_HP2_WID(5 downto 0) => S_AXI_HP2_WID(5 downto 0),
+      S_AXI_HP2_WLAST => S_AXI_HP2_WLAST,
+      S_AXI_HP2_WREADY => S_AXI_HP2_WREADY,
+      S_AXI_HP2_WRISSUECAP1_EN => S_AXI_HP2_WRISSUECAP1_EN,
+      S_AXI_HP2_WSTRB(7 downto 0) => S_AXI_HP2_WSTRB(7 downto 0),
+      S_AXI_HP2_WVALID => S_AXI_HP2_WVALID,
       S_AXI_HP3_ACLK => '0',
       S_AXI_HP3_ARADDR(31 downto 0) => B"00000000000000000000000000000000",
       S_AXI_HP3_ARBURST(1 downto 0) => B"00",
