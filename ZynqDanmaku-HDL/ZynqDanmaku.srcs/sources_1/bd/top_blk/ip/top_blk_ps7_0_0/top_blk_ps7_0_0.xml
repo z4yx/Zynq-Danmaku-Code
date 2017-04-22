@@ -10163,7 +10163,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 10 09:07:45 UTC 2017</spirit:value>
+            <spirit:value>Sun Apr 16 03:30:05 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -10175,7 +10175,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>249e1586</spirit:value>
+            <spirit:value>e98ad03f</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -10194,7 +10194,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 10 09:07:45 UTC 2017</spirit:value>
+            <spirit:value>Sun Apr 16 03:30:05 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -10206,7 +10206,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>249e1586</spirit:value>
+            <spirit:value>e98ad03f</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -10232,7 +10232,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>625cde4e</spirit:value>
+            <spirit:value>6276fbee</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -10250,7 +10250,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 10 09:07:45 UTC 2017</spirit:value>
+            <spirit:value>Sun Apr 16 03:30:06 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -10262,7 +10262,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>625cde4e</spirit:value>
+            <spirit:value>6276fbee</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -10280,7 +10280,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 10 09:07:46 UTC 2017</spirit:value>
+            <spirit:value>Sun Apr 16 03:30:06 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -10292,7 +10292,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>625cde4e</spirit:value>
+            <spirit:value>6276fbee</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -10310,7 +10310,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 10 09:08:35 UTC 2017</spirit:value>
+            <spirit:value>Sun Apr 16 03:30:55 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -10322,7 +10322,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>249e1586</spirit:value>
+            <spirit:value>e98ad03f</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -26402,13 +26402,6 @@
       <spirit:enumeration>0x00040000</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choice_list_4d36a164</spirit:name>
-      <spirit:enumeration>&lt;Select></spirit:enumeration>
-      <spirit:enumeration>Low</spirit:enumeration>
-      <spirit:enumeration>Medium</spirit:enumeration>
-      <spirit:enumeration>High</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
       <spirit:name>choice_list_56c426e3</spirit:name>
       <spirit:enumeration>&lt;Select></spirit:enumeration>
       <spirit:enumeration>in</spirit:enumeration>
@@ -26681,6 +26674,12 @@
       <spirit:enumeration>IO PLL</spirit:enumeration>
       <spirit:enumeration>DDR PLL</spirit:enumeration>
       <spirit:enumeration>External</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_7d45b2a8</spirit:name>
+      <spirit:enumeration>Low</spirit:enumeration>
+      <spirit:enumeration>Medium</spirit:enumeration>
+      <spirit:enumeration>High</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_list_7d6d1b3f</spirit:name>
@@ -30952,7 +30951,7 @@
     <spirit:parameter>
       <spirit:name>PCW_UIPARAM_DDR_ADV_ENABLE</spirit:name>
       <spirit:displayName>PCW UIPARAM DDR ADV ENABLE</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_ADV_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="7999">0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_ADV_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="7999">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_UIPARAM_DDR_MEMORY_TYPE</spirit:name>
@@ -31055,146 +31054,62 @@
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_WRITEPORT_0</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY WRITEPORT 0</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_0" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_WRITEPORT_0">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_0" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Low</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_WRITEPORT_1</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY WRITEPORT 0</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_1" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_WRITEPORT_1">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_1" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Low</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_WRITEPORT_2</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY WRITEPORT 0</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_2" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_WRITEPORT_2">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_2" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Low</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_WRITEPORT_3</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY WRITEPORT 0</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_3" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_WRITEPORT_3">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_WRITEPORT_3" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Low</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_READPORT_0</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY READPORT 0</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_0" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_READPORT_0">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_0" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Medium</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_READPORT_1</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY READPORT 1</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_1" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_READPORT_1">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_1" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Low</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_READPORT_2</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY READPORT 2</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_2" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_READPORT_2">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_2" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">Medium</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PRIORITY_READPORT_3</spirit:name>
       <spirit:displayName>PCW DDR PRIORITY READPORT 3</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_3" spirit:choiceRef="choice_list_4d36a164" spirit:order="16000">&lt;Select></spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PRIORITY_READPORT_3">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_3" spirit:choiceRef="choice_list_7d45b2a8" spirit:order="16000">High</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PORT0_HPR_ENABLE</spirit:name>
       <spirit:displayName>PCW DDR PORT0 ENABLE HPR</spirit:displayName>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PORT0_HPR_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="16000">0</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PORT0_HPR_ENABLE">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PORT1_HPR_ENABLE</spirit:name>
       <spirit:displayName>PCW DDR PORT1 ENABLE HPR</spirit:displayName>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PORT1_HPR_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="16000">0</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PORT1_HPR_ENABLE">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PORT2_HPR_ENABLE</spirit:name>
       <spirit:displayName>PCW DDR PORT2 ENABLE HPR</spirit:displayName>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PORT2_HPR_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="16000">0</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PORT2_HPR_ENABLE">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_PORT3_HPR_ENABLE</spirit:name>
       <spirit:displayName>PCW DDR PORT3 ENABLE HPR</spirit:displayName>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_PORT3_HPR_ENABLE" spirit:choiceRef="choice_list_8af5a703" spirit:order="16000">0</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_PORT3_HPR_ENABLE">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_HPRLPR_QUEUE_PARTITION</spirit:name>
@@ -31212,37 +31127,16 @@
       <spirit:name>PCW_DDR_LPR_TO_CRITICAL_PRIORITY_LEVEL</spirit:name>
       <spirit:displayName>PCW DDR LPR TO CRITICAL PRIORITY LEVEL</spirit:displayName>
       <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_LPR_TO_CRITICAL_PRIORITY_LEVEL" spirit:order="16000" spirit:minimum="0.000000" spirit:maximum="2047.000000">2</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_LPR_TO_CRITICAL_PRIORITY_LEVEL">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_HPR_TO_CRITICAL_PRIORITY_LEVEL</spirit:name>
       <spirit:displayName>PCW DDR HPR TO CRITICAL PRIORITY LEVEL</spirit:displayName>
       <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_HPR_TO_CRITICAL_PRIORITY_LEVEL" spirit:order="16000" spirit:minimum="0.000000" spirit:maximum="2047.000000">15</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_HPR_TO_CRITICAL_PRIORITY_LEVEL">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_DDR_WRITE_TO_CRITICAL_PRIORITY_LEVEL</spirit:name>
       <spirit:displayName>PCW DDR WRITE TO CRITICAL PRIORITY LEVEL</spirit:displayName>
       <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_DDR_WRITE_TO_CRITICAL_PRIORITY_LEVEL" spirit:order="16000" spirit:minimum="0.000000" spirit:maximum="2047.000000">2</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.PCW_DDR_WRITE_TO_CRITICAL_PRIORITY_LEVEL">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_NAND_PERIPHERAL_ENABLE</spirit:name>
@@ -34658,6 +34552,9 @@
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_HP2_ACLK.CLK_DOMAIN" xilinx:valueSource="default_prop"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_HP2_ACLK.FREQ_HZ" xilinx:valueSource="user_prop"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_CAN1_PERIPHERAL_ENABLE" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_0" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_2" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_DDR_PRIORITY_READPORT_3" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_EN_CLK0_PORT" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_EN_CLK1_PORT" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_EN_RST1_PORT" xilinx:valueSource="user"/>
@@ -34678,6 +34575,7 @@
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_UART0_UART0_IO" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_UART1_PERIPHERAL_ENABLE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_UART1_UART1_IO" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_UIPARAM_DDR_ADV_ENABLE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_USE_FABRIC_INTERRUPT" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_USE_M_AXI_GP0" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.PCW_USE_S_AXI_GP0" xilinx:valueSource="user"/>

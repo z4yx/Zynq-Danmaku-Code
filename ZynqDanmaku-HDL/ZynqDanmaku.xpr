@@ -109,19 +109,19 @@
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_proc_sys_reset_0_0/top_blk_proc_sys_reset_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_0_0/top_blk_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk.hwh"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_pixel_transparent_0_4/top_blk_pixel_transparent_0_4.xci">
           <Proxy FileSetName="top_blk_pixel_transparent_0_4"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_0/top_blk_auto_us_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk.hwh"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_0/top_blk_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_w_0/top_blk_auto_rs_w_0.xci"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.hwdef"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_0/top_blk_auto_us_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_0/top_blk_auto_rs_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_1/top_blk_auto_pc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.hwdef"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_w_0/top_blk_auto_rs_w_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="top_blk_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/new/simple.v">
         <FileInfo>
