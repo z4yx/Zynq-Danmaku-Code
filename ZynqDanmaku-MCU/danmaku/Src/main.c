@@ -54,9 +54,6 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
-SPI_HandleTypeDef hspi1;
-
-UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -69,8 +66,6 @@ void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
-static void MX_SPI1_Init(void);
-static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
@@ -110,8 +105,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
-  MX_SPI1_Init();
-  MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USB_DEVICE_Init();
 
@@ -171,7 +164,6 @@ void SystemClock_Config(void)
 
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB|RCC_PERIPHCLK_USART1
                               |RCC_PERIPHCLK_I2C1;
-  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
 
@@ -219,47 +211,9 @@ static void MX_I2C1_Init(void)
     Error_Handler();
   }
 
-}
-
-/* SPI1 init function */
-static void MX_SPI1_Init(void)
-{
-
-  hspi1.Instance = SPI1;
-  hspi1.Init.Mode = SPI_MODE_SLAVE;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_HARD_INPUT;
-  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi1.Init.CRCPolynomial = 7;
-  hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi1.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
-  if (HAL_SPI_Init(&hspi1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-}
-
-/* USART1 init function */
-static void MX_USART1_UART_Init(void)
-{
-
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
+    /**Configure Digital filter 
+    */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -305,7 +259,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(ZYNQ_INT_GPIO_Port, ZYNQ_INT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ZYNQ_INT_Pin|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4|GPIO_PIN_7, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(ZYNQ_RST_GPIO_Port, ZYNQ_RST_Pin, GPIO_PIN_SET);
@@ -319,12 +276,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(ZYNQ_DONE_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : ZYNQ_INT_Pin */
-  GPIO_InitStruct.Pin = ZYNQ_INT_Pin;
+  /*Configure GPIO pins : ZYNQ_INT_Pin PA4 PA5 PA6 
+                           PA7 */
+  GPIO_InitStruct.Pin = ZYNQ_INT_Pin|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6 
+                          |GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(ZYNQ_INT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : ZYNQ_RST_Pin */
   GPIO_InitStruct.Pin = ZYNQ_RST_Pin;
@@ -346,6 +305,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB3 PB4 PB5 */
