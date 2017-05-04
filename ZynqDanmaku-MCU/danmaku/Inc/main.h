@@ -59,6 +59,7 @@
 #define ZYNQ_RST_GPIO_Port GPIOB
 #define VIN_RST_Pin GPIO_PIN_1
 #define VIN_RST_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

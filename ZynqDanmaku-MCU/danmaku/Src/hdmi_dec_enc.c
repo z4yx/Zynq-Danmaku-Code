@@ -181,11 +181,13 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_HDMI_ADDR,0xCC,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x00,0x00}, // Set HDMI Input Port A
 		{ADV7611_HDMI_ADDR,0x83,0xFE}, // Enable clock terminator for port A
-		{ADV7611_HDMI_ADDR,0x6F,0x0C}, // ADI recommended setting
+		{ADV7611_HDMI_ADDR,0x6F,0x08}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x85,0x1F}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x87,0x70}, // ADI recommended setting
-		{ADV7611_HDMI_ADDR,0x8D,0x04}, // LFG
-		{ADV7611_HDMI_ADDR,0x8E,0x1E}, // HFG
+        {ADV7611_HDMI_ADDR,0x8D,0x04}, // LFG A
+        {ADV7611_HDMI_ADDR,0x8E,0x1E}, // HFG A
+        {ADV7611_HDMI_ADDR,0x90,0x04}, // LFG B
+        {ADV7611_HDMI_ADDR,0x91,0x1E}, // HFG B
 		{ADV7611_HDMI_ADDR,0x1A,0x8A}, // unmute audio
 		{ADV7611_HDMI_ADDR,0x57,0xDA}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x58,0x01}, // ADI recommended setting
