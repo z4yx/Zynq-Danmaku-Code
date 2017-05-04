@@ -179,7 +179,7 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_IO_ADDR,0x15,0x80}, // Disable Tristate of Pins
 		{ADV7611_IO_ADDR,0x19,0x88}, // LLC DLL phase
 		{ADV7611_IO_ADDR,0x33,0x40}, // LLC DLL enable
-		{ADV7611_IO_ADDR,0x06,0xA1}, // LLC Invert
+		// {ADV7611_IO_ADDR,0x06,0xA1}, // LLC Invert
 
 		{ADV7611_CP_ADDR,0x6C,0x00}, // ADI required setting
 		{ADV7611_CP_ADDR,0xBA,0x01}, // Set HDMI FreeRun
@@ -190,7 +190,8 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_CP_ADDR,0xC1,0x55}, // FreeRun Color B
 		{ADV7611_CP_ADDR,0xC2,0x55}, // FreeRun Color C
 
-		{ADV7611_KSV_ADDR,0x40,0x81}, // Disable HDCP 1.1 features
+        {ADV7611_KSV_ADDR,0x40,0x81}, // Disable HDCP 1.1 features
+        {ADV7611_KSV_ADDR,0x74,0x00}, // Disable the Internal EDID
 
 		{ADV7611_HDMI_ADDR,0x9B,0x03}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xC1,0x01}, // ADI recommended setting
@@ -205,8 +206,8 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_HDMI_ADDR,0xCA,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCB,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCC,0x01}, // ADI recommended setting
-		{ADV7611_HDMI_ADDR,0x00,0x00}, // Set HDMI Input Port A
-		{ADV7611_HDMI_ADDR,0x83,0xFE}, // Enable clock terminator for port A
+		{ADV7611_HDMI_ADDR,0x00,0x01}, // Set HDMI Input Port B
+		{ADV7611_HDMI_ADDR,0x83,0xFC}, // Enable clock terminator for port A&B
 		{ADV7611_HDMI_ADDR,0x6F,0x08}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x85,0x1F}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x87,0x70}, // ADI recommended setting
@@ -316,7 +317,7 @@ int HDMI_Init(void)
 
     i2c_write_8((ADV7611_IO_ADDR),0xFF,0x80); //Main Reset
 
-    HAL_Delay(50);
+    HAL_Delay(500);
 
 	for(i=0; i<sizeof(REGS_7611)/sizeof(REGS_7611[0]); i++){
 		i2c_write_8(REGS_7611[i][0],REGS_7611[i][1],REGS_7611[i][2]);
@@ -347,7 +348,7 @@ int HDMI_Init(void)
 
 void HDMIDec_CheckInput(void)
 {
-    static uint8_t IOx6A=0,HDMIx04=0;
+    static uint8_t IOx6A=0,KSVx76=0,HDMIx04=0;
     uint8_t reg;
     reg = i2c_read_8(ADV7611_IO_ADDR,0x6A);
     if(reg != IOx6A){
@@ -360,6 +361,11 @@ void HDMIDec_CheckInput(void)
         DBG_MSG("HDMI[0x04] changed to 0x%x", reg);
         print_reg_state(adv7611_hdmi_reg04,ARRAY_SIZE(adv7611_hdmi_reg04),reg);
         HDMIx04 = reg;
+    }
+    reg = i2c_read_8(ADV7611_KSV_ADDR,0x76);
+    if(reg != KSVx76){
+        DBG_MSG("KSV[0x76] changed to 0x%x", reg);
+        KSVx76 = reg;
     }
     static uint32_t last = 0;
     uint32_t now = HAL_GetTick();
@@ -386,7 +392,7 @@ void HDMIEnc_SetEDID(uint8_t* edid)
 
 void HDMIEnc_EnableEDID()
 {
-    i2c_write_8(ADV7611_KSV_ADDR,0x74,1); //Enable EDID
+    i2c_write_8(ADV7611_KSV_ADDR,0x74,3); //Enable EDID
     DBG_MSG("done");
 }
 
