@@ -125,7 +125,7 @@ const uint8_t REGS_7513_Startup[][3] = {
 		// {0,0x15,0x00}, // Input 444 (RGB or YCrCb) with Separate Syncs, 44.1kHz fs
         {0,0x15,0x01}, //16, 20, 24 bit YCbCr 4:2:2 (separate syncs)
         // {0,0x16,0x70}, // Output format 444, 24-bit input
-		{0,0x16,0x2c}, // Output format 444, 16-bit input
+		{0,0x16,0x39}, // Output format 444, 16-bit input
         // {0,0x18,0x46}, // CSC disabled
         {0,0x18,0xE6},
         {0,0x19,0x69},
@@ -152,7 +152,7 @@ const uint8_t REGS_7513_Startup[][3] = {
         {0,0x2e,0x1b},
         {0,0x2f,0xa9},
 		{0,0x40,0x80}, // General Control packet enable
-		{0,0x48,0x08}, // Data right justified
+		{0,0x48,0x00}, // Data evenly distributed
 		{0,0x49,0xA8}, // Set Dither_mode - 12-to-10 bit
 		{0,0x4C,0x00}, // 8 bit Output
 		{0,0x56,0x08}, // Set active format Aspect
