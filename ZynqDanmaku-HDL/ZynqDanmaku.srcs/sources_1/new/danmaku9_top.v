@@ -233,7 +233,7 @@ assign CLKB = clk_out_hdmi;
 assign HSB = hs_to_hdmi[1];
 assign O2_VS = vs_to_hdmi[1];
 assign DEB = de_to_hdmi[1];
-assign {O1_D[23:16],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
+assign {O1_D[16],O1_D[17],O1_D[18],O1_D[19],O1_D[20],O1_D[21],O1_D[22],O1_D[23],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
 
 //assign O1_D = crycb444[0];
 
