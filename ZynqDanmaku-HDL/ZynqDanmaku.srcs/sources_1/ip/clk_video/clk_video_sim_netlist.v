@@ -1,10 +1,10 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-// Date        : Sat Mar  4 17:02:56 2017
-// Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_video/clk_video_sim_netlist.v
+// Date        : Mon May  1 17:03:01 2017
+// Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top clk_video -prefix
+//               clk_video_ clk_video_sim_netlist.v
 // Design      : clk_video
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,11 +17,13 @@ module clk_video
    (clk_out1,
     clk_out2,
     clk_out3,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
   output clk_out2;
   output clk_out3;
+  input reset;
   output locked;
   input clk_in1;
 
@@ -30,25 +32,28 @@ module clk_video
   wire clk_out2;
   wire clk_out3;
   wire locked;
+  wire reset;
 
   clk_video_clk_video_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_out1(clk_out1),
         .clk_out2(clk_out2),
         .clk_out3(clk_out3),
-        .locked(locked));
+        .locked(locked),
+        .reset(reset));
 endmodule
 
-(* ORIG_REF_NAME = "clk_video_clk_wiz" *) 
 module clk_video_clk_video_clk_wiz
    (clk_out1,
     clk_out2,
     clk_out3,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
   output clk_out2;
   output clk_out3;
+  input reset;
   output locked;
   input clk_in1;
 
@@ -63,6 +68,7 @@ module clk_video_clk_video_clk_wiz
   wire clkfbout_buf_clk_video;
   wire clkfbout_clk_video;
   wire locked;
+  wire reset;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
@@ -106,22 +112,22 @@ module clk_video_clk_video_clk_wiz
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(5.000000),
+    .CLKFBOUT_MULT_F(7.000000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(6.667000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(5.000000),
+    .CLKOUT0_DIVIDE_F(7.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(5),
+    .CLKOUT1_DIVIDE(7),
     .CLKOUT1_DUTY_CYCLE(0.500000),
-    .CLKOUT1_PHASE(162.000000),
+    .CLKOUT1_PHASE(102.857002),
     .CLKOUT1_USE_FINE_PS("FALSE"),
-    .CLKOUT2_DIVIDE(5),
+    .CLKOUT2_DIVIDE(7),
     .CLKOUT2_DUTY_CYCLE(0.500000),
-    .CLKOUT2_PHASE(-18.000000),
+    .CLKOUT2_PHASE(282.856995),
     .CLKOUT2_USE_FINE_PS("FALSE"),
     .CLKOUT3_DIVIDE(1),
     .CLKOUT3_DUTY_CYCLE(0.500000),
@@ -186,7 +192,7 @@ module clk_video_clk_video_clk_wiz
         .PSEN(1'b0),
         .PSINCDEC(1'b0),
         .PWRDWN(1'b0),
-        .RST(1'b0));
+        .RST(reset));
 endmodule
 `ifndef GLBL
 `define GLBL

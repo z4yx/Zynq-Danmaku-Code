@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 module oddr_adapter_tb (
         
 );
@@ -22,7 +23,7 @@ reg adv7513_de1;
 reg [23:0] adv7513_d2;
 reg adv7513_de2;
 
-always #5 pixel_clk_to_output = ~pixel_clk_to_output;
+always #3367 pixel_clk_to_output = ~pixel_clk_to_output;
 
 always @(posedge CLKA) begin : proc_adv7513_d1
     adv7513_d1 <= O1_D;
@@ -39,12 +40,14 @@ initial begin
     vs_to_hdmi[0] = 0;
     rgb_to_hdmi[0] = 0;
     repeat(50) @(posedge pixel_clk_to_output);
-    repeat(5) begin 
+    repeat(50) begin 
         @(posedge pixel_clk_to_output);
+        #2000;
         de_to_hdmi[0] = 1;
         rgb_to_hdmi[0] = $random();
     end
     @(posedge pixel_clk_to_output);
+    #2000;
     de_to_hdmi[0] = 0;
 end
 
@@ -54,12 +57,14 @@ initial begin
     vs_to_hdmi[1] = 0;
     rgb_to_hdmi[1] = 0;
     repeat(50) @(posedge pixel_clk_to_output);
-    repeat(5) begin 
+    repeat(50) begin 
         @(posedge pixel_clk_to_output);
+        #2000;
         de_to_hdmi[1] = 1;
         rgb_to_hdmi[1] = $random();
     end
     @(posedge pixel_clk_to_output);
+    #2000;
     de_to_hdmi[1] = 0;
 end
 

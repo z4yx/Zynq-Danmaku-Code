@@ -56,9 +56,9 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___150.000______0.000______50.0______116.907____107.936
-// clk_out2___150.000____162.000______50.0______116.907____107.936
-// clk_out3___150.000____-18.000______50.0______116.907____107.936
+// clk_out1___150.000______0.000______50.0______108.562_____91.726
+// clk_out2___150.000____102.857______50.0______108.562_____91.726
+// clk_out3___150.000____282.857______50.0______108.562_____91.726
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -75,6 +75,7 @@ module clk_video_clk_wiz
   output        clk_out2,
   output        clk_out3,
   // Status and control signals
+  input         reset,
   output        locked,
   input         clk_in1
  );
@@ -119,6 +120,7 @@ wire clk_in2_clk_video;
   wire        clkout6_unused;
   wire        clkfbstopped_unused;
   wire        clkinstopped_unused;
+  wire        reset_high;
 
   MMCME2_ADV
   #(.BANDWIDTH            ("OPTIMIZED"),
@@ -126,19 +128,19 @@ wire clk_in2_clk_video;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (5.000),
+    .CLKFBOUT_MULT_F      (7.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (5.000),
+    .CLKOUT0_DIVIDE_F     (7.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (5),
-    .CLKOUT1_PHASE        (162.000),
+    .CLKOUT1_DIVIDE       (7),
+    .CLKOUT1_PHASE        (102.857),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKOUT2_DIVIDE       (5),
-    .CLKOUT2_PHASE        (-18.000),
+    .CLKOUT2_DIVIDE       (7),
+    .CLKOUT2_PHASE        (282.857),
     .CLKOUT2_DUTY_CYCLE   (0.500),
     .CLKOUT2_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (6.667))
@@ -182,7 +184,8 @@ wire clk_in2_clk_video;
     .CLKINSTOPPED        (clkinstopped_unused),
     .CLKFBSTOPPED        (clkfbstopped_unused),
     .PWRDWN              (1'b0),
-    .RST                 (1'b0));
+    .RST                 (reset_high));
+  assign reset_high = reset; 
 
   assign locked = locked_int;
 // Clock Monitor clock assigning

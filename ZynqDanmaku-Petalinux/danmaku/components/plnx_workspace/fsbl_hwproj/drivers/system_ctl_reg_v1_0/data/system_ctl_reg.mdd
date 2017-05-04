@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER system_ctl_reg
+	OPTION supported_peripherals = (system_ctl_reg);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = system_ctl_reg;
+END DRIVER

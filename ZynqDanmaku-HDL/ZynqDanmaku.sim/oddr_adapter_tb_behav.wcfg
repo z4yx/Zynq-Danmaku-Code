@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="oddr_adapter_tb_behav.wdb" id="1">
+      <db_ref path="oddr_adapter_tb_time_impl.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
             <top_module name="oddr_adapter_tb" />
@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="419700000fs"></ZoomStartTime>
-      <ZoomEndTime time="582030350fs"></ZoomEndTime>
-      <Cursor1Time time="500000000fs"></Cursor1Time>
+      <ZoomStartTime time="316608334fs"></ZoomStartTime>
+      <ZoomEndTime time="343558335fs"></ZoomEndTime>
+      <Cursor1Time time="321058000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+      <ValueColumnWidth column_width="140"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="23" />
    <wvobject type="logic" fp_name="/oddr_adapter_tb/adapter/pll/locked">
@@ -32,10 +32,6 @@
       <obj_property name="ElementShortName">dut_out</obj_property>
       <obj_property name="ObjectShortName">dut_out</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/oddr_adapter_tb/de_to_hdmi">
-      <obj_property name="ElementShortName">de_to_hdmi[0:1]</obj_property>
-      <obj_property name="ObjectShortName">de_to_hdmi[0:1]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/oddr_adapter_tb/hs_to_hdmi">
       <obj_property name="ElementShortName">hs_to_hdmi[0:1]</obj_property>
       <obj_property name="ObjectShortName">hs_to_hdmi[0:1]</obj_property>
@@ -44,30 +40,19 @@
       <obj_property name="ElementShortName">vs_to_hdmi[0:1]</obj_property>
       <obj_property name="ObjectShortName">vs_to_hdmi[0:1]</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/oddr_adapter_tb/de_to_hdmi">
+      <obj_property name="ElementShortName">de_to_hdmi[0:1]</obj_property>
+      <obj_property name="ObjectShortName">de_to_hdmi[0:1]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/oddr_adapter_tb/rgb_to_hdmi">
       <obj_property name="ElementShortName">rgb_to_hdmi[0:1][23:0]</obj_property>
       <obj_property name="ObjectShortName">rgb_to_hdmi[0:1][23:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/oddr_adapter_tb/adapter/rgb_shared">
-      <obj_property name="ElementShortName">rgb_shared[23:0]</obj_property>
-      <obj_property name="ObjectShortName">rgb_shared[23:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/oddr_adapter_tb/adv7513_d1">
-      <obj_property name="ElementShortName">adv7513_d1[23:0]</obj_property>
-      <obj_property name="ObjectShortName">adv7513_d1[23:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/oddr_adapter_tb/adv7513_de1">
-      <obj_property name="ElementShortName">adv7513_de1</obj_property>
-      <obj_property name="ObjectShortName">adv7513_de1</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/oddr_adapter_tb/adv7513_d2">
-      <obj_property name="ElementShortName">adv7513_d2[23:0]</obj_property>
-      <obj_property name="ObjectShortName">adv7513_d2[23:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/oddr_adapter_tb/adv7513_de2">
-      <obj_property name="ElementShortName">adv7513_de2</obj_property>
-      <obj_property name="ObjectShortName">adv7513_de2</obj_property>
+   <wvobject type="logic" fp_name="/oddr_adapter_tb/adapter/pix_clk">
+      <obj_property name="ElementShortName">pix_clk</obj_property>
+      <obj_property name="ObjectShortName">pix_clk</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/oddr_adapter_tb/O1_VS">
       <obj_property name="ElementShortName">O1_VS</obj_property>
@@ -77,10 +62,6 @@
       <obj_property name="ElementShortName">HSA</obj_property>
       <obj_property name="ObjectShortName">HSA</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/oddr_adapter_tb/CLKA">
-      <obj_property name="ElementShortName">CLKA</obj_property>
-      <obj_property name="ObjectShortName">CLKA</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/oddr_adapter_tb/DEA">
       <obj_property name="ElementShortName">DEA</obj_property>
       <obj_property name="ObjectShortName">DEA</obj_property>
@@ -88,6 +69,18 @@
    <wvobject type="array" fp_name="/oddr_adapter_tb/O1_D">
       <obj_property name="ElementShortName">O1_D[23:0]</obj_property>
       <obj_property name="ObjectShortName">O1_D[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/oddr_adapter_tb/CLKA">
+      <obj_property name="ElementShortName">CLKA</obj_property>
+      <obj_property name="ObjectShortName">CLKA</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/oddr_adapter_tb/adv7513_d1">
+      <obj_property name="ElementShortName">adv7513_d1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">adv7513_d1[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/oddr_adapter_tb/adv7513_de1">
+      <obj_property name="ElementShortName">adv7513_de1</obj_property>
+      <obj_property name="ObjectShortName">adv7513_de1</obj_property>
    </wvobject>
    <wvobject fp_name="divider16" type="divider">
    </wvobject>
@@ -99,10 +92,6 @@
       <obj_property name="ElementShortName">HSB</obj_property>
       <obj_property name="ObjectShortName">HSB</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/oddr_adapter_tb/CLKB">
-      <obj_property name="ElementShortName">CLKB</obj_property>
-      <obj_property name="ObjectShortName">CLKB</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/oddr_adapter_tb/DEB">
       <obj_property name="ElementShortName">DEB</obj_property>
       <obj_property name="ObjectShortName">DEB</obj_property>
@@ -110,5 +99,17 @@
    <wvobject type="array" fp_name="/oddr_adapter_tb/O2_D">
       <obj_property name="ElementShortName">O2_D[15:8]</obj_property>
       <obj_property name="ObjectShortName">O2_D[15:8]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/oddr_adapter_tb/CLKB">
+      <obj_property name="ElementShortName">CLKB</obj_property>
+      <obj_property name="ObjectShortName">CLKB</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/oddr_adapter_tb/adv7513_d2">
+      <obj_property name="ElementShortName">adv7513_d2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">adv7513_d2[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/oddr_adapter_tb/adv7513_de2">
+      <obj_property name="ElementShortName">adv7513_de2</obj_property>
+      <obj_property name="ObjectShortName">adv7513_de2</obj_property>
    </wvobject>
 </wave_config>
