@@ -227,13 +227,13 @@ assign CLKA = clk_out_hdmi;
 assign HSA = hs_to_hdmi[0];
 assign O1_VS = vs_to_hdmi[0];
 assign DEA = de_to_hdmi[0];
-assign {O1_D[7:0],O1_D[15:8]} = {ycrcb_to_hdmi[0]};
+assign {O1_D[23:8]} = {ycrcb_to_hdmi[0]};
 
 assign CLKB = clk_out_hdmi;
 assign HSB = hs_to_hdmi[1];
 assign O2_VS = vs_to_hdmi[1];
 assign DEB = de_to_hdmi[1];
-assign {O1_D[23:16],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
+assign {O1_D[7:0],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
 
 //assign O1_D = crycb444[0];
 
