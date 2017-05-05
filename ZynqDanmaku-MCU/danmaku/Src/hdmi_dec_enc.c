@@ -206,7 +206,7 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_HDMI_ADDR,0xCA,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCB,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCC,0x01}, // ADI recommended setting
-		{ADV7611_HDMI_ADDR,0x00,0x01}, // Set HDMI Input Port B
+		{ADV7611_HDMI_ADDR,0x00,0x00}, // Set HDMI Input Port A
 		{ADV7611_HDMI_ADDR,0x83,0xFC}, // Enable clock terminator for port A&B
 		{ADV7611_HDMI_ADDR,0x6F,0x08}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x85,0x1F}, // ADI recommended setting
@@ -380,6 +380,24 @@ void HDMIDec_CheckInput(void)
     }
 }
 
+void HDMIDec_DetectSource(void)
+{
+    uint8_t reg, source = 0;
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x6F);
+    reg &= 1; //CABLE_DET_A_RAW
+    source |= reg;
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x6A);
+    reg >>= 7; //CABLE_DET_B_RAW
+    source |= (reg << 1);
+    SystemManage_SetSourcePresence(source);
+}
+
+void HDMIDec_SelectSource(int index)
+{
+    DBG_MSG("%d", index);
+    i2c_write_8(ADV7611_HDMI_ADDR,0x00, index&1); //Select source
+}
+
 uint8_t* HDMIDec_GetEDID(int index)
 {
     return EDID[index];
@@ -406,5 +424,6 @@ void HDMI_Task(void){
 	HDMIEnc_DetectMonitor(0);
     HDMIEnc_DetectMonitor(1);
     HDMIDec_CheckInput();
+    HDMIDec_DetectSource();
 
 }
