@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-//Date        : Sun Apr 16 11:29:49 2017
+//Date        : Mon Jun 12 21:40:30 2017
 //Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 //Command     : generate_target top_blk.bd
 //Design      : top_blk
@@ -2192,7 +2192,7 @@ module s01_couplers_imp_17CPFY1
         .s_axi_wvalid(auto_rs_to_auto_us_WVALID));
 endmodule
 
-(* CORE_GENERATION_INFO = "top_blk,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=top_blk,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=31,numReposBlks=19,numNonXlnxBlks=2,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=5,da_board_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "top_blk.hwdef" *) 
+(* CORE_GENERATION_INFO = "top_blk,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=top_blk,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=32,numReposBlks=20,numNonXlnxBlks=2,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=5,da_board_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "top_blk.hwdef" *) 
 module top_blk
    (DDR_addr,
     DDR_ba,
@@ -2220,10 +2220,11 @@ module top_blk
     M_AXIS_tvalid,
     UART_0_rxd,
     UART_0_txd,
+    btn_center,
     gpio_ctl_tri_i,
     gpio_ctl_tri_o,
     gpio_ctl_tri_t,
-    gpo_tri_o,
+    gpo,
     ps_fabric_50M_clk,
     ps_overlay_clock,
     ps_reset_n,
@@ -2255,16 +2256,18 @@ module top_blk
   output M_AXIS_tvalid;
   input UART_0_rxd;
   output UART_0_txd;
+  input [0:0]btn_center;
   input [1:0]gpio_ctl_tri_i;
   output [1:0]gpio_ctl_tri_o;
   output [1:0]gpio_ctl_tri_t;
-  output [2:0]gpo_tri_o;
+  output [5:0]gpo;
   output ps_fabric_50M_clk;
   output ps_overlay_clock;
   output ps_reset_n;
   input [15:0]resolution_h;
   input [15:0]resolution_w;
 
+  wire [0:0]In5_1;
   wire [31:0]S00_AXI_2_ARADDR;
   wire [1:0]S00_AXI_2_ARBURST;
   wire [3:0]S00_AXI_2_ARCACHE;
@@ -2435,7 +2438,8 @@ module top_blk
   wire axi_interconnect_1_M00_AXI_RREADY;
   wire [1:0]axi_interconnect_1_M00_AXI_RRESP;
   wire axi_interconnect_1_M00_AXI_RVALID;
-  wire [2:0]axigpio_ctl_GPIO2_TRI_O;
+  wire [5:0]axigpio_ctl_gpio2_io_o;
+  wire axigpio_ctl_ip2intc_irpt;
   wire [63:0]axis_data_fifo_0_M_AXIS_TDATA;
   wire axis_data_fifo_0_M_AXIS_TREADY;
   wire axis_data_fifo_0_M_AXIS_TVALID;
@@ -2572,9 +2576,11 @@ module top_blk
   wire [15:0]resolution_w_1;
   wire [0:0]rst_ps7_0_50M_interconnect_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn;
-  wire [1:0]xlconcat_0_dout;
+  wire [2:0]xlconcat_0_dout;
+  wire [5:0]xlconcat_1_dout;
   wire [0:0]xlconstant_0_dout;
 
+  assign In5_1 = btn_center[0];
   assign M_AXIS_tdata[63:0] = axis_data_fifo_0_M_AXIS_TDATA;
   assign M_AXIS_tvalid = axis_data_fifo_0_M_AXIS_TVALID;
   assign UART_0_txd = processing_system7_0_UART_0_TxD;
@@ -2582,7 +2588,7 @@ module top_blk
   assign axis_data_fifo_0_M_AXIS_TREADY = M_AXIS_tready;
   assign gpio_ctl_tri_o[1:0] = axi_gpio_0_GPIO_TRI_O;
   assign gpio_ctl_tri_t[1:0] = axi_gpio_0_GPIO_TRI_T;
-  assign gpo_tri_o[2:0] = axigpio_ctl_GPIO2_TRI_O;
+  assign gpo[5:0] = axigpio_ctl_gpio2_io_o;
   assign processing_system7_0_UART_0_RxD = UART_0_rxd;
   assign ps_fabric_50M_clk = processing_system7_0_FCLK_CLK0;
   assign ps_overlay_clock = processing_system7_0_FCLK_CLK1;
@@ -2848,10 +2854,12 @@ module top_blk
         .S00_AXI_rresp(axi_dma_0_M_AXI_MM2S_RRESP),
         .S00_AXI_rvalid(axi_dma_0_M_AXI_MM2S_RVALID));
   top_blk_axigpio_ctl_0 axigpio_ctl
-       (.gpio2_io_o(axigpio_ctl_GPIO2_TRI_O),
+       (.gpio2_io_i(xlconcat_1_dout),
+        .gpio2_io_o(axigpio_ctl_gpio2_io_o),
         .gpio_io_i(axi_gpio_0_GPIO_TRI_I),
         .gpio_io_o(axi_gpio_0_GPIO_TRI_O),
         .gpio_io_t(axi_gpio_0_GPIO_TRI_T),
+        .ip2intc_irpt(axigpio_ctl_ip2intc_irpt),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(ps7_0_axi_periph_M02_AXI_ARADDR[8:0]),
         .s_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn),
@@ -3260,7 +3268,16 @@ module top_blk
   top_blk_xlconcat_0_0 xlconcat_0
        (.In0(axi_dma_0_mm2s_introut),
         .In1(axi_cdma_0_cdma_introut),
+        .In2(axigpio_ctl_ip2intc_irpt),
         .dout(xlconcat_0_dout));
+  top_blk_xlconcat_1_0 xlconcat_1
+       (.In0(1'b0),
+        .In1(1'b0),
+        .In2(1'b0),
+        .In3(axi_dma_0_mm2s_introut),
+        .In4(axi_cdma_0_cdma_introut),
+        .In5(In5_1),
+        .dout(xlconcat_1_dout));
 endmodule
 
 module top_blk_axi_interconnect_0_0

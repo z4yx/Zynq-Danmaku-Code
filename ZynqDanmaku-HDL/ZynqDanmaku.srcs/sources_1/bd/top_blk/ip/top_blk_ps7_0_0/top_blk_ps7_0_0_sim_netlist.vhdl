@@ -1,7 +1,7 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
--- Date        : Sun Apr 16 11:30:55 2017
+-- Date        : Mon Jun 12 21:41:37 2017
 -- Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/bd/top_blk/ip/top_blk_ps7_0_0/top_blk_ps7_0_0_sim_netlist.vhdl
@@ -599,7 +599,7 @@ entity top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 is
     IRQ_P2F_SPI1 : out STD_LOGIC;
     IRQ_P2F_UART1 : out STD_LOGIC;
     IRQ_P2F_CAN1 : out STD_LOGIC;
-    IRQ_F2P : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 2 downto 0 );
     Core0_nFIQ : in STD_LOGIC;
     Core0_nIRQ : in STD_LOGIC;
     Core1_nFIQ : in STD_LOGIC;
@@ -751,7 +751,7 @@ entity top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 is
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 12;
   attribute C_NUM_F2P_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_INTR_INPUTS of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 2;
+  attribute C_NUM_F2P_INTR_INPUTS of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is 3;
   attribute C_PACKAGE_NAME : string;
   attribute C_PACKAGE_NAME of top_blk_ps7_0_0_processing_system7_v5_5_processing_system7 : entity is "clg400";
   attribute C_PS7_SI_REV : string;
@@ -1959,8 +1959,8 @@ PS7_i: unisim.vcomponents.PS7
       IRQF2P(18) => Core0_nFIQ,
       IRQF2P(17) => Core1_nIRQ,
       IRQF2P(16) => Core0_nIRQ,
-      IRQF2P(15 downto 2) => B"00000000000000",
-      IRQF2P(1 downto 0) => IRQ_F2P(1 downto 0),
+      IRQF2P(15 downto 3) => B"0000000000000",
+      IRQF2P(2 downto 0) => IRQ_F2P(2 downto 0),
       IRQP2F(28) => IRQ_P2F_DMAC_ABORT,
       IRQP2F(27) => IRQ_P2F_DMAC7,
       IRQP2F(26) => IRQ_P2F_DMAC6,
@@ -3470,7 +3470,7 @@ entity top_blk_ps7_0_0 is
     S_AXI_HP2_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
     S_AXI_HP2_WDATA : in STD_LOGIC_VECTOR ( 63 downto 0 );
     S_AXI_HP2_WSTRB : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    IRQ_F2P : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 2 downto 0 );
     FCLK_CLK0 : out STD_LOGIC;
     FCLK_CLK1 : out STD_LOGIC;
     FCLK_RESET0_N : out STD_LOGIC;
@@ -3800,7 +3800,7 @@ architecture STRUCTURE of top_blk_ps7_0_0 is
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH of inst : label is 12;
   attribute C_NUM_F2P_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_INTR_INPUTS of inst : label is 2;
+  attribute C_NUM_F2P_INTR_INPUTS of inst : label is 3;
   attribute C_PACKAGE_NAME : string;
   attribute C_PACKAGE_NAME of inst : label is "clg400";
   attribute C_PS7_SI_REV : string;
@@ -4200,7 +4200,7 @@ inst: entity work.top_blk_ps7_0_0_processing_system7_v5_5_processing_system7
       I2C1_SDA_I => '0',
       I2C1_SDA_O => NLW_inst_I2C1_SDA_O_UNCONNECTED,
       I2C1_SDA_T => NLW_inst_I2C1_SDA_T_UNCONNECTED,
-      IRQ_F2P(1 downto 0) => IRQ_F2P(1 downto 0),
+      IRQ_F2P(2 downto 0) => IRQ_F2P(2 downto 0),
       IRQ_P2F_CAN0 => NLW_inst_IRQ_P2F_CAN0_UNCONNECTED,
       IRQ_P2F_CAN1 => NLW_inst_IRQ_P2F_CAN1_UNCONNECTED,
       IRQ_P2F_CTI => NLW_inst_IRQ_P2F_CTI_UNCONNECTED,
