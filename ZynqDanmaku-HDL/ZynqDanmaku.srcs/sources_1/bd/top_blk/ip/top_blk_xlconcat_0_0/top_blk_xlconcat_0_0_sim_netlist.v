@@ -1,10 +1,10 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-// Date        : Sat Dec 31 11:45:14 2016
-// Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
+// Date        : Mon Jun 12 21:41:28 2017
+// Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/skyworks/ZynqDanmaku/ZynqDanmaku.srcs/sources_1/bd/top_blk/ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0_sim_netlist.v
+//               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/bd/top_blk/ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0_sim_netlist.v
 // Design      : top_blk_xlconcat_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,14 +17,18 @@
 module top_blk_xlconcat_0_0
    (In0,
     In1,
+    In2,
     dout);
   input [0:0]In0;
   input [0:0]In1;
-  output [1:0]dout;
+  input [0:0]In2;
+  output [2:0]dout;
 
   wire [0:0]In0;
   wire [0:0]In1;
+  wire [0:0]In2;
 
+  assign dout[2] = In2;
   assign dout[1] = In1;
   assign dout[0] = In0;
 endmodule

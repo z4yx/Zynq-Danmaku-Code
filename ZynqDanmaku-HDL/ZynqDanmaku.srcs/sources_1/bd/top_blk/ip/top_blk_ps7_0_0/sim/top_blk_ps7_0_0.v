@@ -385,7 +385,7 @@ input [5 : 0] S_AXI_HP2_AWID;
 input [5 : 0] S_AXI_HP2_WID;
 input [63 : 0] S_AXI_HP2_WDATA;
 input [7 : 0] S_AXI_HP2_WSTRB;
-input [1 : 0] IRQ_F2P;
+input [2 : 0] IRQ_F2P;
 output FCLK_CLK0;
 output FCLK_CLK1;
 output FCLK_RESET0_N;

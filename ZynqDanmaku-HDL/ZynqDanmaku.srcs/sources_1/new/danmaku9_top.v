@@ -97,6 +97,7 @@ wire [15:0] now_y;
 wire hps_fpga_reset_n = 1'b1;
 
 wire sw_debug, sw_test_pattern, sw_pattern_pause;
+wire sw_conj;
    
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
@@ -131,7 +132,8 @@ top_blk_wrapper top_blk_i
     .resolution_h(pxl_height),
     .resolution_w(pxl_width),
     .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}),
-    .gpo_tri_o({sw_debug,sw_test_pattern,sw_pattern_pause})
+    .btn_center(sw_conj),
+    .gpo({sw_debug,sw_test_pattern,sw_pattern_pause})
     );
 
 //`default_nettype none
@@ -192,7 +194,6 @@ wire pixel_fifo_empty_ext;
 wire pixel_fifo_empty_int;
 wire sw_blank[0:1];
 wire sw_en_overlay[0:1];
-wire sw_conj;
 wire led_flash_clk;
 
 wire de_to_output,hs_to_output,vs_to_output;
