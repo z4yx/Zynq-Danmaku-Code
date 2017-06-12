@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-//Date        : Sun Apr 16 11:29:50 2017
+//Date        : Mon Jun 12 21:40:30 2017
 //Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
@@ -36,8 +36,9 @@ module top_blk_wrapper
     M_AXIS_tvalid,
     UART_0_rxd,
     UART_0_txd,
+    btn_center,
     gpio_ctl_tri_io,
-    gpo_tri_o,
+    gpo,
     ps_fabric_50M_clk,
     ps_overlay_clock,
     ps_reset_n,
@@ -69,8 +70,9 @@ module top_blk_wrapper
   output M_AXIS_tvalid;
   input UART_0_rxd;
   output UART_0_txd;
+  input [0:0]btn_center;
   inout [1:0]gpio_ctl_tri_io;
-  output [2:0]gpo_tri_o;
+  output [5:0]gpo;
   output ps_fabric_50M_clk;
   output ps_overlay_clock;
   output ps_reset_n;
@@ -103,6 +105,7 @@ module top_blk_wrapper
   wire M_AXIS_tvalid;
   wire UART_0_rxd;
   wire UART_0_txd;
+  wire [0:0]btn_center;
   wire [0:0]gpio_ctl_tri_i_0;
   wire [1:1]gpio_ctl_tri_i_1;
   wire [0:0]gpio_ctl_tri_io_0;
@@ -111,7 +114,7 @@ module top_blk_wrapper
   wire [1:1]gpio_ctl_tri_o_1;
   wire [0:0]gpio_ctl_tri_t_0;
   wire [1:1]gpio_ctl_tri_t_1;
-  wire [2:0]gpo_tri_o;
+  wire [5:0]gpo;
   wire ps_fabric_50M_clk;
   wire ps_overlay_clock;
   wire ps_reset_n;
@@ -155,10 +158,11 @@ module top_blk_wrapper
         .M_AXIS_tvalid(M_AXIS_tvalid),
         .UART_0_rxd(UART_0_rxd),
         .UART_0_txd(UART_0_txd),
+        .btn_center(btn_center),
         .gpio_ctl_tri_i({gpio_ctl_tri_i_1,gpio_ctl_tri_i_0}),
         .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
         .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),
-        .gpo_tri_o(gpo_tri_o),
+        .gpo(gpo),
         .ps_fabric_50M_clk(ps_fabric_50M_clk),
         .ps_overlay_clock(ps_overlay_clock),
         .ps_reset_n(ps_reset_n),
