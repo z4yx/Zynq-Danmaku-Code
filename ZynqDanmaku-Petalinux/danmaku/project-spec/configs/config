@@ -166,7 +166,7 @@ CONFIG_SUBSYSTEM_ENDIAN_LITTLE=y
 # Kernel Bootargs
 #
 # CONFIG_SUBSYSTEM_BOOTARGS_AUTO is not set
-CONFIG_SUBSYSTEM_USER_CMDLINE="console=ttyPS1,115200 earlyprintk root=/dev/mmcblk1p1 rw rootwait"
+CONFIG_SUBSYSTEM_USER_CMDLINE="console=ttyPS1,115200 earlyprintk root=/dev/mmcblk1p1 rw rootwait noinitrd"
 
 #
 # u-boot Configuration
