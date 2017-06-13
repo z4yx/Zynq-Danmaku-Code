@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#define _GNU_SOURCE
 #include <pthread.h>
 #include <signal.h>
 #include <time.h>
@@ -231,7 +232,7 @@ void SlidingWritePixels(uint8_t *dst, sliding_layer_t *s)
         uint32_t addr_xfrom = (line_base + xfrom);
         uint32_t addr_xto = (line_base + xto);
         while(render_running && DanmakuHW_RenderStartDMA(hDriver, &dst[addr_xfrom], &s->map_phy[i][src_x], addr_xto - addr_xfrom + 1)<0)
-            pthread_yield();
+            DanmakuHW_WaitForRenderDMA(hDriver);
         line_base += (screen_width + 2);
     }
 }
@@ -277,7 +278,7 @@ void ClearScreen(uint8_t *dst)
     }
     */
     while(render_running && DanmakuHW_RenderStartDMA(hDriver, dst, blank_screen_phy, img_size)<0)
-        pthread_yield();
+        DanmakuHW_WaitForRenderDMA(hDriver);
 }   
 
 
@@ -353,7 +354,7 @@ void StaticWritePixels(uint8_t *dst, static_layer_t *s)
         uint32_t addr_xfrom = (line_base + xfrom);
         uint32_t addr_xto = (line_base + xto);
         while(render_running && DanmakuHW_RenderStartDMA(hDriver, &dst[addr_xfrom], &s->map_phy[i][0], addr_xto - addr_xfrom + 1)<0)
-            pthread_yield();
+            DanmakuHW_WaitForRenderDMA(hDriver);
         line_base += (screen_width + 2);
     }
 }
@@ -586,7 +587,8 @@ void Render()
     for(int i=0; i<NUM_FRAME_BUFFER; i++)
         ClearScreen((void*)DanmakuHW_GetFrameBuffer(hDriver, i));
     DanmakuHW_RenderFlush(hDriver);
-    while(!DanmakuHW_RenderDMAIdle(hDriver));
+    while(!DanmakuHW_RenderDMAIdle(hDriver))
+        DanmakuHW_WaitForRenderDMA(hDriver);
     printf("render running\n");
     render_running = 1;
     while (render_running) {
@@ -610,10 +612,10 @@ void Render()
 #endif
         RenderOnce((uint8_t*)fb);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
-            pthread_yield();
+            DanmakuHW_WaitForRenderDMA(hDriver);
         DanmakuHW_RenderFlush(hDriver);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
-            pthread_yield();
+            DanmakuHW_WaitForRenderDMA(hDriver);
 #ifdef PROFILE_PRINT
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("render %d done, %lf\n", 
@@ -658,7 +660,7 @@ void *Thread4Overlay(void *t)
         DanmakuHW_FrameBufferTxmit(hDriver, idx, img_size);
 
         while(render_running && DanmakuHW_PendingTxmit(hDriver))
-            pthread_yield();
+            DanmakuHW_WaitForPendingTxmit(hDriver);
         //Keep at least one filled buffer
         if(RingSize() > 2){
             //render done, switching buffer

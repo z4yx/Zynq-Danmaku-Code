@@ -16,5 +16,7 @@ int DanmakuHW_RenderStartDMA(DANMAKU_HW_HANDLE h,uintptr_t dst, uintptr_t src, u
 int DanmakuHW_RenderDMAIdle(DANMAKU_HW_HANDLE h);
 uint32_t DanmakuHW_RenderDMAStatus(DANMAKU_HW_HANDLE h);
 void DanmakuHW_AllocRenderBuf(DANMAKU_HW_HANDLE h,uintptr_t *uaddr, uintptr_t *paddr, uint32_t length);
+int DanmakuHW_WaitForRenderDMA(DANMAKU_HW_HANDLE h);
+int DanmakuHW_WaitForPendingTxmit(DANMAKU_HW_HANDLE h);
 
 #endif
