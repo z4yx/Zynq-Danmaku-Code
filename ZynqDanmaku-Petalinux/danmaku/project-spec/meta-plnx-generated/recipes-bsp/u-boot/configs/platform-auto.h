@@ -138,7 +138,7 @@
 #define CONFIG_LMB
 
 /* Initial memory map for Linux */
-#define CONFIG_SYS_BOOTMAPSZ 0x08000000
+#define CONFIG_SYS_BOOTMAPSZ 0x09000000
 
 /* PREBOOT */
 #define CONFIG_PREBOOT	"echo U-BOOT for ${hostname};setenv preboot; echo; dhcp"
