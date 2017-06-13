@@ -9,8 +9,14 @@ enum {
     SINK_BOTH_PRESENCE
 };
 
-static uint8_t sink_state;
-static int one_sink_index;
+enum {
+    SOURCE_NONE = 0,
+    SOURCE_ONE_PRESENCE,
+    SOURCE_BOTH_PRESENCE
+};
+
+static uint8_t sink_state, source_state;
+static int one_sink_index, one_source_index;
 
 static void StateChanged(uint8_t from, uint8_t to)
 {
@@ -58,6 +64,68 @@ void SystemManage_SetSinkPresence(int index, bool presence)
             }
             break;
     }
+}
+
+void SystemManage_SetSourceLED(uint8_t presence)
+{
+    uint8_t active = (1<<one_source_index) & presence;
+    uint8_t inactive = presence & ~active;
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, !!(inactive & 1));
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, !!(inactive & 2));
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, !!(active & 1));
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, !!(active & 2));
+}
+
+void SystemManage_SetSourcePresence(uint8_t presence)
+{
+    switch(source_state){
+        case SOURCE_NONE:
+            if(presence == 3){
+                one_source_index = 0; //default behavior
+                HDMIDec_SelectSource(one_source_index);
+                source_state = SOURCE_BOTH_PRESENCE;
+                INFO_MSG("enabling default source %d", one_source_index);
+            }else if(presence){
+                one_source_index = (presence>>1); // bit mask to index number
+                HDMIDec_SelectSource(one_source_index);
+                source_state = SOURCE_ONE_PRESENCE;
+                INFO_MSG("enabling source %d", one_source_index);
+            }
+            break;
+        case SOURCE_ONE_PRESENCE:
+            if(presence == 3){
+                //do not switch source in use
+                source_state = SOURCE_BOTH_PRESENCE;
+                INFO_MSG("another source detected");
+            }else if(presence){
+                if(one_source_index != (presence>>1)){
+                    one_source_index = (presence>>1); // bit mask to index number
+                    HDMIDec_SelectSource(one_source_index);
+                    INFO_MSG("source changed to %d", one_source_index);
+                }
+            }else{
+                source_state = SOURCE_NONE;
+                INFO_MSG("source %d lost", one_source_index);
+            }
+            break;
+        case SOURCE_BOTH_PRESENCE:
+            if(presence == 3){
+
+            }else if(presence){
+                INFO_MSG("lost one source");
+                if(one_source_index != (presence>>1)){
+                    one_source_index = (presence>>1); // bit mask to index number
+                    HDMIDec_SelectSource(one_source_index);
+                    INFO_MSG("fallback to %d", one_source_index);
+                }
+                source_state = SOURCE_ONE_PRESENCE;
+            }else{
+                source_state = SOURCE_NONE;
+                INFO_MSG("both source lost");
+            }
+            break;
+    }
+    SystemManage_SetSourceLED(presence);
 }
 
 void SystemManage_Task(void)

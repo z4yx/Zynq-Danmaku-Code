@@ -125,7 +125,7 @@ const uint8_t REGS_7513_Startup[][3] = {
 		// {0,0x15,0x00}, // Input 444 (RGB or YCrCb) with Separate Syncs, 44.1kHz fs
         {0,0x15,0x01}, //16, 20, 24 bit YCbCr 4:2:2 (separate syncs)
         // {0,0x16,0x70}, // Output format 444, 24-bit input
-		{0,0x16,0x2c}, // Output format 444, 16-bit input
+		{0,0x16,0x39}, // Output format 444, 16-bit input
         // {0,0x18,0x46}, // CSC disabled
         {0,0x18,0xE6},
         {0,0x19,0x69},
@@ -152,7 +152,7 @@ const uint8_t REGS_7513_Startup[][3] = {
         {0,0x2e,0x1b},
         {0,0x2f,0xa9},
 		{0,0x40,0x80}, // General Control packet enable
-		{0,0x48,0x08}, // Data right justified
+		{0,0x48,0x00}, // Data evenly distributed
 		{0,0x49,0xA8}, // Set Dither_mode - 12-to-10 bit
 		{0,0x4C,0x00}, // 8 bit Output
 		{0,0x56,0x08}, // Set active format Aspect
@@ -206,7 +206,7 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_HDMI_ADDR,0xCA,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCB,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xCC,0x01}, // ADI recommended setting
-		{ADV7611_HDMI_ADDR,0x00,0x01}, // Set HDMI Input Port B
+		{ADV7611_HDMI_ADDR,0x00,0x00}, // Set HDMI Input Port A
 		{ADV7611_HDMI_ADDR,0x83,0xFC}, // Enable clock terminator for port A&B
 		{ADV7611_HDMI_ADDR,0x6F,0x08}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x85,0x1F}, // ADI recommended setting
@@ -380,6 +380,24 @@ void HDMIDec_CheckInput(void)
     }
 }
 
+void HDMIDec_DetectSource(void)
+{
+    uint8_t reg, source = 0;
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x6F);
+    reg &= 1; //CABLE_DET_A_RAW
+    source |= reg;
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x6A);
+    reg >>= 7; //CABLE_DET_B_RAW
+    source |= (reg << 1);
+    SystemManage_SetSourcePresence(source);
+}
+
+void HDMIDec_SelectSource(int index)
+{
+    DBG_MSG("%d", index);
+    i2c_write_8(ADV7611_HDMI_ADDR,0x00, index&1); //Select source
+}
+
 uint8_t* HDMIDec_GetEDID(int index)
 {
     return EDID[index];
@@ -406,5 +424,6 @@ void HDMI_Task(void){
 	HDMIEnc_DetectMonitor(0);
     HDMIEnc_DetectMonitor(1);
     HDMIDec_CheckInput();
+    HDMIDec_DetectSource();
 
 }
