@@ -204,9 +204,7 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_CP_ADDR,0xC1,0x55}, // FreeRun Color B
 		{ADV7611_CP_ADDR,0xC2,0x55}, // FreeRun Color C
 
-        {ADV7611_KSV_ADDR,0x40,0x81}, // Disable HDCP 1.1 features
-        {ADV7611_KSV_ADDR,0x74,0x00}, // Disable the Internal EDID
-
+        {ADV7611_KSV_ADDR,0x5A,0x08}, // HDCP_REPT_EDID_RESET = 1
 		{ADV7611_HDMI_ADDR,0x9B,0x03}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xC1,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0xC2,0x01}, // ADI recommended setting
@@ -234,7 +232,15 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_HDMI_ADDR,0x58,0x01}, // ADI recommended setting
 		{ADV7611_HDMI_ADDR,0x4C,0x44}, // Set NEW_VS_PARAM 0x44[2]=1
 		{ADV7611_HDMI_ADDR,0x03,0x98}, // DIS_I2C_ZERO_COMPR
-		{ADV7611_HDMI_ADDR,0x75,0x10}, // DDC drive strength
+        {ADV7611_HDMI_ADDR,0x75,0x10}, // DDC drive strength
+		// {ADV7611_HDMI_ADDR,0x48,0x40}, // DIS_CABLE_DET_RST=1
+
+        {ADV7611_KSV_ADDR,0x40,0x81}, // Disable HDCP 1.1 features
+        {ADV7611_KSV_ADDR,0x74,0x00}, // Disable the Internal EDID
+        {ADV7611_KSV_ADDR,0x52,0xDE}, // SPA PORT B_1 (dummy value)
+        {ADV7611_KSV_ADDR,0x53,0xAD}, // SPA PORT B_2 (dummy value)
+        {ADV7611_KSV_ADDR,0x71,0x01}, // SPA_LOCATION_MSB=1
+        {ADV7611_KSV_ADDR,0x70,0x20}, // SPA_LOCATION (randomly picked location)
 };
 
 static uint8_t EDID[2][256];
@@ -333,15 +339,18 @@ int HDMI_Init(void)
 
     HAL_Delay(500);
 
-	for(i=0; i<sizeof(REGS_7611)/sizeof(REGS_7611[0]); i++){
-		i2c_write_8(REGS_7611[i][0],REGS_7611[i][1],REGS_7611[i][2]);
-	}
-
     INFO_MSG("ADV7611 rev [0x%02x%02x]",
         i2c_read_8(ADV7611_IO_ADDR,0xea),
         i2c_read_8(ADV7611_IO_ADDR,0xeb));
 
+	for(i=0; i<sizeof(REGS_7611)/sizeof(REGS_7611[0]); i++){
+		i2c_write_8(REGS_7611[i][0],REGS_7611[i][1],REGS_7611[i][2]);
+	}
+
 	DBG_MSG("ADV7611 init done");
+    // INFO_MSG("ADV7611 SPA Location [0x%02x%02x]",
+    //     i2c_read_8(ADV7611_KSV_ADDR,0x71),
+    //     i2c_read_8(ADV7611_KSV_ADDR,0x70));
 
     for(i=0; i<sizeof(REGS_7513_Init)/sizeof(REGS_7513_Init[0]); i++){
         i2c_write_8(ADV7513_ADDR(0),REGS_7513_Init[i][1],REGS_7513_Init[i][2]);

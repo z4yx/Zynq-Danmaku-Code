@@ -25,10 +25,12 @@ static void StateChanged(uint8_t from, uint8_t to)
         HDMIEnc_DisableEDID();
     }else if(to == SINK_ONE_PRESENCE){
         HDMIEnc_SetEDID(HDMIDec_GetEDID(one_sink_index));
+        HAL_Delay(100);
         HDMIEnc_EnableEDID();
     }else{
         //TODO: choose one
         HDMIEnc_SetEDID(HDMIDec_GetEDID(0));
+        HAL_Delay(100);
         HDMIEnc_EnableEDID();
     }
 }
