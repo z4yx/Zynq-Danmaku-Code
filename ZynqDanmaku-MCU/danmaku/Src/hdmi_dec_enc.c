@@ -27,12 +27,26 @@ const static struct register_flag_t adv7513_reg42[] = {
     {.bit = 1<<3, .name="I2S_64b"},
 };
 
+const static struct register_flag_t adv7611_io_reg21[] = {
+    {.bit = 1<<3, .name="HPAStatusA"},
+    {.bit = 1<<2, .name="HPAStatusB"},
+};
+
 const static struct register_flag_t adv7611_io_reg6a[] = {
-    {.bit = 1<<6, .name="TMDSLockRaw"},
-    {.bit = 1<<4, .name="TMDSDet"},
+    {.bit = 1<<7, .name="CableDetRawB"},
+    {.bit = 1<<6, .name="TMDSLockRawA"},
+    {.bit = 1<<5, .name="TMDSLockRawB"},
+    {.bit = 1<<4, .name="TMDSClkDetA"},
+    {.bit = 1<<3, .name="TMDSClkDetB"},
     {.bit = 1<<2, .name="Video3DRaw"},
     {.bit = 1<<1, .name="VSLockRaw"},
     {.bit = 1<<0, .name="DELockRaw"},
+};
+
+const static struct register_flag_t adv7611_io_reg6f[] = {
+    {.bit = 1<<2, .name="EncryptRawA"},
+    {.bit = 1<<1, .name="EncryptRawB"},
+    {.bit = 1<<0, .name="CableDetRawA"},
 };
 
 const static struct register_flag_t adv7611_hdmi_reg04[] = {
@@ -348,13 +362,25 @@ int HDMI_Init(void)
 
 void HDMIDec_CheckInput(void)
 {
-    static uint8_t IOx6A=0,KSVx76=0,HDMIx04=0;
+    static uint8_t IOx21=0,IOx6F=0,IOx6A=0,KSVx76=0,HDMIx04=0;
     uint8_t reg;
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x21);
+    if(reg != IOx21){
+        DBG_MSG("IO[0x21] changed to 0x%x", reg);
+        print_reg_state(adv7611_io_reg21,ARRAY_SIZE(adv7611_io_reg21),reg);
+        IOx21 = reg;
+    }
     reg = i2c_read_8(ADV7611_IO_ADDR,0x6A);
     if(reg != IOx6A){
         DBG_MSG("IO[0x6A] changed to 0x%x", reg);
         print_reg_state(adv7611_io_reg6a,ARRAY_SIZE(adv7611_io_reg6a),reg);
         IOx6A = reg;
+    }
+    reg = i2c_read_8(ADV7611_IO_ADDR,0x6F);
+    if(reg != IOx6F){
+        DBG_MSG("IO[0x6F] changed to 0x%x", reg);
+        print_reg_state(adv7611_io_reg6f,ARRAY_SIZE(adv7611_io_reg6f),reg);
+        IOx6F = reg;
     }
     reg = i2c_read_8(ADV7611_HDMI_ADDR,0x04);
     if(reg != HDMIx04){
@@ -370,7 +396,7 @@ void HDMIDec_CheckInput(void)
     static uint32_t last = 0;
     uint32_t now = HAL_GetTick();
     if(now - last > 4000){
-        uint8_t tmp[4];
+        // uint8_t tmp[4];
         // i2c_read_multibytes(ADV7611_HDMI_ADDR,0x07,4,tmp);
         // DBG_MSG("width=%d", (int)(tmp[0]&0x1f)<<8 | tmp[1]);
         // DBG_MSG("height=%d", (int)(tmp[2]&0x1f)<<8 | tmp[3]);
