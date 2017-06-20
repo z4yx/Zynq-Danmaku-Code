@@ -17,6 +17,8 @@ enum {
 
 static uint8_t sink_state, source_state;
 static int one_sink_index, one_source_index;
+static uint32_t btn_conj_ts;
+static GPIO_PinState btn_conj_last_cycle,btn_conj_state;
 
 static void StateChanged(uint8_t from, uint8_t to)
 {
@@ -130,7 +132,31 @@ void SystemManage_SetSourcePresence(uint8_t presence)
     SystemManage_SetSourceLED(presence);
 }
 
+static void SystemManage_SelectNextSource(void)
+{
+    if(source_state == SOURCE_BOTH_PRESENCE){
+        one_source_index = 1 - one_source_index;
+        HDMIDec_SelectSource(one_source_index);
+        SystemManage_SetSourceLED(1|2);
+    }
+}
+
+static void BtnManage(void)
+{
+    GPIO_PinState tmp = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9);
+    if(tmp != btn_conj_last_cycle){
+        btn_conj_last_cycle = tmp;
+        btn_conj_ts = HAL_GetTick(); //timestamp of transition
+    }else if(HAL_GetTick() - btn_conj_ts > 10){
+        if(tmp != btn_conj_state){
+            btn_conj_state = tmp;
+            if(!tmp) //button release event
+                SystemManage_SelectNextSource();
+        }
+    }
+}
+
 void SystemManage_Task(void)
 {
-
+    BtnManage();
 }
