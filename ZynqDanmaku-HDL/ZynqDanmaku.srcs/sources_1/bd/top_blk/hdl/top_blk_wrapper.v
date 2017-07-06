@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-//Date        : Mon Jun 12 21:40:30 2017
+//Date        : Thu Jul  6 21:58:11 2017
 //Host        : skyworks running 64-bit Ubuntu 16.04.2 LTS
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
@@ -39,6 +39,12 @@ module top_blk_wrapper
     btn_center,
     gpio_ctl_tri_io,
     gpo,
+    imgcap_AXIS_tdata,
+    imgcap_AXIS_tlast,
+    imgcap_AXIS_tready,
+    imgcap_AXIS_tvalid,
+    imgcap_aclk,
+    imgcap_aresetn,
     ps_fabric_50M_clk,
     ps_overlay_clock,
     ps_reset_n,
@@ -72,7 +78,13 @@ module top_blk_wrapper
   output UART_0_txd;
   input [0:0]btn_center;
   inout [1:0]gpio_ctl_tri_io;
-  output [5:0]gpo;
+  output [7:0]gpo;
+  input [63:0]imgcap_AXIS_tdata;
+  input imgcap_AXIS_tlast;
+  output imgcap_AXIS_tready;
+  input imgcap_AXIS_tvalid;
+  input imgcap_aclk;
+  input imgcap_aresetn;
   output ps_fabric_50M_clk;
   output ps_overlay_clock;
   output ps_reset_n;
@@ -114,7 +126,13 @@ module top_blk_wrapper
   wire [1:1]gpio_ctl_tri_o_1;
   wire [0:0]gpio_ctl_tri_t_0;
   wire [1:1]gpio_ctl_tri_t_1;
-  wire [5:0]gpo;
+  wire [7:0]gpo;
+  wire [63:0]imgcap_AXIS_tdata;
+  wire imgcap_AXIS_tlast;
+  wire imgcap_AXIS_tready;
+  wire imgcap_AXIS_tvalid;
+  wire imgcap_aclk;
+  wire imgcap_aresetn;
   wire ps_fabric_50M_clk;
   wire ps_overlay_clock;
   wire ps_reset_n;
@@ -163,6 +181,12 @@ module top_blk_wrapper
         .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
         .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),
         .gpo(gpo),
+        .imgcap_AXIS_tdata(imgcap_AXIS_tdata),
+        .imgcap_AXIS_tlast(imgcap_AXIS_tlast),
+        .imgcap_AXIS_tready(imgcap_AXIS_tready),
+        .imgcap_AXIS_tvalid(imgcap_AXIS_tvalid),
+        .imgcap_aclk(imgcap_aclk),
+        .imgcap_aresetn(imgcap_aresetn),
         .ps_fabric_50M_clk(ps_fabric_50M_clk),
         .ps_overlay_clock(ps_overlay_clock),
         .ps_reset_n(ps_reset_n),

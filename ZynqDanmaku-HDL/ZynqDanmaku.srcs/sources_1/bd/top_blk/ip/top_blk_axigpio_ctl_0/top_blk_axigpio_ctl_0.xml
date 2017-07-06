@@ -558,7 +558,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           <spirit:displayName>Channel-2 GPIO DATA</spirit:displayName>
           <spirit:description>Channel-2 AXI GPIO Data register</spirit:description>
           <spirit:addressOffset>0x8</spirit:addressOffset>
-          <spirit:size spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">6</spirit:size>
+          <spirit:size spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">8</spirit:size>
           <spirit:volatile>true</spirit:volatile>
           <spirit:access>read-write</spirit:access>
           <spirit:reset>
@@ -577,7 +577,7 @@ For each I/O bit programmed as output
       data register bit and output pin
 </spirit:description>
             <spirit:bitOffset>0</spirit:bitOffset>
-            <spirit:bitWidth spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">6</spirit:bitWidth>
+            <spirit:bitWidth spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">8</spirit:bitWidth>
             <spirit:volatile>true</spirit:volatile>
             <spirit:access>read-write</spirit:access>
             <spirit:writeValueConstraint>
@@ -592,7 +592,7 @@ For each I/O bit programmed as output
           <spirit:displayName>Channel-2 GPIO TRI</spirit:displayName>
           <spirit:description>Channel-2 AXI GPIO 3-State Control register</spirit:description>
           <spirit:addressOffset>0xC</spirit:addressOffset>
-          <spirit:size spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">6</spirit:size>
+          <spirit:size spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">8</spirit:size>
           <spirit:volatile>true</spirit:volatile>
           <spirit:access>read-write</spirit:access>
           <spirit:reset>
@@ -605,7 +605,7 @@ For each I/O bit programmed as output
 Each I/O pin of the AXI GPIO is individually programmable as an input or output   For each of the bits     0 - I/O pin configured as output     1 - I/O pin configured as input
 </spirit:description>
             <spirit:bitOffset>0</spirit:bitOffset>
-            <spirit:bitWidth spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">6</spirit:bitWidth>
+            <spirit:bitWidth spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)))">8</spirit:bitWidth>
             <spirit:volatile>true</spirit:volatile>
             <spirit:access>read-write</spirit:access>
             <spirit:writeValueConstraint>
@@ -767,7 +767,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -775,7 +775,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>fd69fb78</spirit:value>
+            <spirit:value>581e6244</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -794,11 +794,11 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 12 13:40:31 UTC 2017</spirit:value>
+            <spirit:value>Thu Jul 06 13:58:13 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -806,7 +806,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>fd69fb78</spirit:value>
+            <spirit:value>581e6244</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -838,7 +838,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -846,7 +846,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>677748cc</spirit:value>
+            <spirit:value>fb53079c</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -865,11 +865,11 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 12 13:40:31 UTC 2017</spirit:value>
+            <spirit:value>Thu Jul 06 13:58:13 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -877,7 +877,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>677748cc</spirit:value>
+            <spirit:value>fb53079c</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -895,11 +895,11 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 12 13:40:31 UTC 2017</spirit:value>
+            <spirit:value>Thu Jul 06 13:58:13 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -907,7 +907,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>fd69fb78</spirit:value>
+            <spirit:value>581e6244</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -925,11 +925,11 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 12 13:41:32 UTC 2017</spirit:value>
+            <spirit:value>Thu Jul 06 13:59:45 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>7ab1edc9</spirit:value>
+            <spirit:value>e5b54ca6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRCversion</spirit:name>
@@ -937,7 +937,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>fd69fb78</spirit:value>
+            <spirit:value>581e6244</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -1355,7 +1355,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">5</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -1382,7 +1382,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">5</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -1406,7 +1406,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">5</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_GPIO2_WIDTH&apos;)) - 1)">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -1449,7 +1449,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_GPIO2_WIDTH</spirit:name>
         <spirit:displayName>GPIO2 Data Width</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_GPIO2_WIDTH" spirit:minimum="1" spirit:maximum="32" spirit:rangeType="long">6</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_GPIO2_WIDTH" spirit:minimum="1" spirit:maximum="32" spirit:rangeType="long">8</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_ALL_INPUTS</spirit:name>
@@ -1728,7 +1728,7 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
     <spirit:parameter>
       <spirit:name>C_GPIO2_WIDTH</spirit:name>
       <spirit:displayName>GPIO Width</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_GPIO2_WIDTH" spirit:order="1800" spirit:minimum="1" spirit:maximum="32" spirit:rangeType="long">6</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_GPIO2_WIDTH" spirit:order="1800" spirit:minimum="1" spirit:maximum="32" spirit:rangeType="long">8</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
