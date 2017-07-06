@@ -98,6 +98,14 @@ wire hps_fpga_reset_n = 1'b1;
 
 wire sw_debug, sw_test_pattern, sw_pattern_pause;
 wire sw_conj;
+wire [3:0] gpo_dummy;
+wire imgcap_start,
+    imgcap_AXIS_tdata,
+    imgcap_AXIS_tlast,
+    imgcap_AXIS_tready,
+    imgcap_AXIS_tvalid,
+    imgcap_aclk,
+    imgcap_aresetn;
    
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
@@ -131,9 +139,15 @@ top_blk_wrapper top_blk_i
     .UART_0_txd(mcu_rx),
     .resolution_h(pxl_height),
     .resolution_w(pxl_width),
+    .imgcap_AXIS_tdata(imgcap_AXIS_tdata),
+    .imgcap_AXIS_tlast(imgcap_AXIS_tlast),
+    .imgcap_AXIS_tready(imgcap_AXIS_tready),
+    .imgcap_AXIS_tvalid(imgcap_AXIS_tvalid),
+    .imgcap_aclk(imgcap_aclk),
+    .imgcap_aresetn(imgcap_aresetn),
     .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}),
     .btn_center(sw_conj),
-    .gpo({sw_debug,sw_test_pattern,sw_pattern_pause})
+    .gpo({imgcap_start,gpo_dummy,sw_debug,sw_test_pattern,sw_pattern_pause})
     );
 
 //`default_nettype none

@@ -7,13 +7,13 @@
 		<Description>Composite Fileset</Description>
 		<Generation Name="SYNTHESIS"
 				State="GENERATED"
-				Timestamp="1497274850"/>
+				Timestamp="1499349504"/>
 		<Generation Name="IMPLEMENTATION"
 				State="GENERATED"
-				Timestamp="1497274850"/>
+				Timestamp="1499349504"/>
 		<Generation Name="SIMULATION"
 				State="GENERATED"
-				Timestamp="1497274850"/>
+				Timestamp="1499349504"/>
 		<FileCollection Name="SOURCES"
 				Type="SOURCES">
 			<File Name="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci"
@@ -249,6 +249,32 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
+			<File Name="ip/top_blk_xbar_1/top_blk_xbar_1.xci"
+					Type="IP">
+				<Instance HierarchyPath="axi_interconnect_1/xbar"/>
+				<Properties IsEditable="false"
+						IsVisible="true"
+						Timestamp="0"
+						IsTrackable="true"
+						IsStatusTracked="true"/>
+				<Library Name="xil_defaultlib"/>
+				<UsedIn Val="SYNTHESIS"/>
+				<UsedIn Val="IMPLEMENTATION"/>
+				<UsedIn Val="SIMULATION"/>
+			</File>
+			<File Name="ip/top_blk_fifo_generator_0_0/top_blk_fifo_generator_0_0.xci"
+					Type="IP">
+				<Instance HierarchyPath="fifo_generator_0"/>
+				<Properties IsEditable="false"
+						IsVisible="true"
+						Timestamp="0"
+						IsTrackable="true"
+						IsStatusTracked="true"/>
+				<Library Name="xil_defaultlib"/>
+				<UsedIn Val="SYNTHESIS"/>
+				<UsedIn Val="IMPLEMENTATION"/>
+				<UsedIn Val="SIMULATION"/>
+			</File>
 			<File Name="ip/top_blk_auto_pc_0/top_blk_auto_pc_0.xci"
 					Type="IP">
 				<Instance HierarchyPath="ps7_0_axi_periph/s00_couplers/auto_pc"/>
@@ -316,7 +342,7 @@
 			</File>
 			<File Name="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"
 					Type="IP">
-				<Instance HierarchyPath="axi_interconnect_1/s00_couplers/auto_pc"/>
+				<Instance HierarchyPath="axi_interconnect_1/m00_couplers/auto_pc"/>
 				<Properties IsEditable="false"
 						IsVisible="true"
 						Timestamp="0"
