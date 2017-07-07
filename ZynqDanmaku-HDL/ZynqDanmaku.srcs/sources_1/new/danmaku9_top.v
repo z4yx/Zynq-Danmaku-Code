@@ -359,4 +359,19 @@ test_img_feeder feeder1(
   .pause(sw_pattern_pause)
 );
 
+image_capture imgcap(
+  .reset_o_n (imgcap_aresetn),
+  .start     (imgcap_start),
+  .pixel     (pixel_r_to_overlay),
+  .hs        (hsync_to_overlay),
+  .de        (de_to_overlay),
+  .vs        (vsync_to_overlay),
+  .axis_valid(imgcap_AXIS_tvalid),
+  .axis_last (imgcap_AXIS_tlast),
+  .axis_data (imgcap_AXIS_tdata),
+  .clk       (odck_to_overlay),
+  .rst_n     (in_clk_reset_n)
+);
+assign imgcap_aclk = odck_to_overlay;
+
 endmodule
