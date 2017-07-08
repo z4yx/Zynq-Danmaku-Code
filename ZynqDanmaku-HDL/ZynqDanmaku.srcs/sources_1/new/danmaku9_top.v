@@ -100,13 +100,13 @@ wire sw_debug, sw_test_pattern, sw_pattern_pause;
 wire sw_conj;
 wire [3:0] gpo_dummy;
 wire imgcap_start,
-    imgcap_AXIS_tdata,
     imgcap_AXIS_tlast,
     imgcap_AXIS_tready,
     imgcap_AXIS_tvalid,
     imgcap_aclk,
     imgcap_aresetn;
-   
+wire [63:0] imgcap_AXIS_tdata;
+
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
     .DDR_ba(DDR_ba),

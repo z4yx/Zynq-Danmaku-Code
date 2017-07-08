@@ -29,10 +29,10 @@
 /* main_memory - ps7_ddr_0 */
 
 /* Memory testing handling */
-#define CONFIG_SYS_MEMTEST_START	0x0
-#define CONFIG_SYS_MEMTEST_END	(0x0 + 0x1000)
-#define CONFIG_SYS_TEXT_BASE	0x00400000
-#define CONFIG_SYS_LOAD_ADDR	0x0 /* default load address */
+#define CONFIG_SYS_MEMTEST_START	0x100000
+#define CONFIG_SYS_MEMTEST_END	(0x100000 + 0x1000)
+#define CONFIG_SYS_TEXT_BASE	0x00500000
+#define CONFIG_SYS_LOAD_ADDR	0x100000 /* default load address */
 #define CONFIG_NR_DRAM_BANKS	1
 
 /* Size of malloc() pool */
@@ -140,7 +140,7 @@
 #define CONFIG_LMB
 
 /* Initial memory map for Linux */
-#define CONFIG_SYS_BOOTMAPSZ 0x09000000
+#define CONFIG_SYS_BOOTMAPSZ 0x08f00000
 
 /* PREBOOT */
 #define CONFIG_PREBOOT	"echo U-BOOT for ${hostname};setenv preboot; echo; "
@@ -163,10 +163,10 @@
 		"run importbootenv; \0" \ 
 	"sdboot=echo boot Petalinux; run uenvboot ; mmcinfo && fatload mmc 0 ${netstart} ${kernel_img} && bootm \0" \ 
 	"autoload=no\0" \ 
-	"clobstart=0x10000000\0" \ 
-	"netstart=0x10000000\0" \ 
-	"dtbnetstart=0x11800000\0" \ 
-	"loadaddr=0x10000000\0" \ 
+	"clobstart=0x10100000\0" \ 
+	"netstart=0x10100000\0" \ 
+	"dtbnetstart=0x11900000\0" \ 
+	"loadaddr=0x10100000\0" \ 
 	"bootsize=0x500000\0" \ 
 	"bootstart=0x0\0" \ 
 	"boot_img=BOOT.BIN\0" \ 

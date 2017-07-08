@@ -22,10 +22,10 @@ initial begin
     @(negedge clk);
     start = 0;
 
-    wait(vga_vsync==1);
     wait(vga_vsync==0);
-    
     wait(vga_vsync==1);
+    
+    wait(vga_vsync==0);
     repeat(10)
         @(posedge clk);
     @(negedge clk);
@@ -50,7 +50,7 @@ image_capture dut(
 
 wire [11:0] hdata, vdata;
 assign pixel = 800*vdata+hdata;
-vga #(12, 800, 856, 976, 1040, 4, 5, 8, 10, 1, 1) vga800x600at75 (
+vga #(12, 800, 856, 976, 1040, 4, 5, 8, 10, 0, 0) vga800x600at75 (
     .clk(clk), 
     .hdata(hdata),
     .vdata(vdata),
