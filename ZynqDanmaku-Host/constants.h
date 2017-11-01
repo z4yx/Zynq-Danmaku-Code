@@ -37,8 +37,8 @@
 #define IP_SYS_CTL_OFFSET 0x02000000
 
 //GPIO number for DMA irq
-// #define IRQ_AXIDMA     (898+2)
-// #define IRQ_AXICDMA    (898+3)
+// #define IRQ_AXIDMA     (896+2)
+// #define IRQ_AXICDMA    (896+3)
 
 //UIO number for DMA irq
 #define IRQ_AXIDMA     (0)

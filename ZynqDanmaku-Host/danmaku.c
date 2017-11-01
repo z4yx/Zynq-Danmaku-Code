@@ -44,6 +44,8 @@ volatile int button_ip_click;
 uint8_t *blank_screen;
 uint32_t blank_screen_phy;
 
+uint8_t *image_captured;
+uint32_t image_captured_phy;
 
 int strlen_utf8_c(char *s) {
    int i = 0, j = 0;
@@ -697,6 +699,16 @@ void SubMain()
         return;
     }
     printf("screen: %d * %d\n", screen_width, screen_height);
+    DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
+    system("echo 1 >/sys/class/gpio/gpio903/value;echo 0 >/sys/class/gpio/gpio903/value");
+    usleep(40000);
+    // while(DanmakuHW_PendingImgCap(hDriver))
+    //     pthread_yield();
+    printf("imgcap done\n");
+    FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
+    fwrite(image_captured, 1, screen_width*screen_height, fdbgimg);
+    fclose(fdbgimg);
+    exit(0);
 
     img_size = (((screen_width + 2) * screen_height) + 3) & (~3);
     // PCIE_Write32(hDriver, PCIE_USER_BAR, REG_IMGSIZE, (uint32_t)img_size);
@@ -724,6 +736,12 @@ void SubMain()
     ClearFontMap();
 }
 
+void InitImgCap(void)
+{
+    DanmakuHW_AllocRenderBuf(hDriver, (uintptr_t*)&image_captured, &image_captured_phy, MAX_SCREEN_HEIGHT*MAX_WIDTH & ~7);
+
+}
+
 int main()
 {
     pthread_mutex_init(&render_overlay_mutex, NULL);
@@ -739,9 +757,12 @@ int main()
     }
     printf("driver opened\n");
     printf("DanmakuHW_RenderDMAStatus: %x\n", DanmakuHW_RenderDMAStatus(hDriver));
-    printf("DanmakuHW_PendingTxmit: %x\n", DanmakuHW_PendingTxmit(hDriver));
     printf("DanmakuHW_RenderDMAIdle: %x\n", DanmakuHW_RenderDMAIdle(hDriver));
+    printf("DanmakuHW_PendingTxmit: %x\n", DanmakuHW_PendingTxmit(hDriver));
+    printf("DanmakuHW_PendingImgCap: %x\n", DanmakuHW_PendingImgCap(hDriver));
 #endif
+
+    InitImgCap();
 
     InitQueen(&sliding_queen);
     InitQueen(&static_queen);
