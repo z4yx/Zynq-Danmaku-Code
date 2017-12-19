@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include "danmaku_driver.h"
 
 #include <stdio.h>
@@ -10,10 +11,10 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define _GNU_SOURCE
 #include <pthread.h>
 #include <signal.h>
 #include <time.h>
+#include <stdatomic.h>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -37,9 +38,8 @@ int edge; // edge in pixel for each character
 int screen_width; // screen width in pixels
 int screen_height; // screen height in pixels
 int img_size;
-int error; // last error code
-volatile int render_running, sigint;
-volatile int button_ip_click;
+volatile atomic_int render_running, sigint;
+volatile atomic_int button_ip_click;
 
 uint8_t *blank_screen;
 uint32_t blank_screen_phy;
@@ -101,7 +101,6 @@ void FillBlank(uint8_t map[][MAX_WIDTH * 2], int head, int len)
 bool InitFontMap()
 {
     const PangoViewer *view = &pangoft2_viewer;
-    g_type_init();
     render_instance = view->create (view);
     render_context = view->get_context (render_instance);
     return true;
@@ -114,10 +113,9 @@ void ClearFontMap()
     view->destroy (render_instance);
 }
 
-uint8_t map1[MAX_HEIGHT][MAX_WIDTH * 2];
-
 void WriteFontMap(uint8_t map[][MAX_WIDTH * 2], inp_char_t *text, int len, int* out_width)
 {
+    static uint8_t map1[MAX_HEIGHT][MAX_WIDTH * 2];
     const PangoViewer *view = &pangoft2_viewer;
     for (int i = 0; i < edge; i++) {
         for (int j = 0; j < edge * len; j++) {
@@ -233,7 +231,7 @@ void SlidingWritePixels(uint8_t *dst, sliding_layer_t *s)
     for (int i = 0; i < edge; i++) {
         uint32_t addr_xfrom = (line_base + xfrom);
         uint32_t addr_xto = (line_base + xto);
-        while(render_running && DanmakuHW_RenderStartDMA(hDriver, &dst[addr_xfrom], &s->map_phy[i][src_x], addr_xto - addr_xfrom + 1)<0)
+        while(render_running && DanmakuHW_RenderStartDMA(hDriver, (uintptr_t)&dst[addr_xfrom], (uintptr_t)&s->map_phy[i][src_x], addr_xto - addr_xfrom + 1)<0)
             DanmakuHW_WaitForRenderDMA(hDriver);
         line_base += (screen_width + 2);
     }
@@ -279,7 +277,7 @@ void ClearScreen(uint8_t *dst)
         pthread_yield();
     }
     */
-    while(render_running && DanmakuHW_RenderStartDMA(hDriver, dst, blank_screen_phy, img_size)<0)
+    while(render_running && DanmakuHW_RenderStartDMA(hDriver, (uintptr_t)dst, blank_screen_phy, img_size)<0)
         DanmakuHW_WaitForRenderDMA(hDriver);
 }   
 
@@ -355,7 +353,7 @@ void StaticWritePixels(uint8_t *dst, static_layer_t *s)
     for (int i = 0; i < edge; i++) {
         uint32_t addr_xfrom = (line_base + xfrom);
         uint32_t addr_xto = (line_base + xto);
-        while(render_running && DanmakuHW_RenderStartDMA(hDriver, &dst[addr_xfrom], &s->map_phy[i][0], addr_xto - addr_xfrom + 1)<0)
+        while(render_running && DanmakuHW_RenderStartDMA(hDriver, (uintptr_t)&dst[addr_xfrom], (uintptr_t)&s->map_phy[i][0], addr_xto - addr_xfrom + 1)<0)
             DanmakuHW_WaitForRenderDMA(hDriver);
         line_base += (screen_width + 2);
     }
@@ -368,9 +366,6 @@ static_layer_t static_layers[NUM_STATIC_LAYER];
 
 // temporary buffer for stdin
 inp_char_t input_buf[MAX_TEXT_LEN];
-
-bool buf_sliding_saved = false;
-bool buf_static_saved = false;
 
 // ==========================
 // Main render process.
@@ -457,7 +452,7 @@ void ClearQueen(queen_t *queen)
     queen->tail = len;
 }
 
-void Push(queen_t *queen, inp_char_t *src)
+void Push(queen_t *queen, const inp_char_t *src)
 {
     if (queen->tail >= QUEEN_SIZE) {
         ClearQueen(queen);
@@ -505,7 +500,7 @@ void RenderOnce(uint8_t* buf)
         // printf("nothing fetched\n");
         BtnEventHandle();
     } else {
-        fprintf(stderr,"->%s",ret);
+        printf("->%s",ret);
         // fputws(input_buf + 1, stdout);
         // int len = strlen_utf8_c(input_buf + 1);
         // printf("codes:");
@@ -571,12 +566,22 @@ void RenderOnce(uint8_t* buf)
     }
 }
 
-int ResolutionChanged(void)
+int ResolutionChanged(int locked_thres)
 {
-    int height,width;
+    static uint32_t height_locked,width_locked,count_locked;
+    uint32_t height,width;
     DanmakuHW_GetFrameSize(hDriver, &height, &width);
-    if(height!=screen_height || width!=screen_width){
-        printf("screen changed: %d * %d\n", width, height);
+    if(height!=height_locked || width!=width_locked){
+        printf("screen changed: %d * %d, count_locked(last) = %d\n", width, height, count_locked);
+        height_locked = height;
+        width_locked = width;
+        count_locked = 0;
+    }else{
+        if(count_locked < 10000) // limited count_locked
+            count_locked ++;
+    }
+    if(count_locked == locked_thres && (height!=screen_height || width!=screen_width)){
+        printf("locked: %d * %d\n", width, height);
         return 1;
     }
     return 0;
@@ -624,19 +629,47 @@ void Render()
             idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
 #endif
         CommitBuffer();
-
-        if(ResolutionChanged()){
-            render_running = 0;
-        }
     }
     render_running = 0;
     pthread_mutex_unlock(&render_overlay_mutex);
 }
 
+#ifndef SIM_MODE
+void SetCPUAffinity(void)
+{
+   int s, j;
+   cpu_set_t cpuset;
+   pthread_t thread;
+
+   thread = pthread_self();
+
+   CPU_ZERO(&cpuset);
+   CPU_SET(0, &cpuset);
+
+   s = pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+   if (s != 0)
+       perror("pthread_setaffinity_np");
+
+   /* Check the actual affinity mask assigned to the thread */
+
+   s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+   if (s != 0)
+       perror("pthread_getaffinity_np");
+
+   printf("Set returned by pthread_getaffinity_np() contained:\n");
+   for (j = 0; j < CPU_SETSIZE; j++)
+       if (CPU_ISSET(j, &cpuset))
+           printf("    CPU %d\n", j);
+
+}
+#endif
+
 void *Thread4Overlay(void *t) 
 {
     struct timespec begin, end;
     int idx;
+    int last_cnt=0;
+    struct timespec last_stamp,stamp;
 
     while(!render_running){
         if(sigint)
@@ -645,11 +678,14 @@ void *Thread4Overlay(void *t)
     }
     printf("Thread4Overlay started\n");
 
+#ifndef SIM_MODE
+    SetCPUAffinity();
+#endif
+
     while(render_running && (idx = GetFilledBuffer()) == -1)
         pthread_yield();
-    printf("debug1\n");
-    int last_cnt=0;
-    struct timespec last_stamp,stamp;
+
+    printf("Thread4Overlay loop begin\n");
     clock_gettime(CLOCK_MONOTONIC, &last_stamp);
     for(int cnt=0;render_running;cnt++){
         clock_gettime(CLOCK_MONOTONIC, &stamp);
@@ -684,6 +720,11 @@ void *Thread4Overlay(void *t)
     pthread_exit(NULL);
 }
 
+void InitImgCap(void)
+{
+    DanmakuHW_AllocRenderBuf(hDriver, (uintptr_t*)&image_captured, &image_captured_phy, MAX_SCREEN_HEIGHT*MAX_WIDTH & ~7);
+}
+
 void SubMain()
 {
     pthread_attr_t attr;
@@ -699,22 +740,41 @@ void SubMain()
         return;
     }
     printf("screen: %d * %d\n", screen_width, screen_height);
-    DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
-    system("echo 1 >/sys/class/gpio/gpio903/value;echo 0 >/sys/class/gpio/gpio903/value");
-    usleep(40000);
+
+    DanmakuHW_DestroyRenderBuf(hDriver);
+
+    // DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
+    // system("echo 1 >/sys/class/gpio/gpio903/value;echo 0 >/sys/class/gpio/gpio903/value");
+    // usleep(40000);
     // while(DanmakuHW_PendingImgCap(hDriver))
     //     pthread_yield();
-    printf("imgcap done\n");
-    FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
-    fwrite(image_captured, 1, screen_width*screen_height, fdbgimg);
-    fclose(fdbgimg);
-    exit(0);
+    // printf("imgcap done\n");
+    // FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
+    // fwrite(image_captured, 1, screen_width*screen_height, fdbgimg);
+    // fclose(fdbgimg);
+    // exit(0);
 
     img_size = (((screen_width + 2) * screen_height) + 3) & (~3);
     // PCIE_Write32(hDriver, PCIE_USER_BAR, REG_IMGSIZE, (uint32_t)img_size);
 
     edge = screen_width / 20;
     render_setopt_dpi(edge*4);
+
+    InitImgCap();
+
+    InitQueen(&sliding_queen);
+    InitQueen(&static_queen);
+
+    int y = 0;
+    for (int i = 0; i < SLIDING_LAYER_ROWS; i++) {
+        for (int j = 0; j < SLIDING_LAYER_COLS; j++) {
+            InitSliding(&sliding_layers[i][j], y);
+        }
+        y++;
+    }
+    for (int i = 0; i < NUM_STATIC_LAYER; i++) {
+        InitStatic(&static_layers[i], i);
+    }
     InitBlankScreen();
     InitFontMap();
     printf("character: %d * %d\n", edge, edge);
@@ -736,14 +796,19 @@ void SubMain()
     ClearFontMap();
 }
 
-void InitImgCap(void)
+void* systask(void* _)
 {
-    DanmakuHW_AllocRenderBuf(hDriver, (uintptr_t*)&image_captured, &image_captured_phy, MAX_SCREEN_HEIGHT*MAX_WIDTH & ~7);
-
+    for(;;){
+        usleep(10000);
+        if(ResolutionChanged(7)){
+            render_running = 0;
+        }
+    }
 }
 
 int main()
 {
+    pthread_t systask_thread;
     pthread_mutex_init(&render_overlay_mutex, NULL);
     pthread_cond_init (&render_overlay_cv, NULL);
 
@@ -756,30 +821,21 @@ int main()
         exit(1);
     }
     printf("driver opened\n");
+
+    printf("FPGA Build: %s\n", DanmakuHW_GetFPGABuildTime(hDriver));
+
     printf("DanmakuHW_RenderDMAStatus: %x\n", DanmakuHW_RenderDMAStatus(hDriver));
     printf("DanmakuHW_RenderDMAIdle: %x\n", DanmakuHW_RenderDMAIdle(hDriver));
     printf("DanmakuHW_PendingTxmit: %x\n", DanmakuHW_PendingTxmit(hDriver));
     printf("DanmakuHW_PendingImgCap: %x\n", DanmakuHW_PendingImgCap(hDriver));
 #endif
 
-    InitImgCap();
-
-    InitQueen(&sliding_queen);
-    InitQueen(&static_queen);
-
-    int y = 0;
-    for (int i = 0; i < SLIDING_LAYER_ROWS; i++) {
-        for (int j = 0; j < SLIDING_LAYER_COLS; j++) {
-            InitSliding(&sliding_layers[i][j], y);
-        }
-        y++;
-    }
-    for (int i = 0; i < NUM_STATIC_LAYER; i++) {
-        InitStatic(&static_layers[i], i);
-    }
-
     // enable UTF-8
     setlocale(LC_ALL, "");
+
+    #if !GLIB_CHECK_VERSION(2,35,0)
+    g_type_init ();
+    #endif
 
     // set stdin as non-blocked
     int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
@@ -787,9 +843,14 @@ int main()
         exit(1);
     }
 
+    pthread_create(&systask_thread, NULL, systask, NULL);
+
+
     while (!sigint) {
         SubMain();
     }
+
+    pthread_kill(systask_thread, SIGTERM);
 
     /* Clean up and exit */
     pthread_mutex_destroy(&render_overlay_mutex);

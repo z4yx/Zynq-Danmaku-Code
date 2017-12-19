@@ -1,5 +1,6 @@
 #include "danmaku_driver.h"
 #include <assert.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,6 +65,25 @@ typedef struct{
 }driver_ctx;
 
 static void DanmakuHW_DMA_Init(driver_ctx* h);
+
+int
+ratelimit_printf (const char *format, ...)
+{
+    va_list arg;
+    int done;
+    time_t now = time(0);
+    static time_t last_called = 0;
+
+    if(now - last_called < 1)
+        return 0;
+    last_called = now;
+
+    va_start (arg, format);
+    done = vfprintf (stdout, format, arg);
+    va_end (arg);
+
+    return done;
+}
 
 void start_udmabuf(void)
 {
@@ -132,7 +152,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
     if ((fd  = open("/sys/class/udmabuf/udmabuf0/size", O_RDONLY)) != -1) {
         read(fd, attr, 1024);
         udmabuf0_size = strtoul(attr, NULL, 0);
-        printf("udmabuf0 size: %p\n", udmabuf0_size);
+        printf("udmabuf0 size: %#x\n", udmabuf0_size);
         close(fd);
     }else{
         fprintf(stderr, "Failed to get udmabuf0 size\n");
@@ -141,7 +161,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
     if ((fd  = open("/sys/class/udmabuf/udmabuf0/phys_addr", O_RDONLY)) != -1) {
         read(fd, attr, 1024);
         udmabuf0_phys = strtoul(attr, NULL, 0);
-        printf("udmabuf0 phys_addr: %p\n", udmabuf0_phys);
+        printf("udmabuf0 phys_addr: %#x\n", udmabuf0_phys);
         close(fd);
     }else{
         fprintf(stderr, "Failed to get udmabuf0 phys_addr\n");
@@ -150,7 +170,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
     if ((fd  = open("/sys/class/udmabuf/udmabuf1/size", O_RDONLY)) != -1) {
         read(fd, attr, 1024);
         udmabuf1_size = strtoul(attr, NULL, 0);
-        printf("udmabuf1 size: %p\n", udmabuf1_size);
+        printf("udmabuf1 size: %#x\n", udmabuf1_size);
         close(fd);
     }else{
         fprintf(stderr, "Failed to get udmabuf1 size\n");
@@ -159,7 +179,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
     if ((fd  = open("/sys/class/udmabuf/udmabuf1/phys_addr", O_RDONLY)) != -1) {
         read(fd, attr, 1024);
         udmabuf1_phys = strtoul(attr, NULL, 0);
-        printf("udmabuf1 phys_addr: %p\n", udmabuf1_phys);
+        printf("udmabuf1 phys_addr: %#x\n", udmabuf1_phys);
         close(fd);
     }else{
         fprintf(stderr, "Failed to get udmabuf1 phys_addr\n");
@@ -207,7 +227,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
         perror("mmap /dev/mem");
         goto fail_close_udmabuf1;
     }
-    printf("uaddr_perph_base: %p\n", ctx->uaddr_perph_base);
+    printf("uaddr_perph_base: %#lx\n", ctx->uaddr_perph_base);
 
     ctx->uaddr_fb = 
         (uintptr_t)mmap(NULL, ctx->sz_udmabuf0, PROT_READ | PROT_WRITE, 
@@ -216,7 +236,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void)
         perror("mmap /dev/udmabuf0");
         goto fail_unmap_devmem;
     }
-    printf("uaddr_fb: %p\n", ctx->uaddr_fb);
+    printf("uaddr_fb: %#lx\n", ctx->uaddr_fb);
     ctx->uaddr_dyn_area = 
         (uintptr_t)mmap(NULL, ctx->sz_dyn_area, PROT_READ | PROT_WRITE, 
                         MAP_SHARED, ctx->fd_udmabuf1, 0);
@@ -252,6 +272,24 @@ fail_close_devmem:
 free_ctx:
     free(ctx);
     return NULL;
+}
+const char* DanmakuHW_GetFPGABuildTime(DANMAKU_HW_HANDLE h)
+{
+    driver_ctx* ctx = (driver_ctx*)h;
+    //USR_ACCESS IP
+    uintptr_t timetag_base = ctx->uaddr_perph_base+IP_TIMETAG_OFFSET;
+    static char dt_string[20]; //should be static
+    uint32_t Date = *(uint32_t*)timetag_base;
+    uint32_t Time = *(uint32_t*)(timetag_base+4);
+    snprintf(dt_string, sizeof(dt_string)-1, "%02d-%d-%d %02d:%02d:%02d",
+        0xff&(Date>>16),0xff&(Date>>8),0xff&(Date),
+        0xff&(Time>>16),0xff&(Time>>8),0xff&(Time));
+    return dt_string;
+}
+void DanmakuHW_DestroyRenderBuf(DANMAKU_HW_HANDLE h)
+{
+    driver_ctx* ctx = (driver_ctx*)h;
+    ctx->sz_allocated = 0;
 }
 void DanmakuHW_AllocRenderBuf(DANMAKU_HW_HANDLE h, uintptr_t *uaddr, uintptr_t *paddr, uint32_t length)
 {
@@ -297,7 +335,7 @@ void DanmakuHW_RenderFlush(DANMAKU_HW_HANDLE h)
         uintptr_t dma_csr = ctx->uaddr_perph_base+IP_CDMA_OFFSET;
         uint32_t status = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
         if(status & 0x770){
-            printf("%s error - status=%x\n", __func__, status);
+            ratelimit_printf("%s error - status=%x\n", __func__, status);
         }
         // printf("status before %x\n", status);
         *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = status; //Clear flags
@@ -319,7 +357,7 @@ int DanmakuHW_RenderStartDMA(DANMAKU_HW_HANDLE h,uintptr_t dst, uintptr_t src, u
     if(next == ctx->head_desc //overflow
             || (!DanmakuHW_RenderDMAIdle(h) 
                 && (uintptr_t)(ctx->paddr_desc_base+next) == *REG_OFF(dma_csr, XILDMA_CURDESC))){
-        printf("render DMA full, 0x%x\n",*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER));
+        ratelimit_printf("render DMA full, 0x%x\n",*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER));
         return -1;
     }
     //build descriptor
@@ -374,7 +412,7 @@ int DanmakuHW_FrameBufferTxmit(DANMAKU_HW_HANDLE h, int buf_index, uint32_t leng
     // printf("%s: status=%x\n", __func__, *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER));
     uint32_t status = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
     if(status & 0x70){
-        printf("%s error - status=%x\n", __func__, status);
+        ratelimit_printf("%s error - status=%x\n", __func__, status);
     }
 
     *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = status; //Clear flags
@@ -422,7 +460,7 @@ int DanmakuHW_ImageCapture(DANMAKU_HW_HANDLE h, uint32_t addr, uint32_t length)
     // printf("%s: status=%x\n", __func__, *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER));
     uint32_t status = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
     if(status & 0x70){
-        printf("%s error - status=%x\n", __func__, status);
+        ratelimit_printf("%s error - status=%x\n", __func__, status);
     }
 
     *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = status; //Clear flags

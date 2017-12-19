@@ -7,6 +7,7 @@
 typedef void* DANMAKU_HW_HANDLE;
 
 DANMAKU_HW_HANDLE DanmakuHW_Open(void);
+const char* DanmakuHW_GetFPGABuildTime(DANMAKU_HW_HANDLE h);
 int DanmakuHW_FrameBufferTxmit(DANMAKU_HW_HANDLE h, int buf_index, uint32_t length);
 int DanmakuHW_PendingTxmit(DANMAKU_HW_HANDLE h);
 uintptr_t DanmakuHW_GetFrameBuffer(DANMAKU_HW_HANDLE h, int buf_index);
@@ -16,6 +17,7 @@ int DanmakuHW_RenderStartDMA(DANMAKU_HW_HANDLE h,uintptr_t dst, uintptr_t src, u
 int DanmakuHW_RenderDMAIdle(DANMAKU_HW_HANDLE h);
 uint32_t DanmakuHW_RenderDMAStatus(DANMAKU_HW_HANDLE h);
 void DanmakuHW_AllocRenderBuf(DANMAKU_HW_HANDLE h,uintptr_t *uaddr, uintptr_t *paddr, uint32_t length);
+void DanmakuHW_DestroyRenderBuf(DANMAKU_HW_HANDLE h);
 int DanmakuHW_WaitForRenderDMA(DANMAKU_HW_HANDLE h);
 int DanmakuHW_WaitForPendingTxmit(DANMAKU_HW_HANDLE h);
 int DanmakuHW_ImageCapture(DANMAKU_HW_HANDLE h, uint32_t addr, uint32_t length);
