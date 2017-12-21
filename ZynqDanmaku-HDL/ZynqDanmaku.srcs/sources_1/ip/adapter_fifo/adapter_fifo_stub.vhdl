@@ -1,10 +1,10 @@
--- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
--- Date        : Tue Feb 28 19:18:50 2017
--- Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
+-- Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
+-- Date        : Fri Dec 22 00:57:53 2017
+-- Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/adapter_fifo/adapter_fifo_stub.vhdl
+--               /home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/adapter_fifo/adapter_fifo_stub.vhdl
 -- Design      : adapter_fifo
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
@@ -32,6 +32,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "wr_clk,rd_clk,din[63:0],wr_en,rd_en,dout[7:0],full,empty";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "fifo_generator_v13_1_3,Vivado 2016.4";
+attribute x_core_info of stub : architecture is "fifo_generator_v13_1_4,Vivado 2017.1";
 begin
 end;

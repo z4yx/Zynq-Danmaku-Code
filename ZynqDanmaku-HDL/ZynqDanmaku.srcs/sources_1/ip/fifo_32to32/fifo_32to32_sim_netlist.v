@@ -1,10 +1,10 @@
-// Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-// Date        : Tue Feb 28 19:21:49 2017
-// Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
+// Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
+// Date        : Fri Dec 22 00:57:52 2017
+// Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/fifo_32to32/fifo_32to32_sim_netlist.v
+//               /home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/fifo_32to32/fifo_32to32_sim_netlist.v
 // Design      : fifo_32to32
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "fifo_32to32,fifo_generator_v13_1_3,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "fifo_generator_v13_1_3,Vivado 2016.4" *) 
+(* CHECK_LICENSE_TYPE = "fifo_32to32,fifo_generator_v13_1_4,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "fifo_generator_v13_1_4,Vivado 2017.1" *) 
 (* NotValidForBitStream *)
 module fifo_32to32
    (wr_clk,
@@ -366,7 +366,7 @@ module fifo_32to32
   (* C_WR_PNTR_WIDTH_WDCH = "10" *) 
   (* C_WR_PNTR_WIDTH_WRCH = "4" *) 
   (* C_WR_RESPONSE_LATENCY = "1" *) 
-  fifo_32to32_fifo_generator_v13_1_3 U0
+  fifo_32to32_fifo_generator_v13_1_4 U0
        (.almost_empty(NLW_U0_almost_empty_UNCONNECTED),
         .almost_full(NLW_U0_almost_full_UNCONNECTED),
         .axi_ar_data_count(NLW_U0_axi_ar_data_count_UNCONNECTED[4:0]),
@@ -710,7 +710,6 @@ module fifo_32to32_blk_mem_gen_prim_wrapper
   wire rd_clk;
   wire wr_clk;
 
-  (* CLOCK_DOMAINS = "INDEPENDENT" *) 
   (* box_type = "PRIMITIVE" *) 
   RAMB18E1 #(
     .DOA_REG(0),
@@ -876,8 +875,8 @@ module fifo_32to32_blk_mem_gen_top
         .wr_clk(wr_clk));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_3_5" *) 
-module fifo_32to32_blk_mem_gen_v8_3_5
+(* ORIG_REF_NAME = "blk_mem_gen_v8_3_6" *) 
+module fifo_32to32_blk_mem_gen_v8_3_6
    (dout,
     rd_clk,
     wr_clk,
@@ -904,7 +903,7 @@ module fifo_32to32_blk_mem_gen_v8_3_5
   wire rd_clk;
   wire wr_clk;
 
-  fifo_32to32_blk_mem_gen_v8_3_5_synth inst_blk_mem_gen
+  fifo_32to32_blk_mem_gen_v8_3_6_synth inst_blk_mem_gen
        (.ADDRARDADDR(ADDRARDADDR),
         .E(E),
         .din(din),
@@ -915,8 +914,8 @@ module fifo_32to32_blk_mem_gen_v8_3_5
         .wr_clk(wr_clk));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_3_5_synth" *) 
-module fifo_32to32_blk_mem_gen_v8_3_5_synth
+(* ORIG_REF_NAME = "blk_mem_gen_v8_3_6_synth" *) 
+module fifo_32to32_blk_mem_gen_v8_3_6_synth
    (dout,
     rd_clk,
     wr_clk,
@@ -1535,8 +1534,8 @@ endmodule
 (* C_WR_DEPTH_WRCH = "16" *) (* C_WR_FREQ = "1" *) (* C_WR_PNTR_WIDTH = "6" *) 
 (* C_WR_PNTR_WIDTH_AXIS = "10" *) (* C_WR_PNTR_WIDTH_RACH = "4" *) (* C_WR_PNTR_WIDTH_RDCH = "10" *) 
 (* C_WR_PNTR_WIDTH_WACH = "4" *) (* C_WR_PNTR_WIDTH_WDCH = "10" *) (* C_WR_PNTR_WIDTH_WRCH = "4" *) 
-(* C_WR_RESPONSE_LATENCY = "1" *) (* ORIG_REF_NAME = "fifo_generator_v13_1_3" *) 
-module fifo_32to32_fifo_generator_v13_1_3
+(* C_WR_RESPONSE_LATENCY = "1" *) (* ORIG_REF_NAME = "fifo_generator_v13_1_4" *) 
+module fifo_32to32_fifo_generator_v13_1_4
    (backup,
     backup_marker,
     clk,
@@ -2528,7 +2527,7 @@ module fifo_32to32_fifo_generator_v13_1_3
        (.G(\<const0> ));
   VCC VCC
        (.P(\<const1> ));
-  fifo_32to32_fifo_generator_v13_1_3_synth inst_fifo_gen
+  fifo_32to32_fifo_generator_v13_1_4_synth inst_fifo_gen
        (.din(din),
         .dout(dout),
         .empty(empty),
@@ -2539,8 +2538,8 @@ module fifo_32to32_fifo_generator_v13_1_3
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "fifo_generator_v13_1_3_synth" *) 
-module fifo_32to32_fifo_generator_v13_1_3_synth
+(* ORIG_REF_NAME = "fifo_generator_v13_1_4_synth" *) 
+module fifo_32to32_fifo_generator_v13_1_4_synth
    (dout,
     empty,
     full,
@@ -2606,7 +2605,7 @@ module fifo_32to32_memory
   wire rd_clk;
   wire wr_clk;
 
-  fifo_32to32_blk_mem_gen_v8_3_5 \gbm.gbmg.gbmga.ngecc.bmg 
+  fifo_32to32_blk_mem_gen_v8_3_6 \gbm.gbmg.gbmga.ngecc.bmg 
        (.ADDRARDADDR(ADDRARDADDR),
         .E(E),
         .din(din),
@@ -3970,8 +3969,8 @@ module glbl ();
     reg JTAG_USER_TDO3_GLBL = 1'bz;
     reg JTAG_USER_TDO4_GLBL = 1'bz;
 
-    assign (weak1, weak0) GSR = GSR_int;
-    assign (weak1, weak0) GTS = GTS_int;
+    assign (strong1, weak0) GSR = GSR_int;
+    assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
 
     initial begin

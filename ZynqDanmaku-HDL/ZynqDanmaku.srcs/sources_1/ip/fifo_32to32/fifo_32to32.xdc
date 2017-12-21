@@ -1,7 +1,10 @@
-
-# file: clk_video_ooc.xdc
-# 
-# (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+################################################################################
+# (c) Copyright 2009 - 2013 Xilinx, Inc. All rights reserved.
 # 
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
@@ -46,13 +49,15 @@
 # 
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
-# 
+#
+################################################################################
 
-#################
-#DEFAULT CLOCK CONSTRAINTS
+#------------------------------------------------------------------------------#
+#                         Native FIFO Constraints                              #
+#------------------------------------------------------------------------------#
 
-############################################################
-# Clock Period Constraints                                 #
-############################################################
-#create_clock -period 6.667 [get_ports clk_in1]
+
+
+
+################################################################################
 

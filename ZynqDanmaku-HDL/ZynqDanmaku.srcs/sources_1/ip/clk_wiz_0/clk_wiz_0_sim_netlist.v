@@ -1,10 +1,10 @@
-// Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2016.4 (lin64) Build 1733598 Wed Dec 14 22:35:42 MST 2016
-// Date        : Mon Apr  3 22:43:11 2017
-// Host        : skyworks running 64-bit Ubuntu 16.04.1 LTS
+// Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
+// Date        : Fri Dec 22 00:56:55 2017
+// Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
+//               /home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -189,8 +189,8 @@ module glbl ();
     reg JTAG_USER_TDO3_GLBL = 1'bz;
     reg JTAG_USER_TDO4_GLBL = 1'bz;
 
-    assign (weak1, weak0) GSR = GSR_int;
-    assign (weak1, weak0) GTS = GTS_int;
+    assign (strong1, weak0) GSR = GSR_int;
+    assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
 
     initial begin

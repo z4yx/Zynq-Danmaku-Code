@@ -557,55 +557,13 @@
   <spirit:model>
     <spirit:views>
       <spirit:view>
-        <spirit:name>xilinx_externalfiles</spirit:name>
-        <spirit:displayName>External Files</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:54 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
         <spirit:name>xilinx_elaborateports</spirit:name>
         <spirit:displayName>Elaborate Ports</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:elaborate.ports</spirit:envIdentifier>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>7:eec45b7e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -620,203 +578,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
+            <spirit:value>Thu Dec 21 16:52:46 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
-        <spirit:displayName>Synthesis</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_anylanguagesynthesiswrapper</spirit:name>
-        <spirit:displayName>Synthesis Wrapper</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesiswrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
-        <spirit:displayName>Simulation</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>c22db159</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_anylanguagesimulationwrapper</spirit:name>
-        <spirit:displayName>Simulation Wrapper</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesimulationwrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>c22db159</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_implementation</spirit:name>
-        <spirit:displayName>Implementation</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:implementation</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_implementation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:53 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_versioninformation</spirit:name>
-        <spirit:displayName>Version Information</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:docs.versioninfo</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_versioninformation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 06 14:42:54 UTC 2017</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRC</spirit:name>
-            <spirit:value>acbd1ffd</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>boundaryCRCversion</spirit:name>
-            <spirit:value>1</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4ef9cbb2</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>6</spirit:value>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>7:7ad3ca48</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -829,8 +595,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -852,8 +617,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -879,8 +643,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -902,8 +665,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -925,8 +687,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -949,8 +710,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -976,8 +736,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -999,8 +758,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1022,8 +780,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1046,8 +803,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1066,8 +822,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1086,8 +841,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1113,8 +867,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1136,8 +889,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1159,8 +911,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1183,8 +934,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1207,8 +957,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1227,8 +976,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1247,8 +995,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1270,8 +1017,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1293,8 +1039,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1316,8 +1061,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1339,8 +1083,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1362,8 +1105,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1385,8 +1127,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1402,336 +1143,13 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>clk_out1_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out1_ce" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT1_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT1_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT1_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT1_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT1_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out1_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out1_clr" xilinx:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT1_DRIVES&apos;))=&quot;BUFR&quot;)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out2_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out2_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT2_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out2_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out2_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT2_USED&apos;))=1))">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out3_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out3_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT3_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SPREAD_SPECTRUM&apos;))=0) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out3_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out3_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT3_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SPREAD_SPECTRUM&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out4_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out4_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT4_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SPREAD_SPECTRUM&apos;))=0) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out4_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out4_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT4_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SPREAD_SPECTRUM&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out5_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out5_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT5_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out5_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out5_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT5_USED&apos;))=1))">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out6_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out6_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT6_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out6_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out6_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT6_USED&apos;))=1))">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out7_ce</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out7_ce" xilinx:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_DRIVES&apos;))=&quot;BUFGCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_DRIVES&apos;))=&quot;BUFHCE&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_DRIVES&apos;))=&quot;BUFR&quot;) or (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_DRIVES&apos;))=&quot;BUFGCE_DIV&quot;) or (spirit:decode(id(&apos;PARAM_VALUE.CLKOUT7_DRIVES&apos;))=&quot;Buffer_with_CE&quot;)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_USED&apos;))=1)) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_SAFE_CLOCK_STARTUP&apos;))=0)">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>clk_out7_clr</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-        <spirit:vendorExtensions>
-          <xilinx:portInfo>
-            <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.clk_out7_clr" xilinx:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_DRIVES&apos;))=&quot;BUFR&quot;) and (spirit:decode(id(&apos;MODELPARAM_VALUE.C_CLKOUT7_USED&apos;))=1))">false</xilinx:isEnabled>
-            </xilinx:enablement>
-          </xilinx:portInfo>
-        </spirit:vendorExtensions>
-      </spirit:port>
-      <spirit:port>
         <spirit:name>clkfb_out_p</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1750,8 +1168,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -1770,8 +1187,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1793,8 +1209,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1816,8 +1231,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1843,8 +1257,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1870,8 +1283,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1893,8 +1305,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1920,8 +1331,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1943,8 +1353,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1966,8 +1375,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -1989,8 +1397,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2012,8 +1419,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2035,8 +1441,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2048,8 +1453,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2061,8 +1465,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2074,8 +1477,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2087,8 +1489,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2100,8 +1501,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2113,8 +1513,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2126,8 +1525,7 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_elaborateports</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2461,7 +1859,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT3_REQUESTED_OUT_FREQ</spirit:name>
-        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_REQUESTED_OUT_FREQ" spirit:order="256">150.000</spirit:value>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_REQUESTED_OUT_FREQ" spirit:order="256">100.000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT4_REQUESTED_OUT_FREQ</spirit:name>
@@ -2489,7 +1887,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT3_REQUESTED_PHASE</spirit:name>
-        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_REQUESTED_PHASE" spirit:order="263">277</spirit:value>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_REQUESTED_PHASE" spirit:order="263">0.000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT4_REQUESTED_PHASE</spirit:name>
@@ -2673,7 +2071,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_MMCM_CLKIN2_PERIOD</spirit:name>
-        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MMCM_CLKIN2_PERIOD" spirit:order="300">10.0</spirit:value>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MMCM_CLKIN2_PERIOD" spirit:order="300">10.000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_MMCM_CLKOUT4_CASCADE</spirit:name>
@@ -2773,7 +2171,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_MMCM_CLKOUT2_PHASE</spirit:name>
-        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MMCM_CLKOUT2_PHASE" spirit:order="325">277.500</spirit:value>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MMCM_CLKOUT2_PHASE" spirit:order="325">0.000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_MMCM_CLKOUT3_PHASE</spirit:name>
@@ -3139,63 +2537,63 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_POWER_REG</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_POWER_REG" spirit:order="409">FFFF</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_POWER_REG" spirit:order="409">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT0_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT0_1" spirit:order="410">10c4</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT0_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT0_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT0_2" spirit:order="411">0080</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT0_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT1_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT1_1" spirit:order="410">90c4</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT1_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT1_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT1_2" spirit:order="410">0083</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT1_2" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT2_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT2_1" spirit:order="411">d041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT2_1" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT2_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT2_2" spirit:order="411">00c0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT2_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT3_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_1" spirit:order="410">1041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT3_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_2" spirit:order="411">00c0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT3_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT4_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT4_1" spirit:order="410">1041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT4_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT4_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT4_2" spirit:order="411">00c0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT4_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT5_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT5_1" spirit:order="410">1041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT5_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT5_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT5_2" spirit:order="411">00c0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT5_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT6_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT6_1" spirit:order="410">1041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT6_1" spirit:order="410">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKOUT6_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT6_2" spirit:order="411">00c0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKOUT6_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKFBOUT_1</spirit:name>
@@ -3203,31 +2601,31 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_CLKFBOUT_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKFBOUT_2" spirit:order="411">0080</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_CLKFBOUT_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_DIVCLK</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_DIVCLK" spirit:order="411">1041</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_DIVCLK" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_LOCK_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_1" spirit:order="411">03e8</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_1" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_LOCK_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_2" spirit:order="411">4c01</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_LOCK_3</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_3" spirit:order="411">4fe9</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_LOCK_3" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_FILTER_1</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FILTER_1" spirit:order="411">0800</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FILTER_1" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_FILTER_2</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FILTER_2" spirit:order="411">1990</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FILTER_2" spirit:order="411">0000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_DIVIDE1_AUTO</spirit:name>
@@ -3239,7 +2637,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_DIVIDE3_AUTO</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_DIVIDE3_AUTO" spirit:order="411">1.0</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_DIVIDE3_AUTO" spirit:order="411">1.5</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_DIVIDE4_AUTO</spirit:name>
@@ -3511,158 +2909,10 @@
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
-      <spirit:name>xilinx_externalfiles_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>clk_video.dcp</spirit:name>
-        <spirit:userFileType>dcp</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_stub.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_stub.vhdl</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_sim_netlist.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_sim_netlist.vhdl</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_veriloginstantiationtemplate_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>clk_video.veo</spirit:name>
         <spirit:userFileType>verilogTemplate</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>clk_video.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:define>
-          <spirit:name>processing_order</spirit:name>
-          <spirit:value>early</spirit:value>
-        </spirit:define>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_ooc.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_7s_mmcm.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_7s_pll.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_us_mmcm.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_us_pll.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_clk_wiz.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesiswrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>clk_video.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_7s_mmcm.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_7s_pll.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_us_mmcm.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>mmcm_pll_drp_func_us_pll.vh</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>clk_wiz_v5_3_3</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>clk_video_clk_wiz.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesimulationwrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>clk_video.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_implementation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>clk_video_board.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:userFileType>USED_IN_board</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_versioninformation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>doc/clk_wiz_v5_3_changelog.txt</spirit:name>
-        <spirit:userFileType>text</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -4014,11 +3264,11 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CLKOUT3_REQUESTED_OUT_FREQ</spirit:name>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.CLKOUT3_REQUESTED_OUT_FREQ" spirit:order="68" spirit:configGroups="0 NoDisplay">150.000</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.CLKOUT3_REQUESTED_OUT_FREQ" spirit:order="68" spirit:configGroups="0 NoDisplay">100.000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CLKOUT3_REQUESTED_PHASE</spirit:name>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.CLKOUT3_REQUESTED_PHASE" spirit:order="69" spirit:configGroups="0 NoDisplay">277</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.CLKOUT3_REQUESTED_PHASE" spirit:order="69" spirit:configGroups="0 NoDisplay">0.000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CLKOUT3_REQUESTED_DUTY_CYCLE</spirit:name>
@@ -4294,7 +3544,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>MMCM_CLKIN2_PERIOD</spirit:name>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.MMCM_CLKIN2_PERIOD" spirit:order="130" spirit:configGroups="0 NoDisplay">10.0</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.MMCM_CLKIN2_PERIOD" spirit:order="130" spirit:configGroups="0 NoDisplay">10.000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>MMCM_CLKOUT4_CASCADE</spirit:name>
@@ -4362,7 +3612,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>MMCM_CLKOUT2_PHASE</spirit:name>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.MMCM_CLKOUT2_PHASE" spirit:order="147" spirit:configGroups="0 NoDisplay">277.500</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.MMCM_CLKOUT2_PHASE" spirit:order="147" spirit:configGroups="0 NoDisplay">0.000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>MMCM_CLKOUT2_USE_FINE_PS</spirit:name>
@@ -4726,7 +3976,7 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>Clocking Wizard</xilinx:displayName>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreRevision>0</xilinx:coreRevision>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.AXI_DRP" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.CLKIN1_JITTER_PS" xilinx:valueSource="user"/>
@@ -4755,6 +4005,7 @@
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.FEEDBACK_SOURCE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKFBOUT_MULT_F" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKIN1_PERIOD" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKIN2_PERIOD" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKOUT0_DIVIDE_F" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKOUT1_DIVIDE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.MMCM_CLKOUT1_PHASE" xilinx:valueSource="user"/>
@@ -4772,12 +4023,12 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2016.4</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4448a102"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f3437c6e"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="720b1e8c"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="cdcf6334"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="6e9c74b6"/>
+      <xilinx:xilinxVersion>2017.1</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1947af4e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e4c7b845"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="0ab5ce63"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="f91929a0"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a403bc90"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
