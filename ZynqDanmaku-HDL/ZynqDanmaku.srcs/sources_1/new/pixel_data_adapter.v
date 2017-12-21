@@ -34,6 +34,7 @@ adapter_fifo fifo( //fifo in showahead mode
 
 color_mapper mapper(
   .short(short[3:0]),
+  .valid(~empty_sink),
   .long (mapped_pixel)
 );
 
@@ -46,11 +47,12 @@ end
 endmodule
 
 module color_mapper(
-  input wire [3:0] short, 
+  input wire [3:0] short,
+  input wire valid,
   output wire [32:0] long
 );
 
-assign long = (short[3] == 1'b0) ? ({
+assign long = (short[3] == 1'b0 && valid) ? ({
   short[0]?8'hff:8'h00,
   short[1]?8'hff:8'h00,
   short[2]?8'hff:8'h00,

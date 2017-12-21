@@ -1,6 +1,7 @@
 
 set_property CFGBVS VCCO [current_design]
 set_property CONFIG_VOLTAGE 3.3 [current_design]
+set_property BITSTREAM.CONFIG.USR_ACCESS TIMESTAMP [current_design]
 
 set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS33} [get_ports mcu_rst_n]
 set_property -dict {PACKAGE_PIN M20 IOSTANDARD LVCMOS33} [get_ports mcu_boot]

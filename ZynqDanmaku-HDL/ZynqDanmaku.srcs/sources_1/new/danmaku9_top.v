@@ -226,8 +226,8 @@ led_clkdiv led_flash(.clk(odck_to_overlay), .divided(led_flash_clk));
 
 led_pwm_ctl leds(
   .clk_fabric(ps_fabric_50M_clk),
-  .enable    ({4'hf, sw_conj?led_flash_clk:1'b1}),
-  .active    ({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],sw_conj}),
+  .enable    ({4'hf, led_flash_clk}),
+  .active    ({sw_blank[1],sw_en_overlay[1],sw_blank[0],sw_en_overlay[0],1'b1}),
   .led_o_n   (led_out_n)
 );
 
