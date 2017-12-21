@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2016.4 (64-bit)              -->
+<!-- Product Version: Vivado v2017.1 (64-bit)              -->
 <!--                                                         -->
-<!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
+<!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/skyworks/ZynqDanmaku/ZynqDanmaku-HDL/ZynqDanmaku.xpr">
+<Project Version="7" Minor="20" Path="/home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="bc16d391f6d148bdad0c555d1bcf0d01"/>
@@ -25,8 +25,8 @@
     <Option Name="IPCachePermission" Val="write"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
-    <Option Name="IPUserFilesDir" Val="$PPRDIR/ZynqDanmaku.ip_user_files"/>
-    <Option Name="IPStaticSourceDir" Val="$PPRDIR/ZynqDanmaku.ip_user_files/ipstatic"/>
+    <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
+    <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSANumComputeUnits" Val="16"/>
     <Option Name="WTXSimLaunchSim" Val="60"/>
@@ -52,44 +52,14 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/new/RGB_YCbCr.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/syncCorrector.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/rgb444toycrcb422.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/bd/top_blk/top_blk.bd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci">
-          <Proxy FileSetName="top_blk_axi_dma_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0.xci">
-          <Proxy FileSetName="top_blk_xlconcat_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axis_data_fifo_0_0/top_blk_axis_data_fifo_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_axi_periph_0/top_blk_ps7_0_axi_periph_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_cdma_0_0/top_blk_axi_cdma_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
-          <Proxy FileSetName="top_blk_xbar_0"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_pixel_transparent_0_4/top_blk_pixel_transparent_0_4.xci">
+          <Proxy FileSetName="top_blk_pixel_transparent_0_4"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_0/top_blk_ps7_0_0.xci">
           <Proxy FileSetName="top_blk_ps7_0_0"/>
@@ -97,99 +67,23 @@
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_const0_0/top_blk_const0_0.xci">
           <Proxy FileSetName="top_blk_const0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_0_0/top_blk_axi_interconnect_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_proc_sys_reset_0_0/top_blk_proc_sys_reset_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_system_ctl_reg_0_0/top_blk_system_ctl_reg_0_0.xci">
           <Proxy FileSetName="top_blk_system_ctl_reg_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_rst_ps7_0_50M_0/top_blk_rst_ps7_0_50M_0.xci"/>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axigpio_ctl_0/top_blk_axigpio_ctl_0.xci">
           <Proxy FileSetName="top_blk_axigpio_ctl_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_pixel_transparent_0_4/top_blk_pixel_transparent_0_4.xci">
-          <Proxy FileSetName="top_blk_pixel_transparent_0_4"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0.xci">
+          <Proxy FileSetName="top_blk_xlconcat_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_interconnect_1_0/top_blk_axi_interconnect_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_2/top_blk_xbar_2.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.v"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_1/top_blk_auto_pc_1.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_us_0/top_blk_auto_us_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_0/top_blk_auto_rs_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_1_0/top_blk_xlconcat_1_0.xci">
-          <Proxy FileSetName="top_blk_xlconcat_1_0"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
+          <Proxy FileSetName="top_blk_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_0/top_blk_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_rs_w_0/top_blk_auto_rs_w_0.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_auto_pc_2/top_blk_auto_pc_2.xci"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk.hwh"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="top_blk_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hdl/top_blk.hwdef"/>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="hw_handoff/top_blk_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci">
+          <Proxy FileSetName="top_blk_axi_dma_0_0"/>
+        </CompFileExtendedInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/simple.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/pxlCount.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/debounce.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/simpleyuv.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/bd/top_blk/hdl/top_blk_wrapper.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/tfp401a.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/test_img_feeder.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/pixel_data_adapter.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/hdmi_out.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/danmaku_overlay.v">
+      <File Path="$PSRCDIR/sources_1/new/RGB_YCbCr.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -203,13 +97,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/led_clkdiv.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/clock_reset_gen.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -217,7 +104,98 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/new/danmaku_overlay.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/debounce.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/hdmi_out.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/led_clkdiv.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/led_pwm_ctl.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/pixel_data_adapter.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/pxlCount.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/rgb444toycrcb422.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/simple.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/simpleyuv.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/syncCorrector.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/test_img_feeder.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/tfp401a.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/top_blk/hdl/top_blk_wrapper.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -435,113 +413,111 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="10">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z010clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z010clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" State="current" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_xlconcat_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xlconcat_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xlconcat_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_xlconcat_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xlconcat_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_0_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xbar_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xbar_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xbar_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="adapter_fifo_synth_1" Type="Ft3:Synth" SrcSet="adapter_fifo" Part="xc7z010clg400-1" ConstrsSet="adapter_fifo" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/adapter_fifo_synth_1" IncludeInArchive="true">
+    <Run Id="adapter_fifo_synth_1" Type="Ft3:Synth" SrcSet="adapter_fifo" Part="xc7z010clg400-1" ConstrsSet="adapter_fifo" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="fifo_32to32_synth_1" Type="Ft3:Synth" SrcSet="fifo_32to32" Part="xc7z010clg400-1" ConstrsSet="fifo_32to32" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/fifo_32to32_synth_1" IncludeInArchive="true">
+    <Run Id="fifo_32to32_synth_1" Type="Ft3:Synth" SrcSet="fifo_32to32" Part="xc7z010clg400-1" ConstrsSet="fifo_32to32" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_axigpio_ctl_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_axigpio_ctl_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_axigpio_ctl_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_axigpio_ctl_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_axigpio_ctl_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_axigpio_ctl_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_axigpio_ctl_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_const0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_const0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_const0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_const0_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_const0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_const0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_const0_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_ps7_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_ps7_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_ps7_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_ps7_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_ps7_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_ps7_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_ps7_0_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_0" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/clk_wiz_0_synth_1" IncludeInArchive="true">
+    <Run Id="clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="clk_wiz_0" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_axi_dma_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_axi_dma_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_axi_dma_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_axi_dma_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_axi_dma_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_axi_dma_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_axi_dma_0_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_system_ctl_reg_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_system_ctl_reg_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_system_ctl_reg_0_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_system_ctl_reg_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_system_ctl_reg_0_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_system_ctl_reg_0_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_system_ctl_reg_0_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_pixel_transparent_0_4_synth_1" Type="Ft3:Synth" SrcSet="top_blk_pixel_transparent_0_4" Part="xc7z010clg400-1" ConstrsSet="top_blk_pixel_transparent_0_4" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_pixel_transparent_0_4_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_pixel_transparent_0_4_synth_1" Type="Ft3:Synth" SrcSet="top_blk_pixel_transparent_0_4" Part="xc7z010clg400-1" ConstrsSet="top_blk_pixel_transparent_0_4" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="top_blk_xlconcat_1_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xlconcat_1_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_1_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/top_blk_xlconcat_1_0_synth_1" IncludeInArchive="true">
+    <Run Id="top_blk_xlconcat_1_0_synth_1" Type="Ft3:Synth" SrcSet="top_blk_xlconcat_1_0" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_1_0" Description="Vivado Synthesis Defaults" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." State="current" SynthRun="synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
@@ -554,7 +530,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_xlconcat_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_0_0" Description="Default settings for Implementation." SynthRun="top_blk_xlconcat_0_0_synth_1" IncludeInArchive="false">
@@ -570,6 +546,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xbar_0" Description="Default settings for Implementation." SynthRun="top_blk_xbar_0_synth_1" IncludeInArchive="false">
@@ -585,6 +562,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="adapter_fifo_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="adapter_fifo" Description="Default settings for Implementation." SynthRun="adapter_fifo_synth_1" IncludeInArchive="false">
@@ -600,6 +578,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="fifo_32to32_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="fifo_32to32" Description="Default settings for Implementation." SynthRun="fifo_32to32_synth_1" IncludeInArchive="false">
@@ -615,6 +594,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_axigpio_ctl_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_axigpio_ctl_0" Description="Default settings for Implementation." SynthRun="top_blk_axigpio_ctl_0_synth_1" IncludeInArchive="false">
@@ -630,6 +610,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_const0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_const0_0" Description="Default settings for Implementation." SynthRun="top_blk_const0_0_synth_1" IncludeInArchive="false">
@@ -645,6 +626,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_ps7_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_ps7_0_0" Description="Default settings for Implementation." SynthRun="top_blk_ps7_0_0_synth_1" IncludeInArchive="false">
@@ -660,6 +642,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="clk_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="clk_wiz_0" Description="Default settings for Implementation." SynthRun="clk_wiz_0_synth_1" IncludeInArchive="false">
@@ -675,6 +658,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_axi_dma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_axi_dma_0_0" Description="Default settings for Implementation." SynthRun="top_blk_axi_dma_0_0_synth_1" IncludeInArchive="false">
@@ -690,6 +674,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_system_ctl_reg_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_system_ctl_reg_0_0" Description="Default settings for Implementation." SynthRun="top_blk_system_ctl_reg_0_0_synth_1" IncludeInArchive="false">
@@ -705,6 +690,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_pixel_transparent_0_4_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_pixel_transparent_0_4" Description="Default settings for Implementation." SynthRun="top_blk_pixel_transparent_0_4_synth_1" IncludeInArchive="false">
@@ -720,13 +706,12 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="top_blk_xlconcat_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z010clg400-1" ConstrsSet="top_blk_xlconcat_1_0" Description="Default settings for Implementation." SynthRun="top_blk_xlconcat_1_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -737,6 +722,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
   </Runs>
