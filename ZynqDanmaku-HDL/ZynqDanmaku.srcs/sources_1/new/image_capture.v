@@ -7,9 +7,9 @@ module image_capture (
     input wire start,
 
     input wire [7:0] pixel,
-    input wire hs,
-    input wire de,
-    input wire vs,
+    input wire hs, //active low
+    input wire de, //active high
+    input wire vs, //active low
 
     output wire axis_valid,
     output wire axis_last,
@@ -36,10 +36,10 @@ always @(posedge clk or negedge rst_n) begin : proc_state
         case (state)
             3'h0: if(start_sync) state <= 3'h1;
             3'h1: if(!start_sync) state <= 3'h2;
-            3'h2: if(vs) state <= 3'h3;
-            3'h3: if(!vs) state <= 3'h4;
+            3'h2: if(~vs) state <= 3'h3;
+            3'h3: if(vs) state <= 3'h4; //frame begin
             3'h4: state <= 3'h5;
-            3'h5: if(vs) state <= 3'h6;
+            3'h5: if(~vs) state <= 3'h6; //frame end
             3'h6: state <= 3'h0;
             default : state <= 3'h0;
         endcase
