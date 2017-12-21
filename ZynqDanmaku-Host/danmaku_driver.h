@@ -10,6 +10,7 @@ DANMAKU_HW_HANDLE DanmakuHW_Open(void);
 const char* DanmakuHW_GetFPGABuildTime(DANMAKU_HW_HANDLE h);
 int DanmakuHW_FrameBufferTxmit(DANMAKU_HW_HANDLE h, int buf_index, uint32_t length);
 int DanmakuHW_PendingTxmit(DANMAKU_HW_HANDLE h);
+void DanmakuHW_GetFIFOUsage(DANMAKU_HW_HANDLE h, unsigned int* size);
 uintptr_t DanmakuHW_GetFrameBuffer(DANMAKU_HW_HANDLE h, int buf_index);
 void DanmakuHW_GetFrameSize(DANMAKU_HW_HANDLE h, unsigned int* height, unsigned int* width);
 void DanmakuHW_RenderFlush(DANMAKU_HW_HANDLE h);

@@ -27,6 +27,10 @@
 
 #define XILDMA_S2MM_OFFSET 0x30
 
+#define SYSCTL_RES_REGISTER 0x00
+#define SYSCTL_FIFO_SIZE_REGISTER 0x04
+#define SYSCTL_FIFO_MIN_REGISTER 0x08
+
 typedef struct descriptor_t{
     uint32_t next_desc;
     uint32_t next_desc_msb;
@@ -444,9 +448,16 @@ void DanmakuHW_GetFrameSize(DANMAKU_HW_HANDLE h, unsigned int* height, unsigned 
 {
     driver_ctx* ctx = (driver_ctx*)h;
     uintptr_t sfr = ctx->uaddr_perph_base+IP_SYS_CTL_OFFSET;
-    uint32_t resolution = *REG_OFF(sfr, 0);
+    uint32_t resolution = *REG_OFF(sfr, SYSCTL_RES_REGISTER);
     *height = resolution&0xffff;
     *width = (resolution>>16)&0xffff;
+}
+void DanmakuHW_GetFIFOUsage(DANMAKU_HW_HANDLE h, unsigned int* size)
+{
+    driver_ctx* ctx = (driver_ctx*)h;
+    uintptr_t sfr = ctx->uaddr_perph_base+IP_SYS_CTL_OFFSET;
+    *size = *REG_OFF(sfr, SYSCTL_FIFO_SIZE_REGISTER);
+    // *REG_OFF(sfr, SYSCTL_FIFO_MIN_REGISTER) = 0; //write anything to reset minimum record
 }
 int DanmakuHW_ImageCapture(DANMAKU_HW_HANDLE h, uint32_t addr, uint32_t length)
 {

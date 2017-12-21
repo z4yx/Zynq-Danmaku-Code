@@ -644,7 +644,7 @@ void SetCPUAffinity(void)
    thread = pthread_self();
 
    CPU_ZERO(&cpuset);
-   CPU_SET(0, &cpuset);
+   CPU_SET(OVERLAY_ASSOCIATE_CPU, &cpuset);
 
    s = pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
    if (s != 0)
@@ -688,17 +688,22 @@ void *Thread4Overlay(void *t)
     printf("Thread4Overlay loop begin\n");
     clock_gettime(CLOCK_MONOTONIC, &last_stamp);
     for(int cnt=0;render_running;cnt++){
-        clock_gettime(CLOCK_MONOTONIC, &stamp);
-        if(stamp.tv_sec - last_stamp.tv_sec >= 5){
-            printf("overlay %f\n", (cnt - last_cnt)
-                /(stamp.tv_sec - last_stamp.tv_sec + 1e-9*(stamp.tv_nsec - last_stamp.tv_nsec)));
-            last_cnt = cnt;
-            last_stamp = stamp;
+        uint8_t do_release_buf = 0;
+        if(cnt % 256 == 0){
+            // clock_gettime(CLOCK_MONOTONIC, &stamp);
+            // printf("overlay %.3f %d\n", (cnt - last_cnt)
+            //     /(stamp.tv_sec - last_stamp.tv_sec + 1e-9*(stamp.tv_nsec - last_stamp.tv_nsec)),
+            //     fifosize);
+            // last_cnt = cnt;
+            // last_stamp = stamp;
+        }
+        if(0){
+            int fifosize;
+            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+            if(fifosize < 50) printf("+f1 %d\n", fifosize);
         }
         DanmakuHW_FrameBufferTxmit(hDriver, idx, img_size);
 
-        while(render_running && DanmakuHW_PendingTxmit(hDriver))
-            DanmakuHW_WaitForPendingTxmit(hDriver);
         //Keep at least one filled buffer
         if(RingSize() > 2){
             //render done, switching buffer
@@ -708,13 +713,36 @@ void *Thread4Overlay(void *t)
                 idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
 #endif
 
-            ReleaseBuffer();
+            // ReleaseBuffer();
+            do_release_buf = 1;
 
             idx = GetFilledBuffer();
 
 #ifdef PROFILE_PRINT
             clock_gettime(CLOCK_MONOTONIC, &begin);
 #endif
+        }
+        if(0){
+            int fifosize;
+            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+            if(fifosize < 200) printf("+f2 %d\n", fifosize);
+        }
+
+        while(render_running && DanmakuHW_PendingTxmit(hDriver))
+            DanmakuHW_WaitForPendingTxmit(hDriver);
+        if(1){
+            int fifosize;
+            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+            if(fifosize < 200) printf("+f3 %d\n", fifosize);
+        }
+
+        if(do_release_buf)
+            ReleaseBuffer();
+
+        if(1){
+            int fifosize;
+            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+            if(fifosize < 50) printf("+f4 %d\n", fifosize);
         }
     }
     pthread_exit(NULL);

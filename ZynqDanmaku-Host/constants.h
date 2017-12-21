@@ -45,4 +45,6 @@
 #define IRQ_AXIDMA     (0)
 #define IRQ_AXICDMA    (1)
 
+#define OVERLAY_ASSOCIATE_CPU 1
+
 #endif
