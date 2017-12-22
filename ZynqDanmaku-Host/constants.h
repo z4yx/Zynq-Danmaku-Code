@@ -38,8 +38,10 @@
 #define IP_TIMETAG_OFFSET 0x02010000
 
 //GPIO number for DMA irq
-// #define IRQ_AXIDMA     (896+2)
-// #define IRQ_AXICDMA    (896+3)
+#define GPIO_BASE         896
+#define GPIO_CENTER_BTN   (GPIO_BASE+5)
+#define GPIO_IMGCAP_OVF   (GPIO_BASE+6)
+#define GPIO_IMGCAP_EN    (GPIO_BASE+7)
 
 //UIO number for DMA irq
 #define IRQ_AXIDMA     (0)

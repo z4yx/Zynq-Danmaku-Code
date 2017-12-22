@@ -750,7 +750,30 @@ void *Thread4Overlay(void *t)
 
 void InitImgCap(void)
 {
+    char cmds[128];
+    snprintf(cmds, sizeof(cmds), 
+        "echo %d >/sys/class/gpio/export;echo out >/sys/class/gpio/gpio%d/direction",
+        GPIO_IMGCAP_EN, GPIO_IMGCAP_EN);
+    system(cmds);
     DanmakuHW_AllocRenderBuf(hDriver, (uintptr_t*)&image_captured, &image_captured_phy, MAX_SCREEN_HEIGHT*MAX_WIDTH & ~7);
+}
+
+void DoImgCap(void)
+{
+    char cmds[128];
+    snprintf(cmds, sizeof(cmds), 
+        "echo 1 >/sys/class/gpio/gpio%d/value;echo 0 >/sys/class/gpio/gpio%d/value",
+        GPIO_IMGCAP_EN, GPIO_IMGCAP_EN);
+
+    DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
+    system(cmds);
+    usleep(40000);
+    while(DanmakuHW_PendingImgCap(hDriver))
+        pthread_yield();
+    printf("imgcap done\n");
+    FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
+    fwrite(image_captured, 1, screen_width*screen_height, fdbgimg);
+    fclose(fdbgimg);
 }
 
 void SubMain()
@@ -771,17 +794,6 @@ void SubMain()
 
     DanmakuHW_DestroyRenderBuf(hDriver);
 
-    // DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
-    // system("echo 1 >/sys/class/gpio/gpio903/value;echo 0 >/sys/class/gpio/gpio903/value");
-    // usleep(40000);
-    // while(DanmakuHW_PendingImgCap(hDriver))
-    //     pthread_yield();
-    // printf("imgcap done\n");
-    // FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
-    // fwrite(image_captured, 1, screen_width*screen_height, fdbgimg);
-    // fclose(fdbgimg);
-    // exit(0);
-
     img_size = (((screen_width + 2) * screen_height) + 3) & (~3);
     // PCIE_Write32(hDriver, PCIE_USER_BAR, REG_IMGSIZE, (uint32_t)img_size);
 
@@ -789,6 +801,7 @@ void SubMain()
     render_setopt_dpi(edge*4);
 
     InitImgCap();
+    DoImgCap(); /////////////////////// for test
 
     InitQueen(&sliding_queen);
     InitQueen(&static_queen);
