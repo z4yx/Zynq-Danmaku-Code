@@ -41,6 +41,8 @@ def find_cfgs(d):
 
 
 
+
+
 SRC_URI_append ="\
     file://plnx_kernel.cfg\
 "
