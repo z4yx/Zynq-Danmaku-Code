@@ -853,6 +853,7 @@ int main()
     pthread_mutex_init(&render_overlay_mutex, NULL);
     pthread_cond_init (&render_overlay_cv, NULL);
 
+    setvbuf(stdout, NULL, _IOLBF, 0); //set stdout as line buffer
     printf("starting danmaku...\n");
 
 #ifndef SIM_MODE

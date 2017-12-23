@@ -5,7 +5,8 @@ exec coffee $0 "$@"
 ###
 sleep = require('sleep');
 
-token = "cb561cb3cd0ddff31551f4b49608639e56aad80d"
+#Dream-To-Nine
+token = "b1ca714181e4cce8da8963ed621d5db2806dda96"
 
 # nowId = 1481805759250
 # waiting for correct system time
