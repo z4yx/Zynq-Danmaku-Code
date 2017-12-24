@@ -179,7 +179,7 @@ const uint8_t REGS_7611[][3] = {
 		{ADV7611_IO_ADDR,0x15,0x80}, // Disable Tristate of Pins
 		{ADV7611_IO_ADDR,0x19,0x88}, // LLC DLL phase
 		{ADV7611_IO_ADDR,0x33,0x40}, // LLC DLL enable
-		{ADV7611_IO_ADDR,0x06,0xA1}, // LLC Invert
+		// {ADV7611_IO_ADDR,0x06,0xA1}, // LLC Invert
 
 		{ADV7611_CP_ADDR,0x6C,0x00}, // ADI required setting
 		{ADV7611_CP_ADDR,0xBA,0x01}, // Set HDMI FreeRun
