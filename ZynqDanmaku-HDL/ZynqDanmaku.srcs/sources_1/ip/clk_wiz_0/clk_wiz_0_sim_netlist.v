@@ -1,10 +1,10 @@
-// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
-// Date        : Fri Dec 22 00:56:55 2017
-// Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
+// Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
+// Date        : Mon Jun 18 16:35:52 2018
+// Host        : cqtestlab running 64-bit Deepin 15.5
 // Command     : write_verilog -force -mode funcsim
-//               /home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
+//               /home/zhang/Projects/Zynq-Danmaku-Code/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -86,16 +86,16 @@ module clk_wiz_0_clk_wiz_0_clk_wiz
   (* BOX_TYPE = "PRIMITIVE" *) 
   PLLE2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT(9),
+    .CLKFBOUT_MULT(5),
     .CLKFBOUT_PHASE(0.000000),
-    .CLKIN1_PERIOD(6.667000),
+    .CLKIN1_PERIOD(6.061000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE(9),
+    .CLKOUT0_DIVIDE(5),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
-    .CLKOUT1_DIVIDE(9),
+    .CLKOUT1_DIVIDE(5),
     .CLKOUT1_DUTY_CYCLE(0.500000),
-    .CLKOUT1_PHASE(250.000000),
+    .CLKOUT1_PHASE(180.000000),
     .CLKOUT2_DIVIDE(1),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),

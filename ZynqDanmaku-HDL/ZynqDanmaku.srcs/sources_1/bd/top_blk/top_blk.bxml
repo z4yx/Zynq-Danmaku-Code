@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root MajorVersion="0" MinorVersion="33">
+<Root MajorVersion="0" MinorVersion="35">
   <CompositeFile CompositeFileTopName="top_blk" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1513752495"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1513752495"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1513752495"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1529307759"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1529307759"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529307759"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529307759"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_dma_0"/>
@@ -134,6 +135,14 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip/top_blk_TimeTag_USR_ACCESS_0_0/top_blk_TimeTag_USR_ACCESS_0_0.xci" Type="IP">
+        <Instance HierarchyPath="TimeTag_USR_ACCESS_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip/top_blk_xbar_0/top_blk_xbar_0.xci" Type="IP">
         <Instance HierarchyPath="ps7_0_axi_periph/xbar"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -152,21 +161,6 @@
       </File>
       <File Name="ip/top_blk_xbar_2/top_blk_xbar_2.xci" Type="IP">
         <Instance HierarchyPath="axi_interconnect_0/xbar"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="hdl/top_blk.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/top_blk_TimeTag_USR_ACCESS_0_0/top_blk_TimeTag_USR_ACCESS_0_0.xci" Type="IP">
-        <Instance HierarchyPath="TimeTag_USR_ACCESS_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -221,6 +215,17 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="synth/top_blk.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/top_blk.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="top_blk_ooc.xdc" Type="XDC">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
@@ -238,7 +243,7 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="hdl/top_blk.hwdef">
+      <File Name="synth/top_blk.hwdef">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>

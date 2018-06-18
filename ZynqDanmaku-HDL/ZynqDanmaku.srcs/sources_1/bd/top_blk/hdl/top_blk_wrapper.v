@@ -1,8 +1,8 @@
-//Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+//Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
-//Date        : Wed Dec 20 14:48:14 2017
-//Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
+//Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
+//Date        : Mon Jun 18 15:42:21 2018
+//Host        : cqtestlab running 64-bit Deepin 15.5
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
 //Purpose     : IP block netlist

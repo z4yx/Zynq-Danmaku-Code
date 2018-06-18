@@ -1,10 +1,10 @@
--- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
--- Date        : Fri Dec 22 00:57:52 2017
--- Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
+-- Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
+-- Date        : Mon Jun 18 15:47:24 2018
+-- Host        : cqtestlab running 64-bit Deepin 15.5
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/zhang/Zynq-Danmaku-Code-r1/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/fifo_32to32/fifo_32to32_stub.vhdl
+--               /home/zhang/Projects/Zynq-Danmaku-Code/ZynqDanmaku-HDL/ZynqDanmaku.srcs/sources_1/ip/fifo_32to32/fifo_32to32_stub.vhdl
 -- Design      : fifo_32to32
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
@@ -32,6 +32,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "wr_clk,rd_clk,din[31:0],wr_en,rd_en,dout[31:0],full,empty";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "fifo_generator_v13_1_4,Vivado 2017.1";
+attribute x_core_info of stub : architecture is "fifo_generator_v13_2_2,Vivado 2018.1";
 begin
 end;
