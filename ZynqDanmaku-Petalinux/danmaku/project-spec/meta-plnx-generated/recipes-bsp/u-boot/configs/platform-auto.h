@@ -155,7 +155,7 @@
 	CONSOLE_ARG \ 
 	PSSERIAL0 \ 
 	"nc=setenv stdout nc;setenv stdin nc;\0" \ 
-	
+	"ethaddr=00:0a:35:00:ad:49\0" \
 	"sdbootdev=0\0" \ 
 	"bootenv=uEnv.txt\0" \ 
 	"importbootenv=echo \"Importing environment from SD ...\"; " \ 
