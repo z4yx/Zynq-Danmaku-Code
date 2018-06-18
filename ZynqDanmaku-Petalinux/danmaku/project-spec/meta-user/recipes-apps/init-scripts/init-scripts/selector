@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "Press Ctrl-C in 2 seconds to stop booting..."
-sleep 2 && exec /boot_by_args
-
-exec /bin/sh

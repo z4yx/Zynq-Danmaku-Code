@@ -1,4 +1,3 @@
-/dts-v1/;
 /include/ "system-conf.dtsi"
 / {
         chosen {
@@ -13,7 +12,6 @@
 	        view-port = <0x170>;
 		drv-vbus;
 	};
-
 };
 &amba_pl {
 	axi_dma_uio: uio_dma@40400000 {
@@ -32,7 +30,6 @@
 &flash0 {
 	compatible = "s25fl256s1";
 };
-
 &usb0 {
 	status = "okay";
         //phy_type = "ulpi";
