@@ -251,6 +251,16 @@ assign DEB = de_to_hdmi[1];
 assign {O1_D[7:0],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
 
 //assign O1_D = crycb444[0];
+    
+assign O1_SCLK=IN_SCLK;
+assign MCLKA=IN_MCLK;
+assign LRCLKA=IN_LR;
+assign O1_I2S={1'b0,I2S};
+    
+assign O2_SCLK=IN_SCLK;
+assign MCLKB=IN_MCLK;
+assign LRCLKB=IN_LR;
+assign O2_I2S={1'b0,I2S};
 
 simpleyuv testpattern(
   .pxlClk(pixel_clk_to_output),
