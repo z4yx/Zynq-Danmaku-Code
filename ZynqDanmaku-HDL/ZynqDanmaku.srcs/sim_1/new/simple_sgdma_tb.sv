@@ -66,6 +66,7 @@ initial begin
 	dut.processing_system7_0.inst.set_arqos("S_AXI_HP0", 4'h0);
 	dut.processing_system7_0.inst.set_awqos("S_AXI_HP0", 4'h0);
 	dut.processing_system7_0.inst.set_slave_profile("S_AXI_HP0", 2'b10); //Worst case
+	dut.processing_system7_0.inst.set_debug_level_info(0);
 
 	repeat(50)begin 
 		@(posedge dut.processing_system7_0.FCLK_CLK0);
@@ -87,6 +88,7 @@ initial begin
 		dut.processing_system7_0.inst.read_data(32'h4050_0008,4,read_data,resp);
 	end while(read_data&1);
 
+    dut.processing_system7_0.inst.write_data(32'h4050_0010,4, 32'hff, resp); //status
 	dut.processing_system7_0.inst.write_data(32'h4050_0000,4, 32'h100002, resp); //mmaddr
 	dut.processing_system7_0.inst.write_data(32'h4050_0004,4, 32'ha000, resp); //length
 	dut.processing_system7_0.inst.write_data(32'h4050_0008,4, 32'b0011_1, resp); //control
@@ -94,6 +96,14 @@ initial begin
 	do begin 
 		dut.processing_system7_0.inst.read_data(32'h4050_0008,4,read_data,resp);
 	end while(read_data&1);
+    dut.processing_system7_0.inst.read_data(32'h4050_0010,4,read_data,resp);
+    $display ("%t, committed, status = 32'h%x",$time, read_data);
+    #72000;
+    dut.processing_system7_0.inst.read_data(32'h4050_0010,4,read_data,resp);
+    $display ("%t, completed, status = 32'h%x",$time, read_data);
+    dut.processing_system7_0.inst.write_data(32'h4050_0010,4, 32'hff, resp); //status
+    dut.processing_system7_0.inst.read_data(32'h4050_0010,4,read_data,resp);
+    $display ("%t, cleared, status = 32'h%x",$time, read_data);
 
 	dut.processing_system7_0.inst.write_data(32'h4050_0000,4, 32'h100000, resp); //mmaddr
 	dut.processing_system7_0.inst.write_data(32'h4050_0004,4, 32'd30, resp); //length
@@ -124,6 +134,10 @@ initial begin
 		end while(read_data&1);
 	end
 
+    dut.processing_system7_0.inst.write_data(32'h4050_0008,4, 32'hC0000000, resp); //control
+    #1900;
+    dut.processing_system7_0.inst.read_data(32'h4050_0010,4,read_data,resp);
+    $display ("%t, halted, status = 32'h%x",$time, read_data);
 
 	// //This drives the LEDs on the GPIO output
 	// dut.processing_system7_0.inst.write_data(32'h41200000,4, 32'hFFFFFFFF, resp);

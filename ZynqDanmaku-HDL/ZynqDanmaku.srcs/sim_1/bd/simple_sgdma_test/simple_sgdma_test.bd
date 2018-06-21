@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x7E8A9CC9593F7C31" bd:device="xc7z010clg400-1" bd:isValidated="true" bd:synthFlowMode="None" bd:tool_version="2018.1" bd:top="simple_sgdma_test" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x7E8A9CC90E792F08" bd:device="xc7z010clg400-1" bd:isValidated="true" bd:synthFlowMode="None" bd:tool_version="2018.1" bd:top="simple_sgdma_test" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -184,15 +184,8 @@
           <spirit:configurableElementValue spirit:referenceId="c_mm2s_btt_used">23</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_mm2s_include_sf">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_enable_s2mm">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="c_enable_mm2s_adv_sig">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_enable_mm2s_adv_sig">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_dummy">1</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>simple_sgdma_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="user" spirit:name="simple_sgdma" spirit:vendor="user.org" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_simple_sgdma_0_0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -299,6 +292,22 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_smartconnect_0_0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>simple_sgdma_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="simple_sgdma" spirit:vendor="user.org" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_simple_sgdma_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_2</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_xlconstant_1_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">4</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
     </spirit:componentInstances>
     <spirit:interconnections>
       <spirit:interconnection>
@@ -341,11 +350,11 @@
       <spirit:adHocConnection>
         <spirit:name>processing_system7_0_FCLK_CLK0</spirit:name>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="FCLK_CLK0"/>
-        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="axi_lite_reg_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axis_mm2s_cmdsts_aclk"/>
         <spirit:internalPortReference spirit:componentRef="smartconnect_1" spirit:portRef="aclk"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="proc_sys_reset_0" spirit:portRef="slowest_sync_clk"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="axi_lite_reg_aclk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>processing_system7_0_FCLK_CLK1</spirit:name>
@@ -369,8 +378,8 @@
       <spirit:adHocConnection>
         <spirit:name>proc_sys_reset_0_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="proc_sys_reset_0" spirit:portRef="peripheral_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="axi_lite_reg_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="m_axis_mm2s_cmdsts_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="axi_lite_reg_aresetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>processing_system7_0_FCLK_RESET0_N</spirit:name>
@@ -399,6 +408,36 @@
         <spirit:name>proc_sys_reset_1_interconnect_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="proc_sys_reset_1" spirit:portRef="interconnect_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="smartconnect_0" spirit:portRef="aresetn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlconstant_2_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_2" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_dbg_sel"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>simple_sgdma_0_allow_req</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="allow_req"/>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_allow_addr_req"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>simple_sgdma_0_halt</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="halt"/>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_halt"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_datamover_0_mm2s_halt_cmplt</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_halt_cmplt"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="halt_cmplt"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_datamover_0_mm2s_addr_req_posted</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_addr_req_posted"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="req_posted"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_datamover_0_mm2s_rd_xfer_cmplt</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_datamover_0" spirit:portRef="mm2s_rd_xfer_cmplt"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="xfer_cmplt"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>

@@ -60,6 +60,8 @@ ENTITY simple_sgdma_test_axi_datamover_0_0 IS
   PORT (
     m_axi_mm2s_aclk : IN STD_LOGIC;
     m_axi_mm2s_aresetn : IN STD_LOGIC;
+    mm2s_halt : IN STD_LOGIC;
+    mm2s_halt_cmplt : OUT STD_LOGIC;
     mm2s_err : OUT STD_LOGIC;
     m_axis_mm2s_cmdsts_aclk : IN STD_LOGIC;
     m_axis_mm2s_cmdsts_aresetn : IN STD_LOGIC;
@@ -71,6 +73,9 @@ ENTITY simple_sgdma_test_axi_datamover_0_0 IS
     m_axis_mm2s_sts_tdata : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     m_axis_mm2s_sts_tkeep : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     m_axis_mm2s_sts_tlast : OUT STD_LOGIC;
+    mm2s_allow_addr_req : IN STD_LOGIC;
+    mm2s_addr_req_posted : OUT STD_LOGIC;
+    mm2s_rd_xfer_cmplt : OUT STD_LOGIC;
     m_axi_mm2s_arid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
     m_axi_mm2s_araddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     m_axi_mm2s_arlen : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -90,7 +95,9 @@ ENTITY simple_sgdma_test_axi_datamover_0_0 IS
     m_axis_mm2s_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     m_axis_mm2s_tlast : OUT STD_LOGIC;
     m_axis_mm2s_tvalid : OUT STD_LOGIC;
-    m_axis_mm2s_tready : IN STD_LOGIC
+    m_axis_mm2s_tready : IN STD_LOGIC;
+    mm2s_dbg_sel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    mm2s_dbg_data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
   );
 END simple_sgdma_test_axi_datamover_0_0;
 
@@ -306,13 +313,14 @@ BEGIN
       C_ENABLE_S2MM_TKEEP => 1,
       C_ENABLE_SKID_BUF => "11111",
       C_ENABLE_S2MM_ADV_SIG => 0,
-      C_ENABLE_MM2S_ADV_SIG => 0,
+      C_ENABLE_MM2S_ADV_SIG => 1,
       C_CMD_WIDTH => 72
     )
     PORT MAP (
       m_axi_mm2s_aclk => m_axi_mm2s_aclk,
       m_axi_mm2s_aresetn => m_axi_mm2s_aresetn,
-      mm2s_halt => '0',
+      mm2s_halt => mm2s_halt,
+      mm2s_halt_cmplt => mm2s_halt_cmplt,
       mm2s_err => mm2s_err,
       m_axis_mm2s_cmdsts_aclk => m_axis_mm2s_cmdsts_aclk,
       m_axis_mm2s_cmdsts_aresetn => m_axis_mm2s_cmdsts_aresetn,
@@ -324,7 +332,9 @@ BEGIN
       m_axis_mm2s_sts_tdata => m_axis_mm2s_sts_tdata,
       m_axis_mm2s_sts_tkeep => m_axis_mm2s_sts_tkeep,
       m_axis_mm2s_sts_tlast => m_axis_mm2s_sts_tlast,
-      mm2s_allow_addr_req => '1',
+      mm2s_allow_addr_req => mm2s_allow_addr_req,
+      mm2s_addr_req_posted => mm2s_addr_req_posted,
+      mm2s_rd_xfer_cmplt => mm2s_rd_xfer_cmplt,
       m_axi_mm2s_arid => m_axi_mm2s_arid,
       m_axi_mm2s_araddr => m_axi_mm2s_araddr,
       m_axi_mm2s_arlen => m_axi_mm2s_arlen,
@@ -345,7 +355,8 @@ BEGIN
       m_axis_mm2s_tlast => m_axis_mm2s_tlast,
       m_axis_mm2s_tvalid => m_axis_mm2s_tvalid,
       m_axis_mm2s_tready => m_axis_mm2s_tready,
-      mm2s_dbg_sel => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 4)),
+      mm2s_dbg_sel => mm2s_dbg_sel,
+      mm2s_dbg_data => mm2s_dbg_data,
       m_axi_s2mm_aclk => '0',
       m_axi_s2mm_aresetn => '1',
       s2mm_halt => '0',

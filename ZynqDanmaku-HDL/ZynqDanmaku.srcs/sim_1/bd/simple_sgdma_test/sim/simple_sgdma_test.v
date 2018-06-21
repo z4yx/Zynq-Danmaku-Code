@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
-//Date        : Thu Jun 21 14:57:04 2018
+//Date        : Thu Jun 21 21:43:37 2018
 //Host        : cqtestlab running 64-bit Deepin 15.5
 //Command     : generate_target simple_sgdma_test.bd
 //Design      : simple_sgdma_test
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "simple_sgdma_test,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=simple_sgdma_test,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=10,numReposBlks=10,numNonXlnxBlks=1,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=2,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "simple_sgdma_test.hwdef" *) 
+(* CORE_GENERATION_INFO = "simple_sgdma_test,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=simple_sgdma_test,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=11,numNonXlnxBlks=1,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=2,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "simple_sgdma_test.hwdef" *) 
 module simple_sgdma_test
    (DDR_addr,
     DDR_ba,
@@ -76,6 +76,9 @@ module simple_sgdma_test
   wire axi_datamover_0_M_AXI_MM2S_RREADY;
   wire [1:0]axi_datamover_0_M_AXI_MM2S_RRESP;
   wire axi_datamover_0_M_AXI_MM2S_RVALID;
+  wire axi_datamover_0_mm2s_addr_req_posted;
+  wire axi_datamover_0_mm2s_halt_cmplt;
+  wire axi_datamover_0_mm2s_rd_xfer_cmplt;
   wire [31:0]axi_traffic_gen_0_M_AXI_ARADDR;
   wire [1:0]axi_traffic_gen_0_M_AXI_ARBURST;
   wire [3:0]axi_traffic_gen_0_M_AXI_ARCACHE;
@@ -161,9 +164,11 @@ module simple_sgdma_test
   wire processing_system7_0_M_AXI_GP0_WREADY;
   wire [3:0]processing_system7_0_M_AXI_GP0_WSTRB;
   wire processing_system7_0_M_AXI_GP0_WVALID;
+  wire simple_sgdma_0_allow_req;
   wire [71:0]simple_sgdma_0_axis_cmd_TDATA;
   wire simple_sgdma_0_axis_cmd_TREADY;
   wire simple_sgdma_0_axis_cmd_TVALID;
+  wire simple_sgdma_0_halt;
   wire [31:0]smartconnect_0_M00_AXI_ARADDR;
   wire [1:0]smartconnect_0_M00_AXI_ARBURST;
   wire [3:0]smartconnect_0_M00_AXI_ARCACHE;
@@ -200,6 +205,7 @@ module simple_sgdma_test
   wire smartconnect_1_M00_AXI_WVALID;
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
+  wire [3:0]xlconstant_2_dout;
 
   assign core_ext_start_0_1 = core_ext_start_0;
   simple_sgdma_test_axi_datamover_0_0 axi_datamover_0
@@ -228,6 +234,12 @@ module simple_sgdma_test
         .m_axis_mm2s_sts_tready(axi_datamover_0_M_AXIS_MM2S_STS_TREADY),
         .m_axis_mm2s_sts_tvalid(axi_datamover_0_M_AXIS_MM2S_STS_TVALID),
         .m_axis_mm2s_tready(xlconstant_0_dout),
+        .mm2s_addr_req_posted(axi_datamover_0_mm2s_addr_req_posted),
+        .mm2s_allow_addr_req(simple_sgdma_0_allow_req),
+        .mm2s_dbg_sel(xlconstant_2_dout),
+        .mm2s_halt(simple_sgdma_0_halt),
+        .mm2s_halt_cmplt(axi_datamover_0_mm2s_halt_cmplt),
+        .mm2s_rd_xfer_cmplt(axi_datamover_0_mm2s_rd_xfer_cmplt),
         .s_axis_mm2s_cmd_tdata(simple_sgdma_0_axis_cmd_TDATA),
         .s_axis_mm2s_cmd_tready(simple_sgdma_0_axis_cmd_TREADY),
         .s_axis_mm2s_cmd_tvalid(simple_sgdma_0_axis_cmd_TVALID));
@@ -369,7 +381,8 @@ module simple_sgdma_test
         .S_AXI_HP0_WSTRB({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
         .S_AXI_HP0_WVALID(1'b0));
   simple_sgdma_test_simple_sgdma_0_0 simple_sgdma_0
-       (.axi_lite_reg_aclk(processing_system7_0_FCLK_CLK0),
+       (.allow_req(simple_sgdma_0_allow_req),
+        .axi_lite_reg_aclk(processing_system7_0_FCLK_CLK0),
         .axi_lite_reg_araddr(smartconnect_1_M00_AXI_ARADDR),
         .axi_lite_reg_aresetn(proc_sys_reset_0_peripheral_aresetn),
         .axi_lite_reg_arprot(smartconnect_1_M00_AXI_ARPROT),
@@ -397,7 +410,11 @@ module simple_sgdma_test
         .axis_sts_tkeep(axi_datamover_0_M_AXIS_MM2S_STS_TKEEP),
         .axis_sts_tlast(axi_datamover_0_M_AXIS_MM2S_STS_TLAST),
         .axis_sts_tready(axi_datamover_0_M_AXIS_MM2S_STS_TREADY),
-        .axis_sts_tvalid(axi_datamover_0_M_AXIS_MM2S_STS_TVALID));
+        .axis_sts_tvalid(axi_datamover_0_M_AXIS_MM2S_STS_TVALID),
+        .halt(simple_sgdma_0_halt),
+        .halt_cmplt(axi_datamover_0_mm2s_halt_cmplt),
+        .req_posted(axi_datamover_0_mm2s_addr_req_posted),
+        .xfer_cmplt(axi_datamover_0_mm2s_rd_xfer_cmplt));
   simple_sgdma_test_smartconnect_0_0 smartconnect_0
        (.M00_AXI_araddr(smartconnect_0_M00_AXI_ARADDR),
         .M00_AXI_arburst(smartconnect_0_M00_AXI_ARBURST),
@@ -515,4 +532,6 @@ module simple_sgdma_test
        (.dout(xlconstant_0_dout));
   simple_sgdma_test_xlconstant_1_0 xlconstant_1
        (.dout(xlconstant_1_dout));
+  simple_sgdma_test_xlconstant_1_1 xlconstant_2
+       (.dout(xlconstant_2_dout));
 endmodule

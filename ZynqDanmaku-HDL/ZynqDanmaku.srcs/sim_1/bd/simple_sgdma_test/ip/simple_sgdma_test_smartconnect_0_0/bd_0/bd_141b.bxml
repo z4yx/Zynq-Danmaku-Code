@@ -2,11 +2,22 @@
 <Root MajorVersion="0" MinorVersion="35">
   <CompositeFile CompositeFileTopName="bd_141b" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529564238"/>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1529588620"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1529588620"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529588621"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529588621"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
+      <File Name="synth/bd_141b.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/bd_141b.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip/ip_10/bd_141b_s00a2s_0.xci" Type="IP">
         <Instance HierarchyPath="s00_axi2sc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -189,17 +200,6 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="synth/bd_141b.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-      </File>
-      <File Name="sim/bd_141b.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="hw_handoff/simple_sgdma_test_smartconnect_0_0.hwh" Type="HwHandoff">

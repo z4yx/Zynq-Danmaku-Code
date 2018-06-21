@@ -165,7 +165,7 @@ proc create_root_design { parentCell } {
   set axi_datamover_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_datamover:5.1 axi_datamover_0 ]
   set_property -dict [ list \
    CONFIG.c_dummy {1} \
-   CONFIG.c_enable_mm2s_adv_sig {0} \
+   CONFIG.c_enable_mm2s_adv_sig {1} \
    CONFIG.c_enable_s2mm {0} \
    CONFIG.c_include_mm2s_dre {true} \
    CONFIG.c_include_s2mm {Omit} \
@@ -280,7 +280,7 @@ proc create_root_design { parentCell } {
  ] $processing_system7_0
 
   # Create instance: simple_sgdma_0, and set properties
-  set simple_sgdma_0 [ create_bd_cell -type ip -vlnv user.org:user:simple_sgdma:1.0 simple_sgdma_0 ]
+  set simple_sgdma_0 [ create_bd_cell -type ip -vlnv user.org:user:simple_sgdma:1.1 simple_sgdma_0 ]
 
   # Create instance: smartconnect_0, and set properties
   set smartconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 smartconnect_0 ]
@@ -297,6 +297,13 @@ proc create_root_design { parentCell } {
   # Create instance: xlconstant_1, and set properties
   set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
 
+  # Create instance: xlconstant_2, and set properties
+  set xlconstant_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_2 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_WIDTH {4} \
+ ] $xlconstant_2
+
   # Create interface connections
   connect_bd_intf_net -intf_net axi_datamover_0_M_AXIS_MM2S_STS [get_bd_intf_pins axi_datamover_0/M_AXIS_MM2S_STS] [get_bd_intf_pins simple_sgdma_0/axis_sts]
   connect_bd_intf_net -intf_net axi_datamover_0_M_AXI_MM2S [get_bd_intf_pins axi_datamover_0/M_AXI_MM2S] [get_bd_intf_pins smartconnect_0/S00_AXI]
@@ -309,6 +316,9 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net smartconnect_1_M00_AXI [get_bd_intf_pins simple_sgdma_0/axi_lite_reg] [get_bd_intf_pins smartconnect_1/M00_AXI]
 
   # Create port connections
+  connect_bd_net -net axi_datamover_0_mm2s_addr_req_posted [get_bd_pins axi_datamover_0/mm2s_addr_req_posted] [get_bd_pins simple_sgdma_0/req_posted]
+  connect_bd_net -net axi_datamover_0_mm2s_halt_cmplt [get_bd_pins axi_datamover_0/mm2s_halt_cmplt] [get_bd_pins simple_sgdma_0/halt_cmplt]
+  connect_bd_net -net axi_datamover_0_mm2s_rd_xfer_cmplt [get_bd_pins axi_datamover_0/mm2s_rd_xfer_cmplt] [get_bd_pins simple_sgdma_0/xfer_cmplt]
   connect_bd_net -net core_ext_start_0_1 [get_bd_ports core_ext_start_0] [get_bd_pins axi_traffic_gen_0/core_ext_start]
   connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_pins proc_sys_reset_0/interconnect_aresetn] [get_bd_pins smartconnect_1/aresetn]
   connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axi_datamover_0/m_axis_mm2s_cmdsts_aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins simple_sgdma_0/axi_lite_reg_aresetn]
@@ -317,8 +327,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_datamover_0/m_axis_mm2s_cmdsts_aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins simple_sgdma_0/axi_lite_reg_aclk] [get_bd_pins smartconnect_1/aclk]
   connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins axi_datamover_0/m_axi_mm2s_aclk] [get_bd_pins axi_traffic_gen_0/s_axi_aclk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk] [get_bd_pins processing_system7_0/FCLK_CLK1] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins smartconnect_0/aclk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins proc_sys_reset_0/ext_reset_in] [get_bd_pins proc_sys_reset_1/ext_reset_in] [get_bd_pins processing_system7_0/FCLK_RESET0_N]
+  connect_bd_net -net simple_sgdma_0_allow_req [get_bd_pins axi_datamover_0/mm2s_allow_addr_req] [get_bd_pins simple_sgdma_0/allow_req]
+  connect_bd_net -net simple_sgdma_0_halt [get_bd_pins axi_datamover_0/mm2s_halt] [get_bd_pins simple_sgdma_0/halt]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins axi_datamover_0/m_axis_mm2s_tready] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins processing_system7_0/S_AXI_HP0_RDISSUECAP1_EN] [get_bd_pins processing_system7_0/S_AXI_HP0_WRISSUECAP1_EN] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net xlconstant_2_dout [get_bd_pins axi_datamover_0/mm2s_dbg_sel] [get_bd_pins xlconstant_2/dout]
 
   # Create address segments
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_datamover_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM

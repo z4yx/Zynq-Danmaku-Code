@@ -47,13 +47,18 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: user.org:user:simple_sgdma:1.0
-// IP Revision: 3
+// IP VLNV: user.org:user:simple_sgdma:1.1
+// IP Revision: 1
 
 `timescale 1ns/1ps
 
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module simple_sgdma_test_simple_sgdma_0_0 (
+  halt,
+  allow_req,
+  halt_cmplt,
+  req_posted,
+  xfer_cmplt,
   axi_lite_reg_awaddr,
   axi_lite_reg_awprot,
   axi_lite_reg_awvalid,
@@ -85,6 +90,11 @@ module simple_sgdma_test_simple_sgdma_0_0 (
   axis_sts_tready
 );
 
+output wire halt;
+output wire allow_req;
+input wire halt_cmplt;
+input wire req_posted;
+input wire xfer_cmplt;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi_lite_reg AWADDR" *)
 input wire [4 : 0] axi_lite_reg_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi_lite_reg AWPROT" *)
@@ -157,6 +167,11 @@ output wire axis_sts_tready;
     .C_axis_cmd_START_COUNT(1),  // Start count is the number of clock cycles the master will wait before initiating/issuing any transaction.
     .C_axis_sts_TDATA_WIDTH(8)  // AXI4Stream sink: Data Width
   ) inst (
+    .halt(halt),
+    .allow_req(allow_req),
+    .halt_cmplt(halt_cmplt),
+    .req_posted(req_posted),
+    .xfer_cmplt(xfer_cmplt),
     .axi_lite_reg_awaddr(axi_lite_reg_awaddr),
     .axi_lite_reg_awprot(axi_lite_reg_awprot),
     .axi_lite_reg_awvalid(axi_lite_reg_awvalid),

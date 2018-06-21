@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="35">
   <CompositeFile CompositeFileTopName="simple_sgdma_test" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529564238"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529564238"/>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1529588617"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1529588617"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529588621"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529588621"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/simple_sgdma_test_axi_datamover_0_0/simple_sgdma_test_axi_datamover_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_datamover_0"/>
@@ -92,6 +92,14 @@
       </File>
       <File Name="ip/simple_sgdma_test_smartconnect_0_0/simple_sgdma_test_smartconnect_0_0.xci" Type="IP">
         <Instance HierarchyPath="smartconnect_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/simple_sgdma_test_xlconstant_1_1/simple_sgdma_test_xlconstant_1_1.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_2"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
