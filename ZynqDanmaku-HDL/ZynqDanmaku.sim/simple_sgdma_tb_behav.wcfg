@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="simple_sgdma_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_vip_pkg" />
+            <top_module name="glbl" />
+            <top_module name="lib_pkg" />
+            <top_module name="simple_sgdma_tb" />
+            <top_module name="std" />
+            <top_module name="vcomponents" />
+            <top_module name="xil_common_vip_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="116833333333fs"></ZoomStartTime>
+      <ZoomEndTime time="217833333334fs"></ZoomEndTime>
+      <Cursor1Time time="201000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="57" />
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axi_lite_reg_aclk">
+      <obj_property name="ElementShortName">axi_lite_reg_aclk</obj_property>
+      <obj_property name="ObjectShortName">axi_lite_reg_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axi_lite_reg_aresetn">
+      <obj_property name="ElementShortName">axi_lite_reg_aresetn</obj_property>
+      <obj_property name="ObjectShortName">axi_lite_reg_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_mmaddr">
+      <obj_property name="ElementShortName">slv_reg_mmaddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_mmaddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_length">
+      <obj_property name="ElementShortName">slv_reg_length[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_length[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_control_tag">
+      <obj_property name="ElementShortName">slv_reg_control_tag[3:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_control_tag[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_control_commit_last">
+      <obj_property name="ElementShortName">slv_reg_control_commit_last</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_control_commit_last</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_control_commit">
+      <obj_property name="ElementShortName">slv_reg_control_commit</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_control_commit</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/commit_posedge">
+      <obj_property name="ElementShortName">commit_posedge</obj_property>
+      <obj_property name="ObjectShortName">commit_posedge</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_cmd_handshake">
+      <obj_property name="ElementShortName">axis_cmd_handshake</obj_property>
+      <obj_property name="ObjectShortName">axis_cmd_handshake</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/commit_ack">
+      <obj_property name="ElementShortName">commit_ack</obj_property>
+      <obj_property name="ObjectShortName">commit_ack</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_cmd_tvalid">
+      <obj_property name="ElementShortName">axis_cmd_tvalid</obj_property>
+      <obj_property name="ObjectShortName">axis_cmd_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_cmd_tdata">
+      <obj_property name="ElementShortName">axis_cmd_tdata[71:0]</obj_property>
+      <obj_property name="ObjectShortName">axis_cmd_tdata[71:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_cmd_tready">
+      <obj_property name="ElementShortName">axis_cmd_tready</obj_property>
+      <obj_property name="ObjectShortName">axis_cmd_tready</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arid">
+      <obj_property name="ElementShortName">m_axi_mm2s_arid[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arid[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_araddr">
+      <obj_property name="ElementShortName">m_axi_mm2s_araddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_araddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arlen">
+      <obj_property name="ElementShortName">m_axi_mm2s_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arsize">
+      <obj_property name="ElementShortName">m_axi_mm2s_arsize[2:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arsize[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arburst">
+      <obj_property name="ElementShortName">m_axi_mm2s_arburst[1:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arburst[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arprot">
+      <obj_property name="ElementShortName">m_axi_mm2s_arprot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arprot[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arcache">
+      <obj_property name="ElementShortName">m_axi_mm2s_arcache[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arcache[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_aruser">
+      <obj_property name="ElementShortName">m_axi_mm2s_aruser[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_aruser[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arvalid">
+      <obj_property name="ElementShortName">m_axi_mm2s_arvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_arready">
+      <obj_property name="ElementShortName">m_axi_mm2s_arready</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_rdata">
+      <obj_property name="ElementShortName">m_axi_mm2s_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_rdata[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_rresp">
+      <obj_property name="ElementShortName">m_axi_mm2s_rresp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_rresp[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_rlast">
+      <obj_property name="ElementShortName">m_axi_mm2s_rlast</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_rlast</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_rvalid">
+      <obj_property name="ElementShortName">m_axi_mm2s_rvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_rvalid</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/U0/m_axi_mm2s_rready">
+      <obj_property name="ElementShortName">m_axi_mm2s_rready</obj_property>
+      <obj_property name="ObjectShortName">m_axi_mm2s_rready</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/m_axis_mm2s_tdata">
+      <obj_property name="ElementShortName">m_axis_mm2s_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_mm2s_tdata[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/m_axis_mm2s_tkeep">
+      <obj_property name="ElementShortName">m_axis_mm2s_tkeep[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_mm2s_tkeep[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/m_axis_mm2s_tlast">
+      <obj_property name="ElementShortName">m_axis_mm2s_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_axis_mm2s_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/m_axis_mm2s_tready">
+      <obj_property name="ElementShortName">m_axis_mm2s_tready</obj_property>
+      <obj_property name="ObjectShortName">m_axis_mm2s_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/axi_datamover_0/m_axis_mm2s_tvalid">
+      <obj_property name="ElementShortName">m_axis_mm2s_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axis_mm2s_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARADDR">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARADDR[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARBURST">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARBURST[1:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARBURST[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARCACHE">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARCACHE[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARCACHE[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARID">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARID[5:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARID[5:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARLEN">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARLEN[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARLEN[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARLOCK">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARLOCK[1:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARLOCK[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARPROT">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARPROT[2:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARPROT[2:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARQOS">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARQOS[3:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARQOS[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARREADY">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARREADY</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARREADY</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARSIZE">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARSIZE[2:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARSIZE[2:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_ARVALID">
+      <obj_property name="ElementShortName">S_AXI_HP0_ARVALID</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_ARVALID</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RDATA">
+      <obj_property name="ElementShortName">S_AXI_HP0_RDATA[63:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RDATA[63:0]</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RID">
+      <obj_property name="ElementShortName">S_AXI_HP0_RID[5:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RID[5:0]</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RLAST">
+      <obj_property name="ElementShortName">S_AXI_HP0_RLAST</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RLAST</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RREADY">
+      <obj_property name="ElementShortName">S_AXI_HP0_RREADY</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RREADY</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RRESP">
+      <obj_property name="ElementShortName">S_AXI_HP0_RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RRESP[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/processing_system7_0/inst/S_AXI_HP0_RVALID">
+      <obj_property name="ElementShortName">S_AXI_HP0_RVALID</obj_property>
+      <obj_property name="ObjectShortName">S_AXI_HP0_RVALID</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_sts_tready">
+      <obj_property name="ElementShortName">axis_sts_tready</obj_property>
+      <obj_property name="ObjectShortName">axis_sts_tready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_sts_tdata">
+      <obj_property name="ElementShortName">axis_sts_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">axis_sts_tdata[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_sts_tkeep">
+      <obj_property name="ElementShortName">axis_sts_tkeep[0:0]</obj_property>
+      <obj_property name="ObjectShortName">axis_sts_tkeep[0:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_sts_tlast">
+      <obj_property name="ElementShortName">axis_sts_tlast</obj_property>
+      <obj_property name="ObjectShortName">axis_sts_tlast</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/axis_sts_tvalid">
+      <obj_property name="ElementShortName">axis_sts_tvalid</obj_property>
+      <obj_property name="ObjectShortName">axis_sts_tvalid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_response_tag">
+      <obj_property name="ElementShortName">slv_reg_response_tag[3:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_response_tag[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/simple_sgdma_tb/dut/simple_sgdma_0/inst/slv_reg_response_ok_slverr_decerr_interr">
+      <obj_property name="ElementShortName">slv_reg_response_ok_slverr_decerr_interr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_response_ok_slverr_decerr_interr[3:0]</obj_property>
+   </wvobject>
+</wave_config>
