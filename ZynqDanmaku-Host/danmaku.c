@@ -697,12 +697,15 @@ void *Thread4Overlay(void *t)
             // last_cnt = cnt;
             // last_stamp = stamp;
         }
-        if(0){
+        if(1){
             int fifosize;
             DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
             if(fifosize < 50) printf("+f1 %d\n", fifosize);
         }
         DanmakuHW_FrameBufferTxmit(hDriver, idx, img_size);
+
+        while(render_running && DanmakuHW_PendingTxmit(hDriver))
+            pthread_yield();
 
         //Keep at least one filled buffer
         if(RingSize() > 2){
@@ -713,8 +716,7 @@ void *Thread4Overlay(void *t)
                 idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
 #endif
 
-            // ReleaseBuffer();
-            do_release_buf = 1;
+            ReleaseBuffer();
 
             idx = GetFilledBuffer();
 
@@ -722,22 +724,22 @@ void *Thread4Overlay(void *t)
             clock_gettime(CLOCK_MONOTONIC, &begin);
 #endif
         }
-        if(0){
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 200) printf("+f2 %d\n", fifosize);
-        }
+        // if(0){
+        //     int fifosize;
+        //     DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+        //     if(fifosize < 200) printf("+f2 %d\n", fifosize);
+        // }
 
-        while(render_running && DanmakuHW_PendingTxmit(hDriver))
-            DanmakuHW_WaitForPendingTxmit(hDriver);
-        if(1){
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 200) printf("+f3 %d\n", fifosize);
-        }
+        // while(render_running && DanmakuHW_PendingTxmit(hDriver))
+        //     DanmakuHW_WaitForPendingTxmit(hDriver);
+        // if(1){
+        //     int fifosize;
+        //     DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+        //     if(fifosize < 200) printf("+f3 %d\n", fifosize);
+        // }
 
-        if(do_release_buf)
-            ReleaseBuffer();
+        // if(do_release_buf)
+        //     ReleaseBuffer();
 
         if(1){
             int fifosize;

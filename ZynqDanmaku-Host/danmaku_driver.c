@@ -31,6 +31,12 @@
 #define SYSCTL_FIFO_SIZE_REGISTER 0x04
 #define SYSCTL_FIFO_MIN_REGISTER 0x08
 
+#define FIFO_DMA_ADDRESS_REG 0x00
+#define FIFO_DMA_LENGTH_REG  0x04
+#define FIFO_DMA_CONTROL_REG 0x08
+#define FIFO_DMA_RESP_REG    0x0C
+#define FIFO_DMA_STATUS_REG  0x10
+
 typedef struct descriptor_t{
     uint32_t next_desc;
     uint32_t next_desc_msb;
@@ -405,44 +411,40 @@ uint32_t DanmakuHW_RenderDMAStatus(DANMAKU_HW_HANDLE h)
 int DanmakuHW_FrameBufferTxmit(DANMAKU_HW_HANDLE h, int buf_index, uint32_t length)
 {
     driver_ctx* ctx = (driver_ctx*)h;
-    uintptr_t dma_csr = ctx->uaddr_perph_base+IP_AXI_DMA_OFFSET;
+    uintptr_t dma_csr = ctx->uaddr_perph_base+IP_FIFO_SGDMA_OFFSET;
 
     assert(buf_index >= 0 && buf_index < NUM_FRAME_BUFFER);
     assert(length <= FRAME_BUFFER_SIZE);
     assert((length & 0x7) == 0);
 
-    // printf("%s: %p %u\n",
-    //     __func__, DanmakuHW_GetFrameBuffer(h, buf_index), length);
-    // printf("%s: status=%x\n", __func__, *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER));
-    uint32_t status = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
-    if(status & 0x70){
-        ratelimit_printf("%s error - status=%x\n", __func__, status);
+    if((*REG_OFF(dma_csr, FIFO_DMA_CONTROL_REG) & 1) == 1){
+        // DMA Unavailable: descriptor FIFO full
+        // Should not occur in normal operation
+        return -1;
     }
 
-    *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = status; //Clear flags
-    // *REG_OFF(dma_csr, XILDMA_CONTROL_REGISTER) = 0xf001; //Control
-    *REG_OFF(dma_csr, XILDMA_START_ADDRESS) = DanmakuHW_GetFrameBuffer(h, buf_index); //Read Address
-    *REG_OFF(dma_csr, XILDMA_LENGTH) = length; //Length
+    uint32_t status = *REG_OFF(dma_csr, FIFO_DMA_RESP_REG);
+    if(status & 0x70){
+        ratelimit_printf("%s error status=%x tag=%x\n", __func__, status&0xf, status&0xf0);
+    }
+
+    *REG_OFF(dma_csr, FIFO_DMA_STATUS_REG) = 0xff; // clear flags
+    *REG_OFF(dma_csr, FIFO_DMA_ADDRESS_REG) = DanmakuHW_GetFrameBuffer(h, buf_index); //Read Address
+    *REG_OFF(dma_csr, FIFO_DMA_LENGTH_REG) = length; //Length
+    *REG_OFF(dma_csr, FIFO_DMA_CONTROL_REG) = ((buf_index&0xf)<<1)|1; //Control
     return 0;
 }
 int DanmakuHW_PendingTxmit(DANMAKU_HW_HANDLE h)
 {
     driver_ctx* ctx = (driver_ctx*)h;
     uintptr_t dma_csr = ctx->uaddr_perph_base+IP_AXI_DMA_OFFSET;
-    return !(*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) & 3);
-}
-int DanmakuHW_WaitForPendingTxmit(DANMAKU_HW_HANDLE h)
-{
-    driver_ctx* ctx = (driver_ctx*)h;
-    uintptr_t dma_csr = ctx->uaddr_perph_base+IP_AXI_DMA_OFFSET;
-    uint32_t wr_clear = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
-    *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = wr_clear;
-    if((*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) & 3))
+    uint32_t status = *REG_OFF(dma_csr, FIFO_DMA_STATUS_REG);
+    if((status&1)){
+        // request posted
+        *REG_OFF(dma_csr, FIFO_DMA_STATUS_REG) = 1; //clear flag
         return 0;
-    wait_on_irq(ctx,IRQ_AXIDMA);
-    wr_clear = *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER);
-    *REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) = wr_clear;
-    return 0;
+    }
+    return 1;
 }
 void DanmakuHW_GetFrameSize(DANMAKU_HW_HANDLE h, unsigned int* height, unsigned int* width)
 {
