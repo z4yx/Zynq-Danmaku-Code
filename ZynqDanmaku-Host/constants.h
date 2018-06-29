@@ -25,8 +25,9 @@
 
 #define MAX_IMG_SIZE ((((MAX_WIDTH + 2) * MAX_SCREEN_HEIGHT) + 3) & (~3))
 #define FRAME_BUFFER_SIZE MAX_IMG_SIZE
-#define NUM_FRAME_BUFFER 7
+#define NUM_FRAME_BUFFER 8
 #define NUM_RENDER_SG_DESC (1<<12)
+#define NUM_OVERLAY_SUBMITTED 3
 
 #define PERPH_ADDR_BASE 0x40000000
 #define PERPH_ADDR_SPAN 0x03000000
@@ -38,15 +39,21 @@
 #define IP_SYS_CTL_OFFSET 0x02000000
 #define IP_TIMETAG_OFFSET 0x02010000
 
+#define DMA_TAG_SIZE 16
+
 //GPIO number for DMA irq
-#define GPIO_BASE         896
+#define GPIO_BASE         1006
 #define GPIO_IMGCAP_OVF   (GPIO_BASE+6)
 #define GPIO_IMGCAP_EN    (GPIO_BASE+7)
 #define GPIO_CENTER_BTN   (GPIO_BASE+8)
+#define GPIO_EN0_BTN      (GPIO_BASE+9)
+#define GPIO_BLANK0_BTN   (GPIO_BASE+10)
+#define GPIO_EN1_BTN      (GPIO_BASE+11)
+#define GPIO_BLANK1_BTN   (GPIO_BASE+12)
 
 //UIO number for DMA irq
-#define IRQ_AXIDMA     (0)
-#define IRQ_AXICDMA    (1)
+#define IRQ_AXICDMA    (0)
+#define IRQ_AXIDMA     (1)
 
 #define OVERLAY_ASSOCIATE_CPU 1
 

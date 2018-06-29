@@ -5,8 +5,7 @@ exec coffee $0 "$@"
 ###
 sleep = require('sleep');
 
-#Dream-To-Nine
-token = "b1ca714181e4cce8da8963ed621d5db2806dda96"
+token = "e2289b7366a270d8e1012e6fecb2f994ab80be26"
 
 # nowId = 1481805759250
 # waiting for correct system time
@@ -14,7 +13,7 @@ while((nowId = (new Date).getTime()) < 1451606400000)
   process.stderr.write 'nowId='+nowId+" waiting \n"
   sleep.sleep(5)
 
-api = "http://c.n9.vc/app/screen"
+api = "https://stu.cs.tsinghua.edu.cn/comment/app/screen"
 
 
 request = require('request');
