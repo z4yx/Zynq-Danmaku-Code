@@ -697,10 +697,15 @@ void *Thread4Overlay(void *t)
     }
     printf("Thread4Overlay started\n");
 
-#ifndef SIM_MODE
-    SetCPUAffinity();
-#endif
+    // Wait until original pixel data consumed
+    for (int fifosize = 1; fifosize > 0; usleep(10000))
+    {
+        DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+    }
 
+    SetCPUAffinity();
+
+    printf("Waiting for the first rendered frame\n");
     while(render_running && (idx = DequeFront(&FilledBufQ)) == -1)
         pthread_yield();
     if(!render_running) return 0;
