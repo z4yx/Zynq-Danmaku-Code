@@ -177,10 +177,14 @@
 	"netstart=0x10000000\0" \ 
 	"dtbnetstart=0x11800000\0" \ 
 	"loadaddr=0x10000000\0" \ 
+	"bootsize=0x500000\0" \ 
+	"bootstart=0x0\0" \ 
 	"boot_img=BOOT.BIN\0" \ 
 	"load_boot=tftpboot ${clobstart} ${boot_img}\0" \ 
-	"update_boot=setenv img boot; setenv psize ${bootsize}; setenv installcmd \"install_boot\"; run load_boot ${installcmd}; setenv img; setenv psize; setenv installcmd\0" \ 
-	"install_boot=mmcinfo && fatwrite mmc 0 ${clobstart} ${boot_img} ${filesize}\0" \ 
+	"update_boot=setenv img boot; setenv psize ${bootsize}; setenv installcmd \"install_boot\"; run load_boot test_img; setenv img; setenv psize; setenv installcmd\0" \ 
+	"sd_update_boot=echo Updating boot from SD; mmcinfo && fatload mmc 0:1 ${clobstart} ${boot_img} && run install_boot\0" \ 
+	"install_boot=sf probe 0 && sf erase ${bootstart} ${bootsize} && " \ 
+		"sf write ${clobstart} ${bootstart} ${filesize}\0" \ 
 	"bootenvsize=0x20000\0" \ 
 	"bootenvstart=0x500000\0" \ 
 	"eraseenv=sf probe 0 && sf erase ${bootenvstart} ${bootenvsize}\0" \ 
