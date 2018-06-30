@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:simple_sgdma:1.1
-// IP Revision: 1
+// IP Revision: 3
 
 `timescale 1ns/1ps
 
@@ -59,6 +59,7 @@ module simple_sgdma_test_simple_sgdma_0_0 (
   halt_cmplt,
   req_posted,
   xfer_cmplt,
+  datamover_axi_clk,
   axi_lite_reg_awaddr,
   axi_lite_reg_awprot,
   axi_lite_reg_awvalid,
@@ -95,6 +96,9 @@ output wire allow_req;
 input wire halt_cmplt;
 input wire req_posted;
 input wire xfer_cmplt;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME datamover_axi_clk, FREQ_HZ 150000000, PHASE 0.000, CLK_DOMAIN simple_sgdma_test_processing_system7_0_0_FCLK_CLK1" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 datamover_axi_clk CLK" *)
+input wire datamover_axi_clk;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi_lite_reg AWADDR" *)
 input wire [4 : 0] axi_lite_reg_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi_lite_reg AWPROT" *)
@@ -172,6 +176,7 @@ output wire axis_sts_tready;
     .halt_cmplt(halt_cmplt),
     .req_posted(req_posted),
     .xfer_cmplt(xfer_cmplt),
+    .datamover_axi_clk(datamover_axi_clk),
     .axi_lite_reg_awaddr(axi_lite_reg_awaddr),
     .axi_lite_reg_awprot(axi_lite_reg_awprot),
     .axi_lite_reg_awvalid(axi_lite_reg_awvalid),

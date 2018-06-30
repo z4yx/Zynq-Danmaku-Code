@@ -146,7 +146,7 @@ top_blk_wrapper top_blk_i
     .imgcap_aclk(imgcap_aclk),
     .imgcap_aresetn(imgcap_aresetn),
     .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}),
-    .btn_center(sw_conj),
+    .btn_in(switch_in),
     .gpo({imgcap_start,gpo_dummy,sw_debug,sw_test_pattern,sw_pattern_pause})
     );
 

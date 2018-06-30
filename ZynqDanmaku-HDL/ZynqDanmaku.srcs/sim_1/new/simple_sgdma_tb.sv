@@ -136,6 +136,13 @@ initial begin
 
     dut.processing_system7_0.inst.write_data(32'h4050_0008,4, 32'hC0000000, resp); //control
     #1900;
+    
+    dut.processing_system7_0.inst.read_data(32'h4050_000C,4,read_data,resp); //response
+    $display ("%t, response = 32'h%x",$time, read_data);
+    dut.processing_system7_0.inst.write_data(32'h4050_000C,4, 0, resp); //response
+    dut.processing_system7_0.inst.read_data(32'h4050_000C,4,read_data,resp); //response
+    $display ("%t, cleared response = 32'h%x",$time, read_data);
+    
     dut.processing_system7_0.inst.read_data(32'h4050_0010,4,read_data,resp);
     $display ("%t, halted, status = 32'h%x",$time, read_data);
 

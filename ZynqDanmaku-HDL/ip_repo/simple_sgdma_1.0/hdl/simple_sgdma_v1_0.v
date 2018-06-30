@@ -23,12 +23,14 @@
 	(
 		// Users to add ports here
 		
-		output wire halt,
-		output wire allow_req,
+		output reg halt,
+		output reg allow_req,
 		
 		input wire halt_cmplt,
 		input wire req_posted,
 		input wire xfer_cmplt,
+		
+        input wire datamover_axi_clk,
 
 		// User ports ends
 		// Do not modify the ports beyond this line
@@ -74,10 +76,25 @@
 	wire [C_axi_lite_reg_DATA_WIDTH-1:0]	slv_reg_length;
 	wire slv_reg_control_commit;
 	wire [3:0] slv_reg_control_tag;
-	wire disable_req;
+	wire disable_req, slv_reg_control_halt;
+	wire clear_response;
+	reg halt_sync, allow_req_sync;
 	reg commit_ack;
 	reg [3:0] slv_reg_response_tag;
 	reg [3:0] slv_reg_response_ok_slverr_decerr_interr;
+	
+    reg[1:0] halt_cmplt_sync;
+    wire req_posted_clkB;
+    wire xfer_cmplt_clkB;
+    
+    flag_sync sync_req_posted(
+        .clkA(datamover_axi_clk),.FlagIn_clkA(req_posted),
+        .clkB(axi_lite_reg_aclk),.FlagOut_clkB(req_posted_clkB)
+        );
+    flag_sync sync_xfer_cmplt(
+        .clkA(datamover_axi_clk),.FlagIn_clkA(xfer_cmplt),
+        .clkB(axi_lite_reg_aclk),.FlagOut_clkB(xfer_cmplt_clkB)
+        );
 
 // Instantiation of Axi Bus Interface axi_lite_reg
 	simple_sgdma_v1_0_axi_lite_reg # ( 
@@ -88,14 +105,15 @@
 		.slv_reg_length(slv_reg_length),
 		.slv_reg_control_commit(slv_reg_control_commit),
 		.slv_reg_control_tag(slv_reg_control_tag),
-        .slv_reg_control_halt(halt),
+        .slv_reg_control_halt(slv_reg_control_halt),
         .slv_reg_control_disable_req(disable_req),
 		.commit_ack(commit_ack),
 		.slv_reg_response_tag(slv_reg_response_tag),
 		.slv_reg_response_ok_slverr_decerr_interr(slv_reg_response_ok_slverr_decerr_interr),
-        .halt_cmplt(halt_cmplt),
-        .req_posted(req_posted),
-        .xfer_cmplt(xfer_cmplt),
+		.clear_response(clear_response),
+        .halt_cmplt(halt_cmplt_sync[1]),
+        .req_posted(req_posted_clkB),
+        .xfer_cmplt(xfer_cmplt_clkB),
 		.S_AXI_ACLK(axi_lite_reg_aclk),
 		.S_AXI_ARESETN(axi_lite_reg_aresetn),
 		.S_AXI_AWADDR(axi_lite_reg_awaddr),
@@ -121,7 +139,13 @@
 
 
 	// Add user logic here
-	assign allow_req = ~disable_req;
+	always @(posedge axi_lite_reg_aclk)begin
+	   halt_cmplt_sync <= {halt_cmplt_sync[0],halt_cmplt};
+	end
+	always @(posedge datamover_axi_clk)begin
+	   {allow_req, allow_req_sync} <= {allow_req_sync, ~disable_req};
+	   {halt, halt_sync} <= {halt_sync, slv_reg_control_halt};
+	end
 
 	wire axis_cmd_handshake;
 	wire commit_posedge;
@@ -155,7 +179,7 @@
 
 	assign axis_sts_tready = 1'b1;
 	always @(posedge axi_lite_reg_aclk) begin
-        if(~axi_lite_reg_aresetn)
+        if(~axi_lite_reg_aresetn | clear_response)
             {slv_reg_response_ok_slverr_decerr_interr, slv_reg_response_tag} <= 0;
 		else if(axis_sts_tvalid)
 			{slv_reg_response_ok_slverr_decerr_interr, slv_reg_response_tag} <= axis_sts_tdata;

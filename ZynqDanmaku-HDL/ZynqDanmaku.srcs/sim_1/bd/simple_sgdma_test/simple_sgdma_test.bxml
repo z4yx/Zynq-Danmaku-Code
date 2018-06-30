@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="35">
   <CompositeFile CompositeFileTopName="simple_sgdma_test" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1529588617"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1529588617"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529588621"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529588621"/>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1529838553"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1529838553"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1529838556"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1529838556"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/simple_sgdma_test_axi_datamover_0_0/simple_sgdma_test_axi_datamover_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_datamover_0"/>

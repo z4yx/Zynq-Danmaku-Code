@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
-//Date        : Thu Jun 21 21:43:37 2018
+//Date        : Sun Jun 24 19:09:13 2018
 //Host        : cqtestlab running 64-bit Deepin 15.5
 //Command     : generate_target simple_sgdma_test.bd
 //Design      : simple_sgdma_test
@@ -411,6 +411,7 @@ module simple_sgdma_test
         .axis_sts_tlast(axi_datamover_0_M_AXIS_MM2S_STS_TLAST),
         .axis_sts_tready(axi_datamover_0_M_AXIS_MM2S_STS_TREADY),
         .axis_sts_tvalid(axi_datamover_0_M_AXIS_MM2S_STS_TVALID),
+        .datamover_axi_clk(processing_system7_0_FCLK_CLK1),
         .halt(simple_sgdma_0_halt),
         .halt_cmplt(axi_datamover_0_mm2s_halt_cmplt),
         .req_posted(axi_datamover_0_mm2s_addr_req_posted),

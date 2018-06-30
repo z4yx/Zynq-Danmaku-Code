@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
-//Date        : Mon Jun 18 15:42:21 2018
+//Date        : Tue Jun 26 23:56:03 2018
 //Host        : cqtestlab running 64-bit Deepin 15.5
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
@@ -36,7 +36,7 @@ module top_blk_wrapper
     M_AXIS_tvalid,
     UART_0_rxd,
     UART_0_txd,
-    btn_center,
+    btn_in,
     gpio_ctl_tri_io,
     gpo,
     imgcap_AXIS_tdata,
@@ -76,9 +76,9 @@ module top_blk_wrapper
   output M_AXIS_tvalid;
   input UART_0_rxd;
   output UART_0_txd;
-  input [0:0]btn_center;
+  input [4:0]btn_in;
   inout [1:0]gpio_ctl_tri_io;
-  output [7:0]gpo;
+  output [15:0]gpo;
   input [63:0]imgcap_AXIS_tdata;
   input imgcap_AXIS_tlast;
   output imgcap_AXIS_tready;
@@ -117,7 +117,7 @@ module top_blk_wrapper
   wire M_AXIS_tvalid;
   wire UART_0_rxd;
   wire UART_0_txd;
-  wire [0:0]btn_center;
+  wire [4:0]btn_in;
   wire [0:0]gpio_ctl_tri_i_0;
   wire [1:1]gpio_ctl_tri_i_1;
   wire [0:0]gpio_ctl_tri_io_0;
@@ -126,7 +126,7 @@ module top_blk_wrapper
   wire [1:1]gpio_ctl_tri_o_1;
   wire [0:0]gpio_ctl_tri_t_0;
   wire [1:1]gpio_ctl_tri_t_1;
-  wire [7:0]gpo;
+  wire [15:0]gpo;
   wire [63:0]imgcap_AXIS_tdata;
   wire imgcap_AXIS_tlast;
   wire imgcap_AXIS_tready;
@@ -176,7 +176,7 @@ module top_blk_wrapper
         .M_AXIS_tvalid(M_AXIS_tvalid),
         .UART_0_rxd(UART_0_rxd),
         .UART_0_txd(UART_0_txd),
-        .btn_center(btn_center),
+        .btn_in(btn_in),
         .gpio_ctl_tri_i({gpio_ctl_tri_i_1,gpio_ctl_tri_i_0}),
         .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
         .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),

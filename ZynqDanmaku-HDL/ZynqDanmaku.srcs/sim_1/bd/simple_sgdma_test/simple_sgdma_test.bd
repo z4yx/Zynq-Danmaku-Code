@@ -293,19 +293,19 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>simple_sgdma_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="user" spirit:name="simple_sgdma" spirit:vendor="user.org" spirit:version="1.1"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_simple_sgdma_0_0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>xlconstant_2</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_xlconstant_1_1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">4</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>simple_sgdma_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="simple_sgdma" spirit:vendor="user.org" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">simple_sgdma_test_simple_sgdma_0_0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -364,6 +364,7 @@
         <spirit:internalPortReference spirit:componentRef="proc_sys_reset_1" spirit:portRef="slowest_sync_clk"/>
         <spirit:internalPortReference spirit:componentRef="axi_traffic_gen_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="smartconnect_0" spirit:portRef="aclk"/>
+        <spirit:internalPortReference spirit:componentRef="simple_sgdma_0" spirit:portRef="datamover_axi_clk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xlconstant_0_dout</spirit:name>

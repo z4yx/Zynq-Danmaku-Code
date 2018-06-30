@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jun 21 21:43:41 2018" VIVADOVERSION="2018.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jun 24 19:09:15 2018" VIVADOVERSION="2018.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="simple_sgdma_test" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -2145,6 +2145,7 @@
             <CONNECTION INSTANCE="proc_sys_reset_1" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="axi_traffic_gen_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="smartconnect_0" PORT="aclk"/>
+            <CONNECTION INSTANCE="simple_sgdma_0" PORT="datamover_axi_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="FCLK_RESET0_N" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
@@ -2422,6 +2423,11 @@
         <PORT DIR="I" NAME="xfer_cmplt" SIGIS="undef" SIGNAME="axi_datamover_0_mm2s_rd_xfer_cmplt">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_datamover_0" PORT="mm2s_rd_xfer_cmplt"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="150000000" DIR="I" NAME="datamover_axi_clk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="4" NAME="axi_lite_reg_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="simple_sgdma_0_axi_lite_reg_awaddr">

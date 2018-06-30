@@ -158,5 +158,7 @@ set_false_path -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_c
 set_false_path -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[0][*]/D}]
 set_false_path -from [get_pins {top_blk_i/top_blk_i/axigpio_ctl/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[*]/C}]
 #set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks clk_out1_clk_wiz_0]
-
-
+set_false_path -to [get_pins top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/halt_sync_reg/D]
+set_false_path -to [get_pins top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/allow_req_sync_reg/D]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/halt_cmplt_sync_reg[0]/D}]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/*/SyncA_clkB_reg[0]/D}]

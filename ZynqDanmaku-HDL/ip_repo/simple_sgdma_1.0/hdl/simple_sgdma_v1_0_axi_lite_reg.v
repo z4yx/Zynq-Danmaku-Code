@@ -21,6 +21,7 @@
 		output reg [3:0] slv_reg_control_tag,
         output reg slv_reg_control_halt,
         output reg slv_reg_control_disable_req,
+        output reg clear_response,
 		input wire commit_ack,
 		input wire [3:0] slv_reg_response_tag,
 		input wire [3:0] slv_reg_response_ok_slverr_decerr_interr,
@@ -240,7 +241,7 @@
 	      slv_reg_control_tag <= 0;
           slv_reg_control_halt <= 0;
           slv_reg_control_disable_req <= 0;
-	      // slv_reg3 <= 0;
+	      clear_response <= 0;
 	      slv_reg_status <= 0;
 	      slv_reg5 <= 0;
 	      slv_reg6 <= 0;
@@ -250,6 +251,7 @@
 			if (commit_ack) begin
 				slv_reg_control_commit <= 0;
 			end
+			clear_response <= 0;
 			slv_reg_status <= slv_reg_status | {halt_cmplt,xfer_cmplt,req_posted};
 	    if (slv_reg_wren)
 	      begin
@@ -278,13 +280,9 @@
                                 slv_reg_control_disable_req <= S_AXI_WDATA[30];
                             end
                 end
-	          // 3'h3:
-	            // for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
-	            //   if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-	            //     // Respective byte enables are asserted as per write strobes 
-	            //     // Slave register 3
-	            //     slv_reg3[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-	            //   end  
+	          3'h3: 
+	            if ( S_AXI_WSTRB[0] == 1 ) 
+	               clear_response <= 1;
 	          3'h4:
                 for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
                   if ( S_AXI_WSTRB[byte_index] == 1 ) begin
