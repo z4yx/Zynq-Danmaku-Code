@@ -481,9 +481,9 @@ int DanmakuHW_ImageCapture(DANMAKU_HW_HANDLE h, uint32_t addr, uint32_t length)
     *REG_OFF(dma_csr, XILDMA_LENGTH) = length; //Length
     return 0;
 }
-int DanmakuHW_PendingImgCap(DANMAKU_HW_HANDLE h)
+int DanmakuHW_ImgCapDMAIdle(DANMAKU_HW_HANDLE h)
 {
     driver_ctx* ctx = (driver_ctx*)h;
     uintptr_t dma_csr = ctx->uaddr_perph_base+IP_AXI_DMA_OFFSET+XILDMA_S2MM_OFFSET;
-    return !(*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) & 3);
+    return (*REG_OFF(dma_csr, XILDMA_STATUS_REGISTER) & 2) == 2;
 }
