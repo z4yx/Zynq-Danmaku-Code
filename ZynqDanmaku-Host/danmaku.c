@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <signal.h>
+#include <limits.h>
 #include <time.h>
 #include <stdatomic.h>
 
@@ -23,7 +24,8 @@
 #include "ring.h"
 #include "constants.h"
 
-// #define PROFILE_PRINT
+// #define OVERLAY_PROFILING_PRINT
+// #define RENDER_PROFILING_PRINT
 
 pthread_mutex_t render_overlay_mutex;
 pthread_cond_t  render_overlay_cv;
@@ -557,12 +559,10 @@ void RenderOnce(uint8_t* buf)
     for (int i = 0; i < SLIDING_LAYER_ROWS; i++) {
         for (int j = 0; j < SLIDING_LAYER_COLS; j++) {
             SlidingWritePixels(buf, &sliding_layers[i][j]);
-            // usleep(1000);
         }
     }
     for (int i = 0; i < NUM_STATIC_LAYER; i++) {
         StaticWritePixels(buf, &static_layers[i]);
-        // usleep(1000);
     }
 }
 
@@ -587,10 +587,16 @@ int ResolutionChanged(int locked_thres)
     return 0;
 }
 
+struct deque_t EmptyBufQ, FilledBufQ;
+
 void Render()
 {
     struct timespec begin, end;
     pthread_mutex_lock(&render_overlay_mutex);
+    DequeInit(&EmptyBufQ);
+    DequeInit(&FilledBufQ);
+    for(int i=0; i<NUM_FRAME_BUFFER-1; i++)
+        DequePushBack(&EmptyBufQ, i);
     for(int i=0; i<NUM_FRAME_BUFFER; i++)
         ClearScreen((void*)DanmakuHW_GetFrameBuffer(hDriver, i));
     DanmakuHW_RenderFlush(hDriver);
@@ -600,22 +606,32 @@ void Render()
     render_running = 1;
     while (render_running) {
         int idx;
-        //Keep at least one empty buffer
-        while(render_running && RingSize() >= NUM_FRAME_BUFFER-1)
+        //Keep at least one empty buffer for safety
+        // while(render_running && DequeSize(&EmptyBufQ) <= 1)
+        //     pthread_yield();
+        // if(!render_running)
+        //     break;
+#ifdef RENDER_PROFILING_PRINT
+        clock_gettime(CLOCK_MONOTONIC, &begin);
+#endif
+
+        while(render_running && (idx = DequeFront(&EmptyBufQ)) == -1)
             pthread_yield();
         if(!render_running)
             break;
-        while(render_running && (idx = GetEmptyBuffer()) == -1)
-            pthread_yield();
-        if(!render_running)
-            break;
+        // fprintf(stderr,"render %d\n", idx);
+        DequePopFront(&EmptyBufQ);
+
 #ifdef SIM_MODE
         uint8_t fb[MAX_IMG_SIZE];
 #else
         void* fb = (void*)DanmakuHW_GetFrameBuffer(hDriver, idx);
 #endif
-#ifdef PROFILE_PRINT
-        clock_gettime(CLOCK_MONOTONIC, &begin);
+#ifdef RENDER_PROFILING_PRINT
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        printf("render got %d, %lf\n", 
+            idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
+        begin = end;
 #endif
         RenderOnce((uint8_t*)fb);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
@@ -623,12 +639,12 @@ void Render()
         DanmakuHW_RenderFlush(hDriver);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
             DanmakuHW_WaitForRenderDMA(hDriver);
-#ifdef PROFILE_PRINT
+#ifdef RENDER_PROFILING_PRINT
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("render %d done, %lf\n", 
             idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
 #endif
-        CommitBuffer();
+        DequePushBack(&FilledBufQ, idx);
     }
     render_running = 0;
     pthread_mutex_unlock(&render_overlay_mutex);
@@ -670,6 +686,9 @@ void *Thread4Overlay(void *t)
     int idx;
     int last_cnt=0;
     struct timespec last_stamp,stamp;
+    int tag2idx[DMA_TAG_SIZE];
+    int tag_cmplt = 0, tag_submitted = 0, n_in_dma = 0;
+    int prev_cmplt_idx = -1;
 
     while(!render_running){
         if(sigint)
@@ -682,68 +701,106 @@ void *Thread4Overlay(void *t)
     SetCPUAffinity();
 #endif
 
-    while(render_running && (idx = GetFilledBuffer()) == -1)
+    while(render_running && (idx = DequeFront(&FilledBufQ)) == -1)
         pthread_yield();
+    if(!render_running) return 0;
+    // fprintf(stderr,"get buf %d\n", idx);
+    DequePopFront(&FilledBufQ);
 
     printf("Thread4Overlay loop begin\n");
+    DanmakuHW_ClearResponse(hDriver);
+    memset(tag2idx, -1, sizeof(tag2idx));
     clock_gettime(CLOCK_MONOTONIC, &last_stamp);
-    for(int cnt=0;render_running;cnt++){
-        uint8_t do_release_buf = 0;
-        if(cnt % 256 == 0){
-            // clock_gettime(CLOCK_MONOTONIC, &stamp);
-            // printf("overlay %.3f %d\n", (cnt - last_cnt)
-            //     /(stamp.tv_sec - last_stamp.tv_sec + 1e-9*(stamp.tv_nsec - last_stamp.tv_nsec)),
-            //     fifosize);
-            // last_cnt = cnt;
-            // last_stamp = stamp;
+
+    for(int frame_cnt=1,dup_cnt=0;render_running;frame_cnt++){
+#if 0
+        if(frame_cnt % 256 == 0){
+            clock_gettime(CLOCK_MONOTONIC, &stamp);
+            printf("overlay %.3f %d\n", (frame_cnt - last_cnt)
+                /(stamp.tv_sec - last_stamp.tv_sec + 1e-9*(stamp.tv_nsec - last_stamp.tv_nsec)),
+                fifosize);
+            last_cnt = frame_cnt;
+            last_stamp = stamp;
         }
-        if(0){
+#endif
+#if 0
             int fifosize;
             DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
             if(fifosize < 50) printf("+f1 %d\n", fifosize);
-        }
-        DanmakuHW_FrameBufferTxmit(hDriver, idx, img_size);
-
-        //Keep at least one filled buffer
-        if(RingSize() > 2){
-            //render done, switching buffer
-#ifdef PROFILE_PRINT
-            clock_gettime(CLOCK_MONOTONIC, &end);
-            printf("switching, %lf\n", 
-                idx, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
 #endif
+        n_in_dma++;
+        tag_submitted = (tag_submitted+1)%DMA_TAG_SIZE;
+        tag2idx[tag_submitted] = idx;
+        // fprintf(stderr,"in [%d] %d\n", tag_submitted, idx);
+        DanmakuHW_FrameBufferTxmit(hDriver, idx, tag_submitted, img_size);
 
-            // ReleaseBuffer();
-            do_release_buf = 1;
-
-            idx = GetFilledBuffer();
-
-#ifdef PROFILE_PRINT
+        if(n_in_dma >= NUM_OVERLAY_SUBMITTED){
+            // Now, there are quite a lot of frames inside the FIFO of DMA
+            // Wait until a least one of them completed
+#ifdef OVERLAY_PROFILING_PRINT
+            int min_waterlevel = INT_MAX;
             clock_gettime(CLOCK_MONOTONIC, &begin);
 #endif
-        }
-        if(0){
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 200) printf("+f2 %d\n", fifosize);
+            bool ok, err;
+            int tag;
+            for(;render_running;pthread_yield()){
+#ifdef OVERLAY_PROFILING_PRINT
+                int fifosize;
+                DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+                if(fifosize < 1000)
+                    printf("!fifo %d\n", fifosize);
+                if(fifosize < min_waterlevel)
+                    min_waterlevel = fifosize;
+#endif
+
+                DanmakuHW_ResponseOfOverlay(hDriver, &ok, &err, &tag);
+                if(!ok && !err)
+                    continue;
+                if(tag != tag_cmplt)
+                    break;
+            }
+            if(!render_running)
+                break;
+#ifdef OVERLAY_PROFILING_PRINT
+            clock_gettime(CLOCK_MONOTONIC, &end);
+            printf("overlay done, %d %lf\n", 
+                min_waterlevel, end.tv_sec - begin.tv_sec + 1e-9*(end.tv_nsec - begin.tv_nsec));
+#endif
+            do{
+                tag_cmplt = (tag_cmplt+1)%DMA_TAG_SIZE;
+                // fprintf(stderr,"out[%d] %d\n", tag_cmplt, tag2idx[tag_cmplt]);
+                assert(tag2idx[tag_cmplt] != -1);
+
+                if(tag2idx[tag_cmplt] != prev_cmplt_idx && prev_cmplt_idx != -1){
+                    // fprintf(stderr,"put buf %d\n", prev_cmplt_idx);
+                    DequePushBack(&EmptyBufQ, prev_cmplt_idx);
+                }
+                prev_cmplt_idx = tag2idx[tag_cmplt];
+                tag2idx[tag_cmplt] = -1;
+                n_in_dma--;
+
+            }while(tag_cmplt != tag);
         }
 
-        while(render_running && DanmakuHW_PendingTxmit(hDriver))
-            DanmakuHW_WaitForPendingTxmit(hDriver);
-        if(1){
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 200) printf("+f3 %d\n", fifosize);
+        //Keep at least one filled buffer
+        if(DequeSize(&FilledBufQ) > 1){
+            //render done, switching buffer
+
+            idx = DequeFront(&FilledBufQ);
+            assert(idx != -1);
+            // fprintf(stderr,"get buf %d\n", idx);
+            DequePopFront(&FilledBufQ);
+
+        }else{
+            dup_cnt++;
+            printf("dup  -----  %d/%d\n", dup_cnt, frame_cnt);
         }
 
-        if(do_release_buf)
-            ReleaseBuffer();
-
-        if(1){
+#if 0
             int fifosize;
             DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
             if(fifosize < 50) printf("+f4 %d\n", fifosize);
-        }
+#endif
     }
     pthread_exit(NULL);
 }
@@ -800,8 +857,8 @@ void SubMain()
     edge = screen_width / 20;
     render_setopt_dpi(edge*4);
 
-    InitImgCap();
-    DoImgCap(); /////////////////////// for test
+    // InitImgCap();
+    // DoImgCap(); /////////////////////// for test
 
     InitQueen(&sliding_queen);
     InitQueen(&static_queen);
@@ -868,7 +925,6 @@ int main()
 
     printf("DanmakuHW_RenderDMAStatus: %x\n", DanmakuHW_RenderDMAStatus(hDriver));
     printf("DanmakuHW_RenderDMAIdle: %x\n", DanmakuHW_RenderDMAIdle(hDriver));
-    printf("DanmakuHW_PendingTxmit: %x\n", DanmakuHW_PendingTxmit(hDriver));
     printf("DanmakuHW_PendingImgCap: %x\n", DanmakuHW_PendingImgCap(hDriver));
 #endif
 

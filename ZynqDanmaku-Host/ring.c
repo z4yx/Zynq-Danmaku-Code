@@ -1,54 +1,47 @@
 #include <pthread.h>
 #include <assert.h>
 #include "ring.h"
-#include "constants.h"
 
-static pthread_mutex_t  ring_mutex = PTHREAD_MUTEX_INITIALIZER;
-static int rdptr, wrptr;
+// max size of deque is NUM_FRAME_BUFFER-1
 
-int RingSize(void)
+int DequeInit(struct deque_t *d)
 {
-    pthread_mutex_lock(&ring_mutex);
-    int size = (wrptr-rdptr+NUM_FRAME_BUFFER)%NUM_FRAME_BUFFER;
-    pthread_mutex_unlock(&ring_mutex);
+    pthread_mutex_init(&d->ring_mutex, NULL);
+    d->rdptr = d->wrptr = 0;
+}
+int DequeSize(struct deque_t *d)
+{
+    pthread_mutex_lock(&d->ring_mutex);
+    int size = (d->wrptr - d->rdptr + NUM_FRAME_BUFFER)%NUM_FRAME_BUFFER;
+    pthread_mutex_unlock(&d->ring_mutex);
     return size;
 }
-int GetFilledBuffer(void)
+int DequeFront(struct deque_t *d)
 {
     int t;
-    pthread_mutex_lock(&ring_mutex);
-    if(wrptr == rdptr)
+    pthread_mutex_lock(&d->ring_mutex);
+    if(d->wrptr == d->rdptr)
         t = -1;
     else
-        t=rdptr;
-    pthread_mutex_unlock(&ring_mutex);
+        t = d->data[d->rdptr];
+    pthread_mutex_unlock(&d->ring_mutex);
     return t;
 }
-int GetEmptyBuffer(void)
+void DequePopFront(struct deque_t *d)
 {
-    int ret;
-    pthread_mutex_lock(&ring_mutex);
-    if((wrptr+1)%NUM_FRAME_BUFFER==rdptr)
-        ret = -1;
-    else
-        ret = wrptr;
-    pthread_mutex_unlock(&ring_mutex);
-    return ret;
+    pthread_mutex_lock(&d->ring_mutex);
+    assert(d->rdptr!=d->wrptr);
+    d->rdptr = (d->rdptr+1)%NUM_FRAME_BUFFER;
+    pthread_mutex_unlock(&d->ring_mutex);
 }
-void ReleaseBuffer(void)
-{
-    pthread_mutex_lock(&ring_mutex);
-    assert(rdptr!=wrptr);
-    rdptr = (rdptr+1)%NUM_FRAME_BUFFER;
-    pthread_mutex_unlock(&ring_mutex);
-}
-void CommitBuffer(void)
+void DequePushBack(struct deque_t *d, int data)
 {
     int t;
-    pthread_mutex_lock(&ring_mutex);
-    t = (wrptr+1)%NUM_FRAME_BUFFER;
-    assert(t!=rdptr);
-    wrptr=t;
-    pthread_mutex_unlock(&ring_mutex);
+    pthread_mutex_lock(&d->ring_mutex);
+    t = (d->wrptr+1)%NUM_FRAME_BUFFER;
+    assert(t != d->rdptr);
+    d->data[d->wrptr] = data;
+    d->wrptr = t;
+    pthread_mutex_unlock(&d->ring_mutex);
 }
 
