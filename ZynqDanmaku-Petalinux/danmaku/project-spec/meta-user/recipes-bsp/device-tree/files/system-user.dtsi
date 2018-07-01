@@ -13,6 +13,9 @@
 		drv-vbus;
 	};
 };
+&axigpio_ctl{
+	gpio-line-names = "mcu-boot","mcu-rst-n","sw_pattern_pause","sw_test_pattern","sw_debug","","","","imgcap_ovf","imgcap_start","btn-center","btn-en0","btn-blank0","btn-en1","btn-blank1";
+};
 &axi_cdma_0{
 	compatible = "linux,uio_pdrv_genirq";
 };
