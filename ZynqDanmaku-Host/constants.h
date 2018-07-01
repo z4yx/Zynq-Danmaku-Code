@@ -41,20 +41,14 @@
 
 #define DMA_TAG_SIZE 16
 
-//GPIO number for DMA irq
-#define GPIO_BASE         1006
-#define GPIO_IMGCAP_OVF   (GPIO_BASE+6)
-#define GPIO_IMGCAP_EN    (GPIO_BASE+7)
-#define GPIO_CENTER_BTN   (GPIO_BASE+8)
-#define GPIO_EN0_BTN      (GPIO_BASE+9)
-#define GPIO_BLANK0_BTN   (GPIO_BASE+10)
-#define GPIO_EN1_BTN      (GPIO_BASE+11)
-#define GPIO_BLANK1_BTN   (GPIO_BASE+12)
-
 //UIO number for DMA irq
 #define IRQ_AXICDMA    (0)
 #define IRQ_AXIDMA     (1)
 
 #define OVERLAY_ASSOCIATE_CPU 1
+
+// format: YY MM DD hh mm ss
+#define REQUIRED_MIN_HARDWARE_VER (((18<<16|7<<8|1)|(uint64_t)(16<<16|10<<8|5)<<32))
+#define REQUIRED_MAX_HARDWARE_VER (((18<<16|7<<8|1)|(uint64_t)(20<<16|0<<8|0)<<32))
 
 #endif

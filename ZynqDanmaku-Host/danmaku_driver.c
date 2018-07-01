@@ -281,6 +281,8 @@ const char* DanmakuHW_GetFPGABuildTime(DANMAKU_HW_HANDLE h)
     static char dt_string[20]; //should be static
     uint32_t Date = *(uint32_t*)timetag_base;
     uint32_t Time = *(uint32_t*)(timetag_base+4);
+    assert(((uint64_t)Time<<32|Date) >= REQUIRED_MIN_HARDWARE_VER);
+    assert(((uint64_t)Time<<32|Date) <= REQUIRED_MAX_HARDWARE_VER);
     snprintf(dt_string, sizeof(dt_string)-1, "%02d-%d-%d %02d:%02d:%02d",
         0xff&(Date>>16),0xff&(Date>>8),0xff&(Date),
         0xff&(Time>>16),0xff&(Time>>8),0xff&(Time));

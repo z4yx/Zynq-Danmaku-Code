@@ -20,6 +20,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include <gpiod.h>
+
 #include "render.h"
 #include "ring.h"
 #include "constants.h"
@@ -32,6 +34,7 @@ pthread_cond_t  render_overlay_cv;
 
 typedef char inp_char_t;
 
+struct gpiod_chip *gpio_context;
 DANMAKU_HW_HANDLE hDriver;
 gpointer render_instance;
 PangoContext *render_context;
@@ -49,6 +52,7 @@ uint32_t blank_screen_phy;
 uint8_t *image_captured;
 uint32_t image_captured_phy;
 
+struct gpiod_line *gpio_center_btn, *gpio_imgcap_en;
 struct timespec last_btn_change;
 int last_btn_value;
 
@@ -793,24 +797,19 @@ void *Thread4Overlay(void *t)
 
 void InitBtnDetect(void)
 {
-    char cmds[128];
-    snprintf(cmds, sizeof(cmds), 
-        "echo %d >/sys/class/gpio/export;echo in >/sys/class/gpio/gpio%d/direction",
-        GPIO_CENTER_BTN, GPIO_CENTER_BTN);
-    system(cmds);
+    gpio_center_btn = gpiod_chip_find_line(gpio_context, "btn-center");
+    int ret = gpiod_line_request_input(gpio_center_btn, "danmaku");
+    if(ret){
+        printf("gpiod_line_request_input failed for btn-center\n");
+    }
     last_btn_value = 0;
 }
 
 void BtnDetect(void)
 {
-    int value_now;
-    char path[64];
-    snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d/value", GPIO_CENTER_BTN);
-    FILE* fval = fopen(path,"r");
-    if(!fval) return;
-    if(1 != fscanf(fval, "%d", &value_now))
+    int value_now = gpiod_line_get_value(gpio_center_btn);
+    if(value_now < 0)
         return;
-    fclose(fval);
 
     if(value_now != last_btn_value){
         struct timespec now;
@@ -832,23 +831,20 @@ void BtnDetect(void)
 
 void InitImgCap(void)
 {
-    char cmds[128];
-    snprintf(cmds, sizeof(cmds), 
-        "echo %d >/sys/class/gpio/export;echo out >/sys/class/gpio/gpio%d/direction",
-        GPIO_IMGCAP_EN, GPIO_IMGCAP_EN);
-    system(cmds);
+    gpio_imgcap_en = gpiod_chip_find_line(gpio_context, "imgcap_start");
+    int ret = gpiod_line_request_output(gpio_imgcap_en, "danmaku", 0);
+    if(ret){
+        printf("gpiod_line_request_output failed for imgcap_start\n");
+    }
     DanmakuHW_AllocRenderBuf(hDriver, (uintptr_t*)&image_captured, &image_captured_phy, MAX_SCREEN_HEIGHT*MAX_WIDTH & ~7);
 }
 
 void DoImgCap(void)
 {
-    char cmds[128];
-    snprintf(cmds, sizeof(cmds), 
-        "echo 1 >/sys/class/gpio/gpio%d/value;echo 0 >/sys/class/gpio/gpio%d/value",
-        GPIO_IMGCAP_EN, GPIO_IMGCAP_EN);
-
     DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
-    system(cmds);
+    gpiod_line_set_value(gpio_imgcap_en, 1);
+    usleep(100);
+    gpiod_line_set_value(gpio_imgcap_en, 0);
     usleep(40000);
     while(!DanmakuHW_ImgCapDMAIdle(hDriver))
         pthread_yield();
@@ -948,6 +944,11 @@ int main()
     printf("driver opened\n");
 
     printf("FPGA Build: %s\n", DanmakuHW_GetFPGABuildTime(hDriver));
+    gpio_context = gpiod_chip_open_by_label("/amba_pl/gpio@41200000");
+    if(!gpio_context){
+        printf("gpio controller not found\n");
+        exit(1);
+    }
     InitImgCap();
     InitBtnDetect();
 
