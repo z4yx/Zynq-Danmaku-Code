@@ -62,35 +62,23 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_2/top_blk_xbar_2.xci">
-          <Proxy FileSetName="top_blk_xbar_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_datamover_0_0/top_blk_axi_datamover_0_0.xci">
-          <Proxy FileSetName="top_blk_axi_datamover_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_simple_sgdma_0_0/top_blk_simple_sgdma_0_0.xci">
-          <Proxy FileSetName="top_blk_simple_sgdma_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconstant_1_0/top_blk_xlconstant_1_0.xci">
-          <Proxy FileSetName="top_blk_xlconstant_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_const0_0/top_blk_const0_0.xci">
-          <Proxy FileSetName="top_blk_const0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_0/top_blk_ps7_0_0.xci">
-          <Proxy FileSetName="top_blk_ps7_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_system_ctl_reg_0_0/top_blk_system_ctl_reg_0_0.xci">
           <Proxy FileSetName="top_blk_system_ctl_reg_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_pixel_transparent_0_4/top_blk_pixel_transparent_0_4.xci">
           <Proxy FileSetName="top_blk_pixel_transparent_0_4"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_1_0/top_blk_xlconcat_1_0.xci">
+          <Proxy FileSetName="top_blk_xlconcat_1_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_fifo_generator_0_0/top_blk_fifo_generator_0_0.xci">
           <Proxy FileSetName="top_blk_fifo_generator_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_1_0/top_blk_xlconcat_1_0.xci">
-          <Proxy FileSetName="top_blk_xlconcat_1_0"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_TimeTag_USR_ACCESS_0_0/top_blk_TimeTag_USR_ACCESS_0_0.xci">
+          <Proxy FileSetName="top_blk_TimeTag_USR_ACCESS_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
+          <Proxy FileSetName="top_blk_xbar_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_dma_0_0/top_blk_axi_dma_0_0.xci">
           <Proxy FileSetName="top_blk_axi_dma_0_0"/>
@@ -104,6 +92,18 @@
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconcat_0_0/top_blk_xlconcat_0_0.xci">
           <Proxy FileSetName="top_blk_xlconcat_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_2/top_blk_xbar_2.xci">
+          <Proxy FileSetName="top_blk_xbar_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axi_datamover_0_0/top_blk_axi_datamover_0_0.xci">
+          <Proxy FileSetName="top_blk_axi_datamover_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_simple_sgdma_0_0/top_blk_simple_sgdma_0_0.xci">
+          <Proxy FileSetName="top_blk_simple_sgdma_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xlconstant_1_0/top_blk_xlconstant_1_0.xci">
+          <Proxy FileSetName="top_blk_xlconstant_1_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_proc_sys_reset_0_0/top_blk_proc_sys_reset_0_0.xci">
           <Proxy FileSetName="top_blk_proc_sys_reset_0_0"/>
         </CompFileExtendedInfo>
@@ -113,11 +113,11 @@
         <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_axigpio_ctl_0/top_blk_axigpio_ctl_0.xci">
           <Proxy FileSetName="top_blk_axigpio_ctl_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_TimeTag_USR_ACCESS_0_0/top_blk_TimeTag_USR_ACCESS_0_0.xci">
-          <Proxy FileSetName="top_blk_TimeTag_USR_ACCESS_0_0"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_const0_0/top_blk_const0_0.xci">
+          <Proxy FileSetName="top_blk_const0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_xbar_0/top_blk_xbar_0.xci">
-          <Proxy FileSetName="top_blk_xbar_0"/>
+        <CompFileExtendedInfo CompFileName="top_blk.bd" FileRelPathName="ip/top_blk_ps7_0_0/top_blk_ps7_0_0.xci">
+          <Proxy FileSetName="top_blk_ps7_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/RGB_YCbCr.v">

@@ -1,8 +1,8 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
-//Date        : Tue Jun 26 23:56:03 2018
-//Host        : cqtestlab running 64-bit Deepin 15.5
+//Date        : Sun Jul  1 16:31:55 2018
+//Host        : cqtestlab running 64-bit Deepin 15.6
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
 //Purpose     : IP block netlist
@@ -37,7 +37,7 @@ module top_blk_wrapper
     UART_0_rxd,
     UART_0_txd,
     btn_in,
-    gpio_ctl_tri_io,
+    gpio_t,
     gpo,
     imgcap_AXIS_tdata,
     imgcap_AXIS_tlast,
@@ -77,7 +77,7 @@ module top_blk_wrapper
   input UART_0_rxd;
   output UART_0_txd;
   input [4:0]btn_in;
-  inout [1:0]gpio_ctl_tri_io;
+  output [15:0]gpio_t;
   output [15:0]gpo;
   input [63:0]imgcap_AXIS_tdata;
   input imgcap_AXIS_tlast;
@@ -118,14 +118,7 @@ module top_blk_wrapper
   wire UART_0_rxd;
   wire UART_0_txd;
   wire [4:0]btn_in;
-  wire [0:0]gpio_ctl_tri_i_0;
-  wire [1:1]gpio_ctl_tri_i_1;
-  wire [0:0]gpio_ctl_tri_io_0;
-  wire [1:1]gpio_ctl_tri_io_1;
-  wire [0:0]gpio_ctl_tri_o_0;
-  wire [1:1]gpio_ctl_tri_o_1;
-  wire [0:0]gpio_ctl_tri_t_0;
-  wire [1:1]gpio_ctl_tri_t_1;
+  wire [15:0]gpio_t;
   wire [15:0]gpo;
   wire [63:0]imgcap_AXIS_tdata;
   wire imgcap_AXIS_tlast;
@@ -139,16 +132,6 @@ module top_blk_wrapper
   wire [15:0]resolution_h;
   wire [15:0]resolution_w;
 
-  IOBUF gpio_ctl_tri_iobuf_0
-       (.I(gpio_ctl_tri_o_0),
-        .IO(gpio_ctl_tri_io[0]),
-        .O(gpio_ctl_tri_i_0),
-        .T(gpio_ctl_tri_t_0));
-  IOBUF gpio_ctl_tri_iobuf_1
-       (.I(gpio_ctl_tri_o_1),
-        .IO(gpio_ctl_tri_io[1]),
-        .O(gpio_ctl_tri_i_1),
-        .T(gpio_ctl_tri_t_1));
   top_blk top_blk_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -177,9 +160,7 @@ module top_blk_wrapper
         .UART_0_rxd(UART_0_rxd),
         .UART_0_txd(UART_0_txd),
         .btn_in(btn_in),
-        .gpio_ctl_tri_i({gpio_ctl_tri_i_1,gpio_ctl_tri_i_0}),
-        .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
-        .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),
+        .gpio_t(gpio_t),
         .gpo(gpo),
         .imgcap_AXIS_tdata(imgcap_AXIS_tdata),
         .imgcap_AXIS_tlast(imgcap_AXIS_tlast),
