@@ -27,6 +27,6 @@ uint32_t DanmakuHW_RenderDMAStatus(DANMAKU_HW_HANDLE h);
 int DanmakuHW_WaitForRenderDMA(DANMAKU_HW_HANDLE h);
 
 int DanmakuHW_ImageCapture(DANMAKU_HW_HANDLE h, uint32_t addr, uint32_t length);
-int DanmakuHW_PendingImgCap(DANMAKU_HW_HANDLE h);
+int DanmakuHW_ImgCapDMAIdle(DANMAKU_HW_HANDLE h);
 
 #endif

@@ -41,13 +41,16 @@ int screen_width; // screen width in pixels
 int screen_height; // screen height in pixels
 int img_size;
 volatile atomic_int render_running, sigint;
-volatile atomic_int button_ip_click;
+volatile atomic_int button_ip_click, start_image_capture;
 
 uint8_t *blank_screen;
 uint32_t blank_screen_phy;
 
 uint8_t *image_captured;
 uint32_t image_captured_phy;
+
+struct timespec last_btn_change;
+int last_btn_value;
 
 int strlen_utf8_c(char *s) {
    int i = 0, j = 0;
@@ -475,7 +478,6 @@ void BtnEventHandle(void)
             FILE * out = popen(cmd[i],"r");
             if(!out)
                 continue;
-            printf("out=%p\n", out);
             for(int j=0;j<line_limit && !feof(out);j++){
                 const char *p = input_buf;
                 if(!fgets(input_buf, MAX_TEXT_LEN, out))
@@ -622,11 +624,7 @@ void Render()
         // fprintf(stderr,"render %d\n", idx);
         DequePopFront(&EmptyBufQ);
 
-#ifdef SIM_MODE
-        uint8_t fb[MAX_IMG_SIZE];
-#else
         void* fb = (void*)DanmakuHW_GetFrameBuffer(hDriver, idx);
-#endif
 #ifdef RENDER_PROFILING_PRINT
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("render got %d, %lf\n", 
@@ -636,9 +634,13 @@ void Render()
         RenderOnce((uint8_t*)fb);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
             DanmakuHW_WaitForRenderDMA(hDriver);
+        if(!render_running)
+            break;
         DanmakuHW_RenderFlush(hDriver);
         while(render_running && !DanmakuHW_RenderDMAIdle(hDriver))
             DanmakuHW_WaitForRenderDMA(hDriver);
+        if(!render_running)
+            break;
 #ifdef RENDER_PROFILING_PRINT
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("render %d done, %lf\n", 
@@ -650,7 +652,6 @@ void Render()
     pthread_mutex_unlock(&render_overlay_mutex);
 }
 
-#ifndef SIM_MODE
 void SetCPUAffinity(void)
 {
    int s, j;
@@ -678,7 +679,6 @@ void SetCPUAffinity(void)
            printf("    CPU %d\n", j);
 
 }
-#endif
 
 void *Thread4Overlay(void *t) 
 {
@@ -697,10 +697,15 @@ void *Thread4Overlay(void *t)
     }
     printf("Thread4Overlay started\n");
 
-#ifndef SIM_MODE
-    SetCPUAffinity();
-#endif
+    // Wait until original pixel data consumed
+    for (int fifosize = 1; fifosize > 0; usleep(10000))
+    {
+        DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
+    }
 
+    SetCPUAffinity();
+
+    printf("Waiting for the first rendered frame\n");
     while(render_running && (idx = DequeFront(&FilledBufQ)) == -1)
         pthread_yield();
     if(!render_running) return 0;
@@ -713,21 +718,7 @@ void *Thread4Overlay(void *t)
     clock_gettime(CLOCK_MONOTONIC, &last_stamp);
 
     for(int frame_cnt=1,dup_cnt=0;render_running;frame_cnt++){
-#if 0
-        if(frame_cnt % 256 == 0){
-            clock_gettime(CLOCK_MONOTONIC, &stamp);
-            printf("overlay %.3f %d\n", (frame_cnt - last_cnt)
-                /(stamp.tv_sec - last_stamp.tv_sec + 1e-9*(stamp.tv_nsec - last_stamp.tv_nsec)),
-                fifosize);
-            last_cnt = frame_cnt;
-            last_stamp = stamp;
-        }
-#endif
-#if 0
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 50) printf("+f1 %d\n", fifosize);
-#endif
+
         n_in_dma++;
         tag_submitted = (tag_submitted+1)%DMA_TAG_SIZE;
         tag2idx[tag_submitted] = idx;
@@ -747,8 +738,8 @@ void *Thread4Overlay(void *t)
 #ifdef OVERLAY_PROFILING_PRINT
                 int fifosize;
                 DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-                if(fifosize < 1000)
-                    printf("!fifo %d\n", fifosize);
+                // if(fifosize < 1000)
+                //     printf("!fifo %d\n", fifosize);
                 if(fifosize < min_waterlevel)
                     min_waterlevel = fifosize;
 #endif
@@ -796,13 +787,47 @@ void *Thread4Overlay(void *t)
             printf("dup  -----  %d/%d\n", dup_cnt, frame_cnt);
         }
 
-#if 0
-            int fifosize;
-            DanmakuHW_GetFIFOUsage(hDriver, &fifosize);
-            if(fifosize < 50) printf("+f4 %d\n", fifosize);
-#endif
     }
-    pthread_exit(NULL);
+    return 0;
+}
+
+void InitBtnDetect(void)
+{
+    char cmds[128];
+    snprintf(cmds, sizeof(cmds), 
+        "echo %d >/sys/class/gpio/export;echo in >/sys/class/gpio/gpio%d/direction",
+        GPIO_CENTER_BTN, GPIO_CENTER_BTN);
+    system(cmds);
+    last_btn_value = 0;
+}
+
+void BtnDetect(void)
+{
+    int value_now;
+    char path[64];
+    snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d/value", GPIO_CENTER_BTN);
+    FILE* fval = fopen(path,"r");
+    if(!fval) return;
+    if(1 != fscanf(fval, "%d", &value_now))
+        return;
+    fclose(fval);
+
+    if(value_now != last_btn_value){
+        struct timespec now;
+        clock_gettime(CLOCK_MONOTONIC, &now);
+        printf("center button %d->%d\n", last_btn_value, value_now);
+        if(last_btn_value == 1){
+            double diff = now.tv_sec - last_btn_change.tv_sec + 1e-9*(now.tv_nsec - last_btn_change.tv_nsec);
+            printf("press time %.2lfs\n", diff);
+            if(diff >= 2){
+                start_image_capture = 1;
+            }else if(diff >= 0.04){
+                button_ip_click = 1;
+            }
+        }
+        last_btn_value = value_now;
+        last_btn_change = now;
+    }
 }
 
 void InitImgCap(void)
@@ -825,7 +850,7 @@ void DoImgCap(void)
     DanmakuHW_ImageCapture(hDriver, image_captured_phy, screen_width*screen_height);
     system(cmds);
     usleep(40000);
-    while(DanmakuHW_PendingImgCap(hDriver))
+    while(!DanmakuHW_ImgCapDMAIdle(hDriver))
         pthread_yield();
     printf("imgcap done\n");
     FILE* fdbgimg = fopen("/tmp/captured.bin", "w");
@@ -849,16 +874,15 @@ void SubMain()
     }
     printf("screen: %d * %d\n", screen_width, screen_height);
 
+    printf("DanmakuHW_RenderDMAStatus: %x\n", DanmakuHW_RenderDMAStatus(hDriver));
+    printf("DanmakuHW_RenderDMAIdle: %x\n", DanmakuHW_RenderDMAIdle(hDriver));
+
     DanmakuHW_DestroyRenderBuf(hDriver);
 
     img_size = (((screen_width + 2) * screen_height) + 3) & (~3);
-    // PCIE_Write32(hDriver, PCIE_USER_BAR, REG_IMGSIZE, (uint32_t)img_size);
 
     edge = screen_width / 20;
     render_setopt_dpi(edge*4);
-
-    // InitImgCap();
-    // DoImgCap(); /////////////////////// for test
 
     InitQueen(&sliding_queen);
     InitQueen(&static_queen);
@@ -879,9 +903,7 @@ void SubMain()
 
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-#ifndef SIM_MODE
     pthread_create(&overlay_thread, &attr, Thread4Overlay, NULL);
-#endif
 
     printf("begin rendering\n");
     signal(SIGINT, intHandler);
@@ -901,6 +923,11 @@ void* systask(void* _)
         if(ResolutionChanged(7)){
             render_running = 0;
         }
+        BtnDetect();
+        if(start_image_capture){
+            DoImgCap();
+            start_image_capture = 0;
+        }
     }
 }
 
@@ -913,7 +940,6 @@ int main()
     setvbuf(stdout, NULL, _IOLBF, 0); //set stdout as line buffer
     printf("starting danmaku...\n");
 
-#ifndef SIM_MODE
     hDriver = DanmakuHW_Open();
     if (!hDriver) {
         fprintf(stderr, "DanmakuHW_Open failed\n");
@@ -922,11 +948,8 @@ int main()
     printf("driver opened\n");
 
     printf("FPGA Build: %s\n", DanmakuHW_GetFPGABuildTime(hDriver));
-
-    printf("DanmakuHW_RenderDMAStatus: %x\n", DanmakuHW_RenderDMAStatus(hDriver));
-    printf("DanmakuHW_RenderDMAIdle: %x\n", DanmakuHW_RenderDMAIdle(hDriver));
-    printf("DanmakuHW_PendingImgCap: %x\n", DanmakuHW_PendingImgCap(hDriver));
-#endif
+    InitImgCap();
+    InitBtnDetect();
 
     // enable UTF-8
     setlocale(LC_ALL, "");
