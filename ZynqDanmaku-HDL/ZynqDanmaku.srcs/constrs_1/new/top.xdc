@@ -150,9 +150,13 @@ set_property ASYNC_REG true [get_cells {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]}
 
 set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_overlay_sync_reg[0]/D}]
 set_false_path -from [get_pins {btn/state_switch[*].state_out_reg[*]/C}] -to [get_pins {gen_hdmi[*].hdmi_o/en_blank_sync_reg[0]/D}]
-set_false_path -from [get_pins {overlay_logic_1/pxlCounter_inst/screenX_reg[*]/C}] -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[0][*]/D}]
-set_false_path -from [get_pins {top_blk_i/top_blk_i/axis_data_fifo_0/inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gdcf.dc/dc/count_reg[*]/C}] -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/overlay_fifo_cnt_sync_reg[0][*]/D}]
-set_false_path -from [get_pins {top_blk_i/top_blk_i/axigpio_ctl/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[*]/C}]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/overlay_fifo_cnt_sync_reg[0][*]/D}]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/system_ctl_reg_0/inst/system_ctl_reg_v1_0_S00_AXI_inst/resolution_sync_reg[0][*]/D}]
+set_false_path -from [get_pins {top_blk_i/top_blk_i/axigpio_ctl/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[*]/C}]
 #set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks clk_out1_clk_wiz_0]
+set_false_path -to [get_pins top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/halt_sync_reg/D]
+set_false_path -to [get_pins top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/allow_req_sync_reg/D]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/halt_cmplt_sync_reg[0]/D}]
+set_false_path -to [get_pins {top_blk_i/top_blk_i/overlay_dma/simple_sgdma_0/inst/*/SyncA_clkB_reg[0]/D}]
 
 
