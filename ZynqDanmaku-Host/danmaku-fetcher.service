@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 WorkingDirectory=/root/ZynqDanmaku-Host
 ExecStartPre=-/usr/bin/mkfifo /tmp/danmaku.fifo
-ExecStart=/bin/sh -c '/root/ZynqDanmaku-Host/node_modules/.bin/coffee /root/ZynqDanmaku-Host/fetcher.coffee >/tmp/danmaku.fifo'
+ExecStart=/bin/sh -c 'exec /root/ZynqDanmaku-Host/node_modules/.bin/coffee /root/ZynqDanmaku-Host/fetcher.coffee >/tmp/danmaku.fifo'
 Restart=always
 
 [Install]

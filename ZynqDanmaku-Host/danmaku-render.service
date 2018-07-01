@@ -6,7 +6,7 @@ After=danmaku-fetcher.service
 [Service]
 Type=simple
 WorkingDirectory=/root/ZynqDanmaku-Host
-ExecStart=/bin/bash -c '/root/ZynqDanmaku-Host/danmaku </tmp/danmaku.fifo >/var/log/render.log 2>&1'
+ExecStart=/bin/sh -c 'exec /root/ZynqDanmaku-Host/danmaku </tmp/danmaku.fifo'
 Restart=always
 RestartSec=1
 

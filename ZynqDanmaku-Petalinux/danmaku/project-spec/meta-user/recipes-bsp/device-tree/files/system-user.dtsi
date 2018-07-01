@@ -1,0 +1,49 @@
+/include/ "system-conf.dtsi"
+/ {
+        chosen {
+                //bootargs = "console=ttyPS0,115200 earlyprintk debug";
+        };
+	usb_phy0: phy0 {
+		//compatible = "usb-nop-xceiv";
+		//reset-gpios = <&gpio0 49 1>; //GPIO_ACTIVE_LOW
+	        compatible = "ulpi-phy";
+	        #phy-cells = <0>;
+	        reg = <0xe0002000 0x1000>;
+	        view-port = <0x170>;
+		drv-vbus;
+	};
+};
+&axigpio_ctl{
+	gpio-line-names = "mcu-boot","mcu-rst-n","sw_pattern_pause","sw_test_pattern","sw_debug","","","","imgcap_ovf","imgcap_start","btn-center","btn-en0","btn-blank0","btn-en1","btn-blank1";
+};
+&axi_cdma_0{
+	compatible = "linux,uio_pdrv_genirq";
+};
+&axi_dma_0{
+	compatible = "linux,uio_pdrv_genirq";
+};
+//&amba_pl {
+//	axi_dma_uio: uio_dma@40400000 {
+//		compatible = "linux,uio_pdrv_genirq";
+//		interrupt-parent = <&intc>;
+//		interrupts = <0 29 4>;
+//		reg = <0x40400000 0x10000>;
+//	};
+//	axi_cdma_uio: uio_cdma@40200000 {
+//		compatible = "linux,uio_pdrv_genirq";
+//		interrupt-parent = <&intc>;
+//		interrupts = <0 30 4>;
+//		reg = <0x40200000 0x10000>;
+//	};
+//};
+&flash0 {
+	compatible = "s25fl256s1";
+};
+&usb0 {
+	status = "okay";
+        //phy_type = "ulpi";
+	//dr_mode = "otg";
+        dr_mode = "host";
+	usb-phy = <&usb_phy0>;
+};
+

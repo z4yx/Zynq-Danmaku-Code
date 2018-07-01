@@ -110,7 +110,7 @@ proc ps7_ddr_init_data_3_0 {} {
     mask_write 0XF8006204 0xFFFFFFFF 0x00000000
     mask_write 0XF8006208 0x000703FF 0x000003FF
     mask_write 0XF800620C 0x000703FF 0x000003FF
-    mask_write 0XF8006210 0x000703FF 0x000003FF
+    mask_write 0XF8006210 0x000703FF 0x00000200
     mask_write 0XF8006214 0x000703FF 0x000003FF
     mask_write 0XF8006218 0x000F03FF 0x00000200
     mask_write 0XF800621C 0x000F03FF 0x000003FF
@@ -185,13 +185,11 @@ proc ps7_mio_init_data_3_0 {} {
     mask_write 0XF80007AC 0x00003FFF 0x00001280
     mask_write 0XF80007B0 0x00003FFF 0x00001280
     mask_write 0XF80007B4 0x00003FFF 0x00001280
-    mask_write 0XF80007B8 0x00003F01 0x00000201
-    mask_write 0XF80007BC 0x00003F01 0x00000201
     mask_write 0XF80007C0 0x00003FFF 0x00001240
     mask_write 0XF80007C4 0x00003FFF 0x00001240
     mask_write 0XF80007D0 0x00003FFF 0x00001280
     mask_write 0XF80007D4 0x00003FFF 0x00001280
-    mask_write 0XF8000830 0x003F003F 0x002E002F
+    mask_write 0XF8000830 0x003F003F 0x00380037
     mask_write 0XF8000834 0x003F003F 0x003A0039
     mwr -force 0XF8000004 0x0000767B
 }
@@ -212,12 +210,6 @@ proc ps7_peripherals_init_data_3_0 {} {
     mask_write 0XE0000004 0x000003FF 0x00000020
     mask_write 0XE000D000 0x00080000 0x00080000
     mask_write 0XF8007000 0x20000000 0x00000000
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
 }
 proc ps7_post_config_3_0 {} {
     mwr -force 0XF8000008 0x0000DF0D
@@ -343,7 +335,7 @@ proc ps7_ddr_init_data_2_0 {} {
     mask_write 0XF8006204 0xFFFFFFFF 0x00000000
     mask_write 0XF8006208 0x000F03FF 0x000803FF
     mask_write 0XF800620C 0x000F03FF 0x000803FF
-    mask_write 0XF8006210 0x000F03FF 0x000803FF
+    mask_write 0XF8006210 0x000F03FF 0x00080200
     mask_write 0XF8006214 0x000F03FF 0x000803FF
     mask_write 0XF8006218 0x000F03FF 0x00000200
     mask_write 0XF800621C 0x000F03FF 0x000003FF
@@ -418,13 +410,11 @@ proc ps7_mio_init_data_2_0 {} {
     mask_write 0XF80007AC 0x00003FFF 0x00001280
     mask_write 0XF80007B0 0x00003FFF 0x00001280
     mask_write 0XF80007B4 0x00003FFF 0x00001280
-    mask_write 0XF80007B8 0x00003F01 0x00000201
-    mask_write 0XF80007BC 0x00003F01 0x00000201
     mask_write 0XF80007C0 0x00003FFF 0x00001240
     mask_write 0XF80007C4 0x00003FFF 0x00001240
     mask_write 0XF80007D0 0x00003FFF 0x00001280
     mask_write 0XF80007D4 0x00003FFF 0x00001280
-    mask_write 0XF8000830 0x003F003F 0x002E002F
+    mask_write 0XF8000830 0x003F003F 0x00380037
     mask_write 0XF8000834 0x003F003F 0x003A0039
     mwr -force 0XF8000004 0x0000767B
 }
@@ -445,12 +435,6 @@ proc ps7_peripherals_init_data_2_0 {} {
     mask_write 0XE0000004 0x00000FFF 0x00000020
     mask_write 0XE000D000 0x00080000 0x00080000
     mask_write 0XF8007000 0x20000000 0x00000000
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
 }
 proc ps7_post_config_2_0 {} {
     mwr -force 0XF8000008 0x0000DF0D
@@ -574,7 +558,7 @@ proc ps7_ddr_init_data_1_0 {} {
     mask_write 0XF8006204 0xFFFFFFFF 0x00000000
     mask_write 0XF8006208 0x000F03FF 0x000803FF
     mask_write 0XF800620C 0x000F03FF 0x000803FF
-    mask_write 0XF8006210 0x000F03FF 0x000803FF
+    mask_write 0XF8006210 0x000F03FF 0x00080200
     mask_write 0XF8006214 0x000F03FF 0x000803FF
     mask_write 0XF8006218 0x000F03FF 0x00000200
     mask_write 0XF800621C 0x000F03FF 0x000003FF
@@ -649,13 +633,11 @@ proc ps7_mio_init_data_1_0 {} {
     mask_write 0XF80007AC 0x00003FFF 0x00001280
     mask_write 0XF80007B0 0x00003FFF 0x00001280
     mask_write 0XF80007B4 0x00003FFF 0x00001280
-    mask_write 0XF80007B8 0x00003F01 0x00000201
-    mask_write 0XF80007BC 0x00003F01 0x00000201
     mask_write 0XF80007C0 0x00003FFF 0x00001240
     mask_write 0XF80007C4 0x00003FFF 0x00001240
     mask_write 0XF80007D0 0x00003FFF 0x00001280
     mask_write 0XF80007D4 0x00003FFF 0x00001280
-    mask_write 0XF8000830 0x003F003F 0x002E002F
+    mask_write 0XF8000830 0x003F003F 0x00380037
     mask_write 0XF8000834 0x003F003F 0x003A0039
     mwr -force 0XF8000004 0x0000767B
 }
@@ -676,12 +658,6 @@ proc ps7_peripherals_init_data_1_0 {} {
     mask_write 0XE0000004 0x00000FFF 0x00000020
     mask_write 0XE000D000 0x00080000 0x00080000
     mask_write 0XF8007000 0x20000000 0x00000000
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
-    mask_delay 0XF8F00200 1
 }
 proc ps7_post_config_1_0 {} {
     mwr -force 0XF8000008 0x0000DF0D
@@ -737,7 +713,10 @@ proc ps_version { } {
 }
 
 proc ps7_post_config {} {
-    variable PCW_SILICON_VER_1_0
+    set saved_mode [configparams force-mem-accesses]                  
+    configparams force-mem-accesses 1 
+    
+	variable PCW_SILICON_VER_1_0
     variable PCW_SILICON_VER_2_0
     variable PCW_SILICON_VER_3_0
     set sil_ver [ps_version]
@@ -749,6 +728,7 @@ proc ps7_post_config {} {
     } else {
         ps7_post_config_3_0   
     }
+	configparams force-mem-accesses $saved_mode                                       
 }
 
 proc ps7_debug {} {
