@@ -106,7 +106,7 @@ int ParseJSON(const std::string &json)
                 return QrCodeNeither4Nor6;
             }
         }
-        ofstream jsonDump("cfg_dump.json");
+        ofstream jsonDump("config.json");
         jsonDump << json;
         jsonDump.close();
         return QrCodeParseOK;
