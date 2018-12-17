@@ -1,11 +1,12 @@
 TARGET = danmaku
-CFLAGS += $(CFLAGS_EXTRA) -O2 -std=gnu99 `pkg-config glib-2.0 pango fontconfig pangoft2 freetype2 libgpiod --cflags` -g3
-
+COMMON_CFLAGS += -O2 `pkg-config glib-2.0 pango fontconfig pangoft2 freetype2 libgpiod zbar --cflags` -g3
+CFLAGS += $(COMMON_CFLAGS) -std=gnu99
+CXXFLAGS += $(COMMON_CFLAGS) -std=c++11
 LDFLAGS += -pthread
 
-LIBS +=  `pkg-config --libs freetype2 glib-2.0 pango fontconfig pangoft2 libgpiod`
+LIBS +=  `pkg-config --libs freetype2 glib-2.0 pango fontconfig pangoft2 libgpiod zbar`
 
-$(TARGET): danmaku_driver.o danmaku.o ring.o render.o
+$(TARGET): danmaku_driver.o danmaku.o ring.o render.o qrcode_config.o
 
-	$(CC) -o $@ $(LDFLAGS) $^ $(LIBS)
+	$(CXX) -o $@ $(LDFLAGS) $^ $(LIBS)
 	

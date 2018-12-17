@@ -25,6 +25,7 @@
 #include "render.h"
 #include "ring.h"
 #include "constants.h"
+#include "qrcode_config.h"
 
 // #define OVERLAY_PROFILING_PRINT
 // #define RENDER_PROFILING_PRINT
@@ -44,7 +45,7 @@ int screen_width; // screen width in pixels
 int screen_height; // screen height in pixels
 int img_size;
 volatile atomic_int render_running, sigint;
-volatile atomic_int button_ip_click, start_image_capture;
+volatile atomic_int notify_ip, notify_config_detected, start_image_capture;
 
 uint8_t *blank_screen;
 uint32_t blank_screen_phy;
@@ -471,10 +472,10 @@ void Push(queen_t *queen, const inp_char_t *src)
 
 queen_t sliding_queen, static_queen;
 
-void BtnEventHandle(void)
+void NotificationHandle(void)
 {
-    if(button_ip_click){
-        button_ip_click = 0;
+    if(notify_ip){
+        notify_ip = 0;
         const char* cmd[] = {"ip a s dev eth0 |grep inet", "ip r |grep default", "ip -6 r |grep default"};
         int line_limit = 2;
         for (int i = 0; i < sizeof(cmd)/sizeof(cmd[0]); ++i)
@@ -496,6 +497,10 @@ void BtnEventHandle(void)
             pclose(out);
         }
     }
+    if(notify_config_detected){
+        notify_config_detected = 0;
+        Push(&static_queen, "-- Configuration Detected --");
+    }
 }
 void RenderOnce(uint8_t* buf)
 {
@@ -506,7 +511,7 @@ void RenderOnce(uint8_t* buf)
     inp_char_t *ret = fgets(input_buf, MAX_TEXT_LEN, stdin);
     if (ret == NULL) {
         // printf("nothing fetched\n");
-        BtnEventHandle();
+        NotificationHandle();
     } else {
         printf("->%s",ret);
         // fputws(input_buf + 1, stdout);
@@ -821,7 +826,7 @@ void BtnDetect(void)
             if(diff >= 2){
                 start_image_capture = 1;
             }else if(diff >= 0.04){
-                button_ip_click = 1;
+                notify_ip = 1;
             }
         }
         last_btn_value = value_now;
@@ -923,6 +928,14 @@ void* systask(void* _)
         if(start_image_capture){
             DoImgCap();
             start_image_capture = 0;
+            if(ExtractConfig(image_captured, screen_width*screen_height, screen_height, screen_width) == QrCodeParseOK){
+                printf("config extracted\n");
+                notify_config_detected = 1;
+                if(ApplyConfig() == 0){
+                    printf("config successfully applied\n");
+                    notify_ip = 1;
+                }
+            }
         }
     }
 }
