@@ -12,14 +12,16 @@
 #define IFUPDOWN_CONFIG_FILE "/etc/network/interfaces.d/danmaku"
 #endif
 
+// low 32-bit from IPv6 address
+#define EXTRACT_V4MAPPED(addr) ((in_addr_t)((addr).__in6_u.__u6_addr32[3]))
+
 static const in6_addr IP6_ANY = IN6ADDR_ANY_INIT;
 static struct{
     struct in_addr ipv4, mask_v4, gw_v4;
     struct in6_addr gw_v6;
     struct in6_addr ipv6;
+    struct in6_addr dns1;
     uint8_t prefixLen;
-    std::string dns1;
-    std::string server_url;
     bool dhcp;
 }gCfg;
 
@@ -33,6 +35,55 @@ static struct{
     if(ret) return ret;\
 }while(0)
 
+int dotsNotation2IPv4(const std::string &ip, struct in_addr *field)
+{
+    if(ip.empty()){
+        field->s_addr = INADDR_ANY;
+        return QrCodeParseOK;
+    }
+    if(inet_aton(ip.c_str(), field))
+        return QrCodeParseOK;
+    return QrCodeInvalidIPv4;
+}
+int CIDR2IPv6(const std::string &ip, struct in6_addr *field)
+{
+    if(ip.empty()){
+        *field = in6_addr(IN6ADDR_ANY_INIT);
+        return QrCodeParseOK;
+    }
+    auto slash = std::find(ip.begin(), ip.end(), '/');
+    if(inet_pton(AF_INET6, std::string(ip.begin(), slash).c_str(), field))
+        return QrCodeParseOK;
+    return QrCodeInvalidIPv6;
+}
+int CIDR2PrefixLen(const std::string &ip, uint8_t *len)
+{
+    if(ip.empty()){
+        *len = 0;
+        return QrCodeParseOK;
+    }
+    auto slash = find(ip.begin(), ip.end(), '/');
+    if(slash == ip.end())
+        return QrCodeInvalidIPv6;
+    return 1 == sscanf(std::string(slash+1, ip.end()).c_str(), "%hhu", len) ?
+            QrCodeParseOK :
+            QrCodeInvalidIPv6;
+}
+int CopyDNS(const std::string &ip, struct in6_addr *field)
+{
+    if(CIDR2IPv6(ip, field) == QrCodeParseOK)
+        return QrCodeParseOK;
+    struct in_addr v4;
+    if(dotsNotation2IPv4(ip, &v4) == QrCodeParseOK){
+        // IPv4-Mapped IPv6 Address 
+        field->__in6_u.__u6_addr32[0] = 0;
+        field->__in6_u.__u6_addr32[1] = 0;
+        field->__in6_u.__u6_addr32[2] = htonl (0xffff);
+        field->__in6_u.__u6_addr32[3] = v4.s_addr;
+        return QrCodeParseOK;
+    }
+    return QrCodeInvalidDNS;
+}
 int ParseJSON(const std::string &json)
 {
     using namespace std;
@@ -51,46 +102,7 @@ int ParseJSON(const std::string &json)
                 return make_pair(false, fallback);
         };
 
-        auto dotsNotation2IPv4 = [](const string &ip, struct in_addr *field)->int{
-            if(ip.empty()){
-                field->s_addr = INADDR_ANY;
-                return QrCodeParseOK;
-            }
-            if(inet_aton(ip.c_str(), field))
-                return QrCodeParseOK;
-            return QrCodeInvalidIPv4;
-        };
-        auto CIDR2IPv6 = [](const string &ip, struct in6_addr *field)->int{
-            if(ip.empty()){
-                *field = in6_addr(IN6ADDR_ANY_INIT);
-                return QrCodeParseOK;
-            }
-            auto slash = find(ip.begin(), ip.end(), '/');
-            if(inet_pton(AF_INET6, string(ip.begin(), slash).c_str(), field))
-                return QrCodeParseOK;
-            return QrCodeInvalidIPv6;
-        };
-        auto CIDR2PrefixLen = [](const string &ip, uint8_t *len)->int{
-            if(ip.empty()){
-                *len = 0;
-                return QrCodeParseOK;
-            }
-            auto slash = find(ip.begin(), ip.end(), '/');
-            if(slash == ip.end())
-                return QrCodeInvalidIPv6;
-            return 1 == sscanf(string(slash+1, ip.end()).c_str(), "%hhu", len) ?
-                    QrCodeParseOK :
-                    QrCodeInvalidIPv6;
-        };
-        auto CopyURL = [](const string &src, string* dst)->int{
-            if(src.empty())
-                return QrCodeInvalidURL;
-            *dst = src;
-            return QrCodeParseOK;
-        };
-
         memset(&gCfg, 0, sizeof(gCfg));
-        CHECK_THEN_POPULATE("srvUrl", "", CopyURL, &gCfg.server_url);
         if(extractString("enableDHCP", "") == make_pair(true, string("on"))){
             gCfg.dhcp = true;
         }else{
@@ -101,8 +113,8 @@ int ParseJSON(const std::string &json)
             CHECK_THEN_POPULATE("deviceIP6", "", CIDR2IPv6, &gCfg.ipv6);
             CHECK_THEN_POPULATE("deviceIP6", "", CIDR2PrefixLen, &gCfg.prefixLen);
             CHECK_THEN_POPULATE("deviceGW6", "", CIDR2IPv6, &gCfg.gw_v6);
-            CHECK_THEN_POPULATE("deviceDNS1", "", CopyURL, &gCfg.dns1);
-            if(gCfg.ipv4.s_addr == 0 && memcmp(&gCfg.ipv6, &IP6_ANY, sizeof(in6_addr) == 0)) {
+            CHECK_THEN_POPULATE("deviceDNS1", "", CopyDNS, &gCfg.dns1);
+            if(gCfg.ipv4.s_addr == 0 && memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr) == 0)) {
                 return QrCodeNeither4Nor6;
             }
         }
@@ -169,18 +181,21 @@ int ApplyConfig()
     }else{
         ifupdown << "manual" << std::endl;
     }
-    if(!gCfg.dns1.empty() && gCfg.dns1.find(':') == std::string::npos) // v4 DNS
-        ifupdown << "\tdns-nameservers " << gCfg.dns1 << '\n';
+    if(IN6_IS_ADDR_V4MAPPED(&gCfg.dns1)){ // v4 DNS
+        struct in_addr v4;
+        v4.s_addr = EXTRACT_V4MAPPED(gCfg.dns1);
+        ifupdown << "\tdns-nameservers " << inet_ntoa(v4) << '\n';
+    }
 
     ifupdown << "iface eth0 inet6 ";
-    if(memcmp(&gCfg.ipv6, &IP6_ANY, sizeof(in6_addr)) != 0){
+    if(memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr)) != 0){
         ifupdown << "static" << std::endl
             << "\taddress " << gCfg.ipv6 << '/' << gCfg.prefixLen << '\n'
             << "\tgateway " << gCfg.gw_v6 << '\n';
     }else{
         ifupdown << "auto" << std::endl;
     }
-    if(!gCfg.dns1.empty() && gCfg.dns1.find(':') != std::string::npos) // v6 DNS
+    if(!IN6_IS_ADDR_V4MAPPED(&gCfg.dns1)) // v6 DNS
         ifupdown << "\tdns-nameservers " << gCfg.dns1 << '\n';
     ifupdown.close();
 

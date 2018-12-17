@@ -13,7 +13,7 @@ enum{
     QrCodeContentErr,
     QrCodeInvalidIPv4,
     QrCodeInvalidIPv6,
-    QrCodeInvalidURL,
+    QrCodeInvalidDNS,
     QrCodeNeither4Nor6
 };
 
