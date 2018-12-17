@@ -190,7 +190,7 @@ int ApplyConfig()
     ifupdown << "iface eth0 inet6 ";
     if(memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr)) != 0){
         ifupdown << "static" << std::endl
-            << "\taddress " << gCfg.ipv6 << '/' << gCfg.prefixLen << '\n'
+            << "\taddress " << gCfg.ipv6 << '/' << (int)gCfg.prefixLen << '\n'
             << "\tgateway " << gCfg.gw_v6 << '\n';
     }else{
         ifupdown << "auto" << std::endl;
