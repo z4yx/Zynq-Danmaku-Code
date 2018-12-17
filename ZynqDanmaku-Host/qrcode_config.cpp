@@ -200,7 +200,7 @@ int ApplyConfig()
     ifupdown.close();
 
     system("echo 'configure file is:';cat " IFUPDOWN_CONFIG_FILE);
-    system("ifdown eth0");
+    system("ifdown --force --ignore-errors eth0");
     system("ifup eth0");
     return 0;
 }
