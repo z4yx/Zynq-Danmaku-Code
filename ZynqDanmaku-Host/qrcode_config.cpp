@@ -195,7 +195,7 @@ int ApplyConfig()
     }else{
         ifupdown << "auto" << std::endl;
     }
-    if(!IN6_IS_ADDR_V4MAPPED(&gCfg.dns1)) // v6 DNS
+    if(!IN6_IS_ADDR_V4MAPPED(&gCfg.dns1) && memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr))) // v6 DNS
         ifupdown << "\tdns-nameservers " << gCfg.dns1 << '\n';
     ifupdown.close();
 
