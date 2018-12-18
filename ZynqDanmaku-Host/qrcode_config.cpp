@@ -167,6 +167,7 @@ static std::ostream &operator<<(std::ostream &os, in6_addr const &m) {
 
 int ApplyConfig()
 {
+    system("ifdown --force --ignore-errors eth0");
     std::ofstream ifupdown(IFUPDOWN_CONFIG_FILE);
     if(!ifupdown)
         return -1;
@@ -200,7 +201,6 @@ int ApplyConfig()
     ifupdown.close();
 
     system("echo 'configure file is:';cat " IFUPDOWN_CONFIG_FILE);
-    system("ifdown --force --ignore-errors eth0");
     system("ifup eth0");
     return 0;
 }
