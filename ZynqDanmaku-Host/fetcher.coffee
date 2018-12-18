@@ -15,7 +15,7 @@ if config['testMode']?
   testMode = config['testMode']
 
 api = "https://stu.cs.tsinghua.edu.cn/comment/app/screen"
-token = "e2289b7366a270d8e1012e6fecb2f994ab80be26"
+token = "unset"
 
 if config['srvUrl']?
   apiUrl = new URL.URL config['srvUrl']
@@ -23,6 +23,10 @@ if config['srvUrl']?
   token = apiUrl.searchParams.get('token')
   # console.log(api)
   # console.log(apiUrl.searchParams)
+
+if token is 'unset'
+  throw new Error 'token not set'
+
 
 if testMode
   nowId =1450615764115
