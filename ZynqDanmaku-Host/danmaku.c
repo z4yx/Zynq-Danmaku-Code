@@ -491,7 +491,7 @@ void NotificationHandle(void)
                 while(*p!='\0' && *p<=' ')p++;
                 printf("got '%s'\n", p);
                 if(strlen(p)>8)
-                    Push(&static_queen, p);
+                    Push(&sliding_queen, p);
                 else
                     break;
             }
@@ -937,11 +937,12 @@ void* systask(void* _)
                 notify_with_const_string = (intptr_t) "Configuration Detected";
                 if(ApplyConfig() == 0){
                     printf("config successfully applied\n");
-                    notify_with_const_string = (intptr_t) "Configuration Applied";
                     notify_ip = 1;
+                    usleep(10000);
+                    notify_with_const_string = (intptr_t) "Configuration Applied";
                 }
             }else{
-                printf("%d %s", ret, QrCodeErrorMessage(ret));
+                printf("%d %s\n", ret, QrCodeErrorMessage(ret));
                 notify_with_const_string = (intptr_t) QrCodeErrorMessage(ret);
             }
         }

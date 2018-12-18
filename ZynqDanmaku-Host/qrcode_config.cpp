@@ -114,7 +114,7 @@ int ParseJSON(const std::string &json)
             CHECK_THEN_POPULATE("deviceIP6", "", CIDR2PrefixLen, &gCfg.prefixLen);
             CHECK_THEN_POPULATE("deviceGW6", "", CIDR2IPv6, &gCfg.gw_v6);
             CHECK_THEN_POPULATE("deviceDNS1", "", CopyDNS, &gCfg.dns1);
-            if(gCfg.ipv4.s_addr == 0 && memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr) == 0)) {
+            if(gCfg.ipv4.s_addr == 0 && memcmp(&gCfg.ipv6, &in6addr_any, sizeof(in6_addr)) == 0) {
                 return QrCodeNeither4Nor6;
             }
         }
