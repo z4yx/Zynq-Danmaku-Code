@@ -824,9 +824,9 @@ void BtnDetect(void)
         if(last_btn_value == 1){
             double diff = now.tv_sec - last_btn_change.tv_sec + 1e-9*(now.tv_nsec - last_btn_change.tv_nsec);
             printf("press time %.2lfs\n", diff);
-            if(diff >= 2){
+            if(diff >= 3){
                 start_image_capture = 1;
-            }else if(diff >= 0.04){
+            }else if(diff >= 1){
                 notify_ip = 1;
             }
         }
@@ -937,8 +937,8 @@ void* systask(void* _)
                 notify_with_const_string = (intptr_t) "Configuration Detected";
                 if(ApplyConfig() == 0){
                     printf("config successfully applied\n");
-                    notify_ip = 1;
-                    usleep(10000);
+                    // notify_ip = 1;
+                    // usleep(10000);
                     notify_with_const_string = (intptr_t) "Configuration Applied";
                 }
             }else{
