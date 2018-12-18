@@ -205,6 +205,28 @@ int ApplyConfig()
     return 0;
 }
 
+const char* QrCodeErrorMessage(int err)
+{
+    switch(err){
+        case QrCodeParseOK:
+            return "Success";
+        case QrCodeNotFound:
+            return "QR Code Not Found";
+        case QrCodeContentErr:
+            return "Unrecognized QR Code";
+        case QrCodeInvalidDNS:
+            return "Invalid DNS Config";
+        case QrCodeInvalidIPv4:
+            return "Invalid IPv4 Format";
+        case QrCodeInvalidIPv6:
+            return "Invalid IPv6 Format";
+        case QrCodeNeither4Nor6:
+            return "Both IPv4 and IPv6 are Unconfigured";
+        default:
+            return "Unknown Error";
+    }
+}
+
 #ifdef TEST_QRCODE
 
 int main(int argc, char const *argv[])

@@ -45,7 +45,8 @@ int screen_width; // screen width in pixels
 int screen_height; // screen height in pixels
 int img_size;
 volatile atomic_int render_running, sigint;
-volatile atomic_int notify_ip, notify_config_detected, start_image_capture;
+volatile atomic_int notify_ip, start_image_capture;
+volatile atomic_intptr_t notify_with_const_string;
 
 uint8_t *blank_screen;
 uint32_t blank_screen_phy;
@@ -497,9 +498,9 @@ void NotificationHandle(void)
             pclose(out);
         }
     }
-    if(notify_config_detected){
-        notify_config_detected = 0;
-        Push(&static_queen, "-- Configuration Detected --");
+    if(notify_with_const_string){
+        Push(&static_queen, (const char*)notify_with_const_string);
+        notify_with_const_string = 0;
     }
 }
 void RenderOnce(uint8_t* buf)
@@ -928,13 +929,20 @@ void* systask(void* _)
         if(start_image_capture){
             DoImgCap();
             start_image_capture = 0;
-            if(ExtractConfig(image_captured, screen_width*screen_height, screen_height, screen_width) == QrCodeParseOK){
+            notify_with_const_string = (intptr_t) "Configure with QR Code";
+            int ret;
+            if((ret = ExtractConfig(image_captured, screen_width*screen_height, screen_height, screen_width))
+                == QrCodeParseOK){
                 printf("config extracted\n");
-                notify_config_detected = 1;
+                notify_with_const_string = (intptr_t) "Configuration Detected";
                 if(ApplyConfig() == 0){
                     printf("config successfully applied\n");
+                    notify_with_const_string = (intptr_t) "Configuration Applied";
                     notify_ip = 1;
                 }
+            }else{
+                printf("%d %s", ret, QrCodeErrorMessage(ret));
+                notify_with_const_string = (intptr_t) QrCodeErrorMessage(ret);
             }
         }
     }

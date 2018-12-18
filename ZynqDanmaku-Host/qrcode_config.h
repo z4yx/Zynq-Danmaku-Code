@@ -19,6 +19,7 @@ enum{
 
 int ExtractConfig(void* image, size_t len, int height, int width);
 int ApplyConfig();
+const char* QrCodeErrorMessage(int err);
 
 
 #ifdef __cplusplus
