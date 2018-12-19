@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#/etc/network/if-up.d/danmaku
+
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+if [ "$METHOD" = loopback ]; then
+        exit 0
+fi
+# Only run from ifup.
+if [ "$MODE" != start ]; then
+        exit 0
+fi
+
+
+systemctl restart danmaku-fetcher.service
+
+exit 0

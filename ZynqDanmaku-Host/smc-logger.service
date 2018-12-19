@@ -1,0 +1,11 @@
+[Unit]
+Description=SMC Logger
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/socat -u /dev/ttyPS1,b115200,raw,echo=0 -
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
