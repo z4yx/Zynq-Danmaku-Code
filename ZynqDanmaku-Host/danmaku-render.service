@@ -1,12 +1,13 @@
 [Unit]
 Description=Danmaku Render
-Requires=danmaku-fetcher.service
+#Requires=danmaku-fetcher.service
 After=danmaku-fetcher.service
 
 [Service]
 Type=simple
-WorkingDirectory=/root/ZynqDanmaku-Host
-ExecStart=/bin/bash -c '/root/ZynqDanmaku-Host/danmaku </tmp/danmaku.fifo >/var/log/render.log 2>&1'
+WorkingDirectory=/root/Zynq-Danmaku-Code/ZynqDanmaku-Host
+ExecStartPre=-/usr/bin/mkfifo /run/danmaku.fifo
+ExecStart=/bin/sh -c 'exec ./danmaku </run/danmaku.fifo'
 Restart=always
 RestartSec=1
 
