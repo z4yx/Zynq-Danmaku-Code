@@ -76,7 +76,7 @@ uint8_t i2c_read_8(uint8_t baseAddr, uint8_t subAddress)
     uint8_t data[1] = {0}; // `data` will store the register data
     ret = HAL_I2C_Mem_Read(&hi2c1, baseAddr, subAddress, I2C_MEMADD_SIZE_8BIT, data, 1, 100);
     if(ret != HAL_OK){
-        ERR_MSG(" HAL_I2C_Mem_Read: %d", ret);
+        ERR_MSG(" HAL_I2C_Mem_Read[%x,%x]: %d", (int)baseAddr, (int)subAddress, ret);
     }
     return data[0];
 }
@@ -106,7 +106,7 @@ void i2c_write_multibytes(uint8_t baseAddr, uint8_t subAddress, uint32_t count, 
     HAL_StatusTypeDef ret;
     ret = HAL_I2C_Mem_Write(&hi2c1, baseAddr, subAddress, I2C_MEMADD_SIZE_8BIT, buf, count, 100);
     if(ret != HAL_OK){
-        ERR_MSG(" HAL_I2C_Mem_Write: %d", ret);
+        ERR_MSG(" HAL_I2C_Mem_Write[%x,%x]: %d",baseAddr,subAddress, ret);
     }
 }
 
