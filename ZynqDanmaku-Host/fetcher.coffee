@@ -27,6 +27,12 @@ if config['srvUrl']?
 if token is 'unset'
   throw new Error 'token not set'
 
+git_rev = ''
+require('child_process').exec('git rev-parse HEAD', (err, stdout) ->
+  process.stderr.write('Git Commit ' + stdout);
+  if /\w{40}/.test stdout
+    git_rev = '/' + stdout.substring(0, 7)
+)
 
 if testMode
   nowId =1450615764115
@@ -47,6 +53,8 @@ getOne = ()->
       l: 1
       s: nowId.toString()
     json: true
+    headers:
+      'User-Agent': 'Danmaku9' + git_rev + ' (Zynq, Linux)'
   , (err, res, body)->
     if not err and Array.isArray body
       for m in body
