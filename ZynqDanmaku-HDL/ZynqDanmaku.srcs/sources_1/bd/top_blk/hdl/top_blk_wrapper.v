@@ -1,8 +1,8 @@
-//Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+//Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2017.1 (lin64) Build 1846317 Fri Apr 14 18:54:47 MDT 2017
-//Date        : Wed Dec 20 14:48:14 2017
-//Host        : nuc6i7 running 64-bit Ubuntu 16.04.2 LTS
+//Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
+//Date        : Sun Jul  1 17:43:05 2018
+//Host        : cqtestlab running 64-bit Deepin 15.6
 //Command     : generate_target top_blk_wrapper.bd
 //Design      : top_blk_wrapper
 //Purpose     : IP block netlist
@@ -36,8 +36,8 @@ module top_blk_wrapper
     M_AXIS_tvalid,
     UART_0_rxd,
     UART_0_txd,
-    btn_center,
-    gpio_ctl_tri_io,
+    btn_in,
+    gpio_t,
     gpo,
     imgcap_AXIS_tdata,
     imgcap_AXIS_tlast,
@@ -76,9 +76,9 @@ module top_blk_wrapper
   output M_AXIS_tvalid;
   input UART_0_rxd;
   output UART_0_txd;
-  input [0:0]btn_center;
-  inout [1:0]gpio_ctl_tri_io;
-  output [7:0]gpo;
+  input [4:0]btn_in;
+  output [15:0]gpio_t;
+  output [15:0]gpo;
   input [63:0]imgcap_AXIS_tdata;
   input imgcap_AXIS_tlast;
   output imgcap_AXIS_tready;
@@ -117,16 +117,9 @@ module top_blk_wrapper
   wire M_AXIS_tvalid;
   wire UART_0_rxd;
   wire UART_0_txd;
-  wire [0:0]btn_center;
-  wire [0:0]gpio_ctl_tri_i_0;
-  wire [1:1]gpio_ctl_tri_i_1;
-  wire [0:0]gpio_ctl_tri_io_0;
-  wire [1:1]gpio_ctl_tri_io_1;
-  wire [0:0]gpio_ctl_tri_o_0;
-  wire [1:1]gpio_ctl_tri_o_1;
-  wire [0:0]gpio_ctl_tri_t_0;
-  wire [1:1]gpio_ctl_tri_t_1;
-  wire [7:0]gpo;
+  wire [4:0]btn_in;
+  wire [15:0]gpio_t;
+  wire [15:0]gpo;
   wire [63:0]imgcap_AXIS_tdata;
   wire imgcap_AXIS_tlast;
   wire imgcap_AXIS_tready;
@@ -139,16 +132,6 @@ module top_blk_wrapper
   wire [15:0]resolution_h;
   wire [15:0]resolution_w;
 
-  IOBUF gpio_ctl_tri_iobuf_0
-       (.I(gpio_ctl_tri_o_0),
-        .IO(gpio_ctl_tri_io[0]),
-        .O(gpio_ctl_tri_i_0),
-        .T(gpio_ctl_tri_t_0));
-  IOBUF gpio_ctl_tri_iobuf_1
-       (.I(gpio_ctl_tri_o_1),
-        .IO(gpio_ctl_tri_io[1]),
-        .O(gpio_ctl_tri_i_1),
-        .T(gpio_ctl_tri_t_1));
   top_blk top_blk_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -176,10 +159,8 @@ module top_blk_wrapper
         .M_AXIS_tvalid(M_AXIS_tvalid),
         .UART_0_rxd(UART_0_rxd),
         .UART_0_txd(UART_0_txd),
-        .btn_center(btn_center),
-        .gpio_ctl_tri_i({gpio_ctl_tri_i_1,gpio_ctl_tri_i_0}),
-        .gpio_ctl_tri_o({gpio_ctl_tri_o_1,gpio_ctl_tri_o_0}),
-        .gpio_ctl_tri_t({gpio_ctl_tri_t_1,gpio_ctl_tri_t_0}),
+        .btn_in(btn_in),
+        .gpio_t(gpio_t),
         .gpo(gpo),
         .imgcap_AXIS_tdata(imgcap_AXIS_tdata),
         .imgcap_AXIS_tlast(imgcap_AXIS_tlast),

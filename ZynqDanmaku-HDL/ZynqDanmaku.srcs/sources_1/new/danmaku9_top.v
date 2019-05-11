@@ -98,6 +98,7 @@ wire hps_fpga_reset_n = 1'b1;
 
 wire sw_debug, sw_test_pattern, sw_pattern_pause;
 wire sw_conj;
+wire mcu_rst_n_o,mcu_boot_o,mcu_rst_n_t,mcu_boot_t;
 wire [3:0] gpo_dummy;
 wire imgcap_start,
     imgcap_AXIS_tlast,
@@ -106,6 +107,9 @@ wire imgcap_start,
     imgcap_aclk,
     imgcap_aresetn;
 wire [63:0] imgcap_AXIS_tdata;
+
+assign mcu_rst_n = mcu_rst_n_t ? 1'bz : mcu_rst_n_o;
+assign mcu_boot = mcu_boot_t ? 1'bz : mcu_boot_o;
 
 top_blk_wrapper top_blk_i
    (.DDR_addr(DDR_addr),
@@ -145,9 +149,9 @@ top_blk_wrapper top_blk_i
     .imgcap_AXIS_tvalid(imgcap_AXIS_tvalid),
     .imgcap_aclk(imgcap_aclk),
     .imgcap_aresetn(imgcap_aresetn),
-    .gpio_ctl_tri_io({mcu_boot,mcu_rst_n}),
-    .btn_center(sw_conj),
-    .gpo({imgcap_start,gpo_dummy,sw_debug,sw_test_pattern,sw_pattern_pause})
+    .btn_in(switch_in),
+    .gpio_t({mcu_rst_n_t,mcu_boot_t}),
+    .gpo({imgcap_start,gpo_dummy,sw_debug,sw_test_pattern,sw_pattern_pause,mcu_rst_n_o,mcu_boot_o})
     );
 
 //`default_nettype none
@@ -251,6 +255,16 @@ assign DEB = de_to_hdmi[1];
 assign {O1_D[7:0],O2_D[15:8]} = {ycrcb_to_hdmi[1]};
 
 //assign O1_D = crycb444[0];
+    
+assign O1_SCLK=IN_SCLK;
+assign MCLKA=IN_MCLK;
+assign LRCLKA=IN_LR;
+assign O1_I2S={1'b0,I2S};
+    
+assign O2_SCLK=IN_SCLK;
+assign MCLKB=IN_MCLK;
+assign LRCLKB=IN_LR;
+assign O2_I2S={1'b0,I2S};
 
 simpleyuv testpattern(
   .pxlClk(pixel_clk_to_output),
