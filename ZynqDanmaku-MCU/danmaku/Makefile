@@ -36,13 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Src/main.c \
-Src/usb_device.c \
-Src/usbd_conf.c \
-Src/usbd_desc.c \
-Src/usbd_cdc_if.c \
-Src/stm32f0xx_it.c \
-Src/stm32f0xx_hal_msp.c \
+$(wildcard Src/*.c) \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usb.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c \
@@ -65,7 +59,6 @@ Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c \
-Src/system_stm32f0xx.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
