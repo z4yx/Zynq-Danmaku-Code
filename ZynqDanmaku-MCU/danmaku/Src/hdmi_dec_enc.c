@@ -256,16 +256,19 @@ bool HDMIEnc_DetectHDMI(uint8_t edid[256]) {
     if (edid[0x7e] > 0 && edid[0x80] == 2 && edid[0x81] == 3) {
         uint32_t offset = edid[0x82];
         if (offset < 4) {
+            DBG_MSG("offset=%u", offset);
             return false;
         }
         for (uint32_t i = 4;i < offset;) {
             uint32_t begin = 0x80 + i;
             if (begin >= 256) {
+                DBG_MSG("begin=%u", begin);
                 return false;
             }
 
             uint32_t length = edid[begin] & 0x1f;
             if (begin + length >= 256 || length == 0) {
+                DBG_MSG("length=%u", length);
                 return false;
             }
 
@@ -281,6 +284,7 @@ bool HDMIEnc_DetectHDMI(uint8_t edid[256]) {
             i += length + 1;
         }
     }
+    DBG_MSG("Extension not found");
     return false;
 }
 
@@ -308,13 +312,20 @@ void HDMIEnc_OutFmtSwitch(int idx, int isHDMI, int isYCbCr)
         for (int i = 0; i < sizeof(RGBRegs) / sizeof(RGBRegs[0]); i++) {
             i2c_write_8(ADV7513_ADDR(idx), RGBRegs[i][1], RGBRegs[i][2]);
         }
+
+        uint8_t reg = i2c_read_8(ADV7513_ADDR(idx), 0xC6);
+        DBG_MSG("7513[0xC6] 0x%x", reg);
     }
 }
 
 static void HDMIEnc_ReadEDID(int idx)
 {
     DBG_MSG("EDID reading...");
+    memset(EDID[idx], 0, 256);
     i2c_read_multibytes(ADV7513_EDID_ADDR(idx),0,256,EDID[idx]);
+    // for(int i=0;i<256;i++)
+    //     printf("%02x", EDID[idx][i]);
+    // printf("\n==== EDID end\r\n");
 }
 
 static void HDMIEnc_DetectMonitor(int idx)
