@@ -223,6 +223,70 @@ const uint8_t REGS_7611[][3] = {
 static uint8_t EDID[2][256];
 static uint8_t MonitorState[2],ADV7513_0x42[2];
 
+// HDMI 1.4 Section 8.3.5 DVI/HDMI Device Discrimination
+//
+// return true when an HDMI VSDB of any length with id of 0x000C03
+bool HDMIEnc_DetectHDMI(uint8_t edid[256]) {
+    // edid[0x7e]: number of extensions
+    // Check CTA Extension Header Rev.3
+    // ref. CTA-861-G
+    if (edid[0x7e] > 0 && edid[0x80] == 2 && edid[0x81] == 3) {
+        uint32_t offset = edid[0x82];
+        if (offset < 4) {
+            return false;
+        }
+        for (uint32_t i = 4;i < offset;) {
+            uint32_t begin = 0x80 + i;
+            if (begin >= 256) {
+                return false;
+            }
+
+            uint32_t length = edid[begin] & 0x1f;
+            if (begin + length >= 256 || length == 0) {
+                return false;
+            }
+
+            uint32_t code = (edid[begin] & 0xe0) >> 5;
+            if (code == 3 && length >= 5) {
+                // Vendor-Specific Block (code = 3)
+                // OUI = 0x000C03
+                // HDMI 1.4 Section 8.3.2 HDMI Vendor-Specific Data Block(HDMI VSDB)
+                if (edid[begin+1] == 0x03 && edid[begin+2] == 0x0C && edid[begin+3] == 0x00) {
+                    return true;
+                }
+            }
+            i += length + 1;
+        }
+    }
+    return false;
+}
+
+
+void HDMIEnc_OutFmtSwitch(int idx, int isHDMI, int isYCbCr)
+{
+    INFO_MSG("enc[%d] output format HDMI=%d, YCbCr=%d", idx, isHDMI, isYCbCr);
+    if (isHDMI && isYCbCr) {
+        uint8_t YCbCrRegs[][3] = {
+            {0, 0x16, 0b10111001},
+            {0, 0x18, 0x46},       // CSC disabled
+            {0, 0x55, 0b00100000}, // AVInfo: Y1Y0 is 01 = YCbCr 4:2:2
+            {0, 0xAF, 0x06},       // Set HDMI Mode
+        };
+        for (int i = 0; i < sizeof(YCbCrRegs) / sizeof(YCbCrRegs[0]); i++) {
+            i2c_write_8(ADV7513_ADDR(idx), YCbCrRegs[i][1], YCbCrRegs[i][2]);
+        }
+    } else {
+        uint8_t RGBRegs[][3] = {
+            {0, 0x16, 0x38}, // Output Format 4:4:4
+            {0, 0x18, 0xE6}, // CSC enabled
+            {0, 0x55, 0x00}, // AVInfo: Y1Y0 is 00 = RGB
+            {0, 0xAF, isHDMI ? 0x06 : 0x04}, // Set DVI/HDMI Mode
+        };
+        for (int i = 0; i < sizeof(RGBRegs) / sizeof(RGBRegs[0]); i++) {
+            i2c_write_8(ADV7513_ADDR(idx), RGBRegs[i][1], RGBRegs[i][2]);
+        }
+    }
+}
 
 static void HDMIEnc_ReadEDID(int idx)
 {
@@ -270,6 +334,11 @@ static void HDMIEnc_DetectMonitor(int idx)
             if(edid_ready){
                 HDMIEnc_ReadEDID(idx);
                 INFO_MSG("enc[%d] EDID read", idx);
+
+                // Enable HDMI output mode if sink supports that.
+                // We don't use YCbCr mode for now.
+                HDMIEnc_OutFmtSwitch(idx, HDMIEnc_DetectHDMI(EDID[idx]), 0);
+
                 MonitorState[idx] = 2;
             }else if(HAL_GetTick()-last_reread>1000){
                 DBG_MSG("enc[%d] Try to re-read EDID...", idx);
